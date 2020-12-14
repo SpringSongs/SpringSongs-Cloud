@@ -12,7 +12,6 @@
 
 	<groupId>io.github.springsongs</groupId>
 	<artifactId>springsongs-activiti-service</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<name>springsongs-activiti-service</name>
 	<url>http://maven.apache.org</url>
 	<properties>
