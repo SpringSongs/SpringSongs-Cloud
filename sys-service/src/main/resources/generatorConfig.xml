@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="/Users/SpringSongs/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar" />
+	<context id="simple" targetRuntime="MyBatis3Simple">
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/base_system?allowMultiQueries=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"
+			userId="root" password="qweasd" />
+		<javaModelGenerator
+			targetPackage="io.github.springsongs.domain" targetProject="src/main/java" />
+		<sqlMapGenerator targetPackage="io.github.springsongs.mapper"
+			targetProject="src/main/java">
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="io.github.springsongs.mapper" targetProject="src/main/java" />
+		<table tableName="spring_aritlce" />
+		<table tableName="spring_aritlce_draft" />
+		<table tableName="spring_article_category" />
+		<table tableName="spring_article_comment" />
+		<table tableName="spring_attachment" />
+		<table tableName="spring_attachment_category" />
+		<table tableName="spring_blog" />
+		<table tableName="spring_blog_category" />
+		<table tableName="spring_blog_comment" />
+		<table tableName="spring_blog_draft" />
+		<table tableName="spring_contact" />
+		<table tableName="spring_dictionary" />
+		<table tableName="spring_dictionary_detail" />
+		<table tableName="spring_district" />
+		<table tableName="spring_friend_link" />
+		<table tableName="spring_login_log" />
+		<table tableName="spring_organization" />
+		<table tableName="spring_parameter" />
+		<table tableName="spring_resource" />
+		<table tableName="spring_resource_role" />
+		<table tableName="spring_role" />
+		<table tableName="spring_site_info" />
+		<table tableName="spring_site_message" />
+		<table tableName="spring_site_notice" />
+		<table tableName="spring_system" />
+		<table tableName="spring_user" />
+		<table tableName="spring_user_role" />
+		<table tableName="spring_user_security" />
+	</context>
+</generatorConfiguration>
