@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>io.github.springsongs</groupId>
-	<artifactId>job-api</artifactId>
+	<artifactId>springsongs-sys-api</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>job-api</name>
+	<name>springsongs-sys-api</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

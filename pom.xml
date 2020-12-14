@@ -87,11 +87,11 @@
 		<module>springsongs-gateway</module>
 		<module>springsongs-bootadmin</module>
 		<module>springsongs-zipkin</module>
-		<module>activiti-service</module>
-		<module>job-service</module>
-		<module>sys-service</module>
-		<module>activiti-api</module>
-		<module>job-api</module>
-		<module>sys-api</module>
+		<module>springsongs-activiti-service</module>
+		<module>springsongs-job-service</module>
+		<module>springsongs-sys-service</module>
+		<module>springsongs-activiti-api</module>
+		<module>springsongs-job-api</module>
+		<module>springsongs-sys-api</module>
 	</modules>
 </project>

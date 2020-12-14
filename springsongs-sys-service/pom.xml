@@ -11,15 +11,14 @@
 	</parent>
 
 	<groupId>io.github.springsongs</groupId>
-	<artifactId>activiti-service</artifactId>
+	<artifactId>springsongs-sys-service</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>activiti-service</name>
+	<name>springsongs-sys-service</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -103,4 +102,5 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>
