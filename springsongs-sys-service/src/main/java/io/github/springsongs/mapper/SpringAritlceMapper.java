@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
-import io.github.springsongs.domain.SpringAritlce;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import io.github.springsongs.domain.SpringAritlce;
+import io.github.springsongs.dto.SpringAritlceDTO;
 
 public interface SpringAritlceMapper {
     /**
@@ -43,4 +47,8 @@ public interface SpringAritlceMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringAritlce record);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	List<SpringAritlce> listByPage(SpringAritlceDTO springAritlceQuery);
 }

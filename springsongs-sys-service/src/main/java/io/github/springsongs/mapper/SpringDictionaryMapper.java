@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringDictionary;
+import io.github.springsongs.dto.SpringDictionaryDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringDictionaryMapper {
     /**
@@ -43,4 +47,10 @@ public interface SpringDictionaryMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringDictionary record);
+
+	List<SpringDictionary> listByPage(SpringDictionaryDTO springDictionaryQuery);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	List<SpringDictionary> findInIds(@Param("ids") List<String> ids);
 }

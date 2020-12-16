@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringUser;
+import io.github.springsongs.dto.SpringUserDTO;
+
 import java.util.List;
+
+import com.github.pagehelper.Page;
 
 public interface SpringUserMapper {
     /**
@@ -43,4 +47,16 @@ public interface SpringUserMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringUser record);
+
+	SpringUser getByUserName(String userName);
+
+	List<SpringUser> listByPage(SpringUserDTO springUserQuery);
+
+	List<SpringUser> findAllById(List<String> ids);
+
+	void setDelete(List<String> ids);
+
+	List<SpringUser> listUserByIds(List<String> ids);
+
+	Page<SpringUser> ListUsersByRoleId(String roleId);
 }

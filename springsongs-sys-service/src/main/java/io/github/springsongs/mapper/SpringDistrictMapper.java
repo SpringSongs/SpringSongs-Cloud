@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringDistrict;
+import io.github.springsongs.dto.SpringDistrictDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringDistrictMapper {
     /**
@@ -43,4 +47,10 @@ public interface SpringDistrictMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringDistrict record);
+
+	List<SpringDistrict> listByPage(SpringDistrictDTO record);
+
+	void setDelete(@Param("ids") List<Long> ids);
+
+	List<SpringDistrict> listSpringDistrictByParentId(@Param("parentId") Long parentId);
 }

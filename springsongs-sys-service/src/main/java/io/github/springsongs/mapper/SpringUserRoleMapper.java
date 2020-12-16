@@ -43,4 +43,12 @@ public interface SpringUserRoleMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringUserRole record);
+
+	void deleteByRoleId(String roleId);
+
+	void saveAll(List<SpringUserRole> baseUserRoleEntityList);
+
+	void deleteByUserIdAndRoleId(String userId, String roleId);
+
+	void deleteByUserId(String userId);
 }

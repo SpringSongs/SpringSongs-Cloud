@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringAttachmentCategory;
+import io.github.springsongs.dto.SpringAttachmentCategoryDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringAttachmentCategoryMapper {
     /**
@@ -43,4 +47,10 @@ public interface SpringAttachmentCategoryMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringAttachmentCategory record);
+
+	List<SpringAttachmentCategory> listByPage(SpringAttachmentCategoryDTO record);
+
+	List<SpringAttachmentCategory> listSpringAttachmentCategoryByParentId(@Param("id") String id);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

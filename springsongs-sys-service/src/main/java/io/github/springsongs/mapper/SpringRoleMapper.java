@@ -1,6 +1,8 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringRole;
+import io.github.springsongs.dto.SpringRoleDTO;
+
 import java.util.List;
 
 public interface SpringRoleMapper {
@@ -43,4 +45,12 @@ public interface SpringRoleMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringRole record);
+
+	List<SpringRole> listByPage(SpringRoleDTO springRoleQuery);
+
+	List<SpringRole> findAllById(List<String> ids);
+
+	void setDelete(List<String> ids);
+
+	List<SpringRole> ListRoleByUserId(String userId);
 }

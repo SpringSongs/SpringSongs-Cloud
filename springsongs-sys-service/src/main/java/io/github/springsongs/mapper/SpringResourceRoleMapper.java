@@ -44,4 +44,14 @@ public interface SpringResourceRoleMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringResourceRole record);
+
+	void delete(String roleId, String moduleId);
+
+	void saveAll(List<SpringResourceRole> baseModuleRoleEntityList);
+
+	List<SpringResourceRole> listModulesByRoleId(String roleId);
+
+	SpringResourceRole findByRoleIdAndModuleId(String roleId, String moduleId);
+
+	void deleteByRoleIdAndModuleId(String roleId, String moduleId);
 }

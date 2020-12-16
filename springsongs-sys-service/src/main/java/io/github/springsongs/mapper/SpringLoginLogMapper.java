@@ -1,7 +1,13 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringLoginLog;
+import io.github.springsongs.dto.SpringLoginLogDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 public interface SpringLoginLogMapper {
     /**
@@ -43,4 +49,8 @@ public interface SpringLoginLogMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringLoginLog record);
+
+	Page<SpringLoginLog> listByPage(SpringLoginLogDTO springLoginLogQuery);
+
+	void delete(@Param("ids") List<String> ids);
 }

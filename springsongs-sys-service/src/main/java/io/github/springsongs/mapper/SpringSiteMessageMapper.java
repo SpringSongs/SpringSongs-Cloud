@@ -1,7 +1,13 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringSiteMessage;
+import io.github.springsongs.dto.SpringSiteMessageDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 public interface SpringSiteMessageMapper {
     /**
@@ -43,4 +49,10 @@ public interface SpringSiteMessageMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringSiteMessage record);
+
+	List<SpringSiteMessage> listByPage(SpringSiteMessageDTO record);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	int countNotReadMessageByUserId(@Param("toUserId") String toUserId);
 }

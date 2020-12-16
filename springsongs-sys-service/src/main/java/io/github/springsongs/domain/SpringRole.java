@@ -37,7 +37,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte enableEdit;
+    private boolean enableEdit;
 
     /**
      *
@@ -46,7 +46,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte enableDelete;
+    private boolean enableDelete;
 
     /**
      *
@@ -209,7 +209,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getEnableEdit() {
+    public boolean getEnableEdit() {
         return enableEdit;
     }
 
@@ -221,7 +221,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setEnableEdit(Byte enableEdit) {
+    public void setEnableEdit(boolean enableEdit) {
         this.enableEdit = enableEdit;
     }
 
@@ -233,7 +233,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getEnableDelete() {
+    public boolean getEnableDelete() {
         return enableDelete;
     }
 
@@ -245,7 +245,7 @@ public class SpringRole {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setEnableDelete(Byte enableDelete) {
+    public void setEnableDelete(boolean enableDelete) {
         this.enableDelete = enableDelete;
     }
 

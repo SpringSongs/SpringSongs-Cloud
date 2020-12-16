@@ -73,7 +73,7 @@ public class SpringDictionary {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte enableDelete;
+    private boolean enableDelete;
 
     /**
      *
@@ -323,7 +323,7 @@ public class SpringDictionary {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getEnableDelete() {
+    public boolean getEnableDelete() {
         return enableDelete;
     }
 
@@ -335,7 +335,7 @@ public class SpringDictionary {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setEnableDelete(Byte enableDelete) {
+    public void setEnableDelete(boolean enableDelete) {
         this.enableDelete = enableDelete;
     }
 

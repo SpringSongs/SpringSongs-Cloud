@@ -109,7 +109,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte enableEdit;
+    private boolean enableEdit;
 
     /**
      *
@@ -118,7 +118,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte enableDelete;
+    private boolean enableDelete;
 
     /**
      *
@@ -127,7 +127,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte deletedStatus;
+    private boolean deletedStatus;
 
     /**
      *
@@ -136,7 +136,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte showStatus;
+    private boolean showStatus;
 
     /**
      *
@@ -491,7 +491,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getEnableEdit() {
+    public boolean getEnableEdit() {
         return enableEdit;
     }
 
@@ -503,7 +503,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setEnableEdit(Byte enableEdit) {
+    public void setEnableEdit(boolean enableEdit) {
         this.enableEdit = enableEdit;
     }
 
@@ -515,7 +515,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getEnableDelete() {
+    public boolean getEnableDelete() {
         return enableDelete;
     }
 
@@ -527,7 +527,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setEnableDelete(Byte enableDelete) {
+    public void setEnableDelete(boolean enableDelete) {
         this.enableDelete = enableDelete;
     }
 
@@ -539,7 +539,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getDeletedStatus() {
+    public boolean getDeletedStatus() {
         return deletedStatus;
     }
 
@@ -551,7 +551,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setDeletedStatus(Byte deletedStatus) {
+    public void setDeletedStatus(boolean deletedStatus) {
         this.deletedStatus = deletedStatus;
     }
 
@@ -563,7 +563,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getShowStatus() {
+    public boolean getShowStatus() {
         return showStatus;
     }
 
@@ -575,7 +575,7 @@ public class SpringResource {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setShowStatus(Byte showStatus) {
+    public void setShowStatus(boolean showStatus) {
         this.showStatus = showStatus;
     }
 

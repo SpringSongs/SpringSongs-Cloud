@@ -1,7 +1,13 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringSiteNotice;
+import io.github.springsongs.dto.SpringSiteNoticeDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 public interface SpringSiteNoticeMapper {
     /**
@@ -43,4 +49,8 @@ public interface SpringSiteNoticeMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringSiteNotice record);
+
+	Page<SpringSiteNotice> listByPage(SpringSiteNoticeDTO record);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

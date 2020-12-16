@@ -1,7 +1,13 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringFriendLink;
+import io.github.springsongs.dto.SpringFriendLinkDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 public interface SpringFriendLinkMapper {
     /**
@@ -43,4 +49,8 @@ public interface SpringFriendLinkMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringFriendLink record);
+
+	Page<SpringFriendLink> listByPage(SpringFriendLinkDTO record);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

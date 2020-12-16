@@ -43,4 +43,6 @@ public interface SpringUserSecurityMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringUserSecurity record);
+
+	SpringUserSecurity findByUserId(String userId);
 }

@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringAttachment;
+import io.github.springsongs.dto.SpringAttachmentDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringAttachmentMapper {
     /**
@@ -43,4 +47,8 @@ public interface SpringAttachmentMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringAttachment record);
+
+	List<SpringAttachment> listByPage(SpringAttachmentDTO record);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

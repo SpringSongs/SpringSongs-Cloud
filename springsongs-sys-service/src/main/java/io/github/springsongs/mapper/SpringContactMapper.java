@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringContact;
+import io.github.springsongs.dto.SpringContactDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringContactMapper {
     /**
@@ -43,4 +47,8 @@ public interface SpringContactMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringContact record);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	List<SpringContact> listByPage(SpringContactDTO springContactQuery);
 }

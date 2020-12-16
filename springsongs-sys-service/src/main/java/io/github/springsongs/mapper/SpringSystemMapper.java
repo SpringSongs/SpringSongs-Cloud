@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringSystem;
+import io.github.springsongs.dto.SpringSystemDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringSystemMapper {
     /**
@@ -43,4 +47,12 @@ public interface SpringSystemMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringSystem record);
+
+	List<SpringSystem> findInIds(@Param("ids") List<String> ids);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	List<SpringSystem> findAllById(@Param("ids") List<String> ids);
+
+	List<SpringSystem> listByPage(SpringSystemDTO springSystemQuery);
 }

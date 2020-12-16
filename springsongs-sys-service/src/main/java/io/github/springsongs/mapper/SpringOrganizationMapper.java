@@ -1,7 +1,13 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringOrganization;
+import io.github.springsongs.dto.SpringOrganizationDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 
 public interface SpringOrganizationMapper {
     /**
@@ -43,4 +49,10 @@ public interface SpringOrganizationMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringOrganization record);
+
+	Page<SpringOrganization> listByPage(SpringOrganizationDTO record);
+
+	List<SpringOrganization> listOrganizationByParentId(@Param("id") String id);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

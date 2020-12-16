@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringParameter;
+import io.github.springsongs.dto.SpringParameterDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringParameterMapper {
     /**
@@ -43,4 +47,10 @@ public interface SpringParameterMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringParameter record);
+
+	List<SpringParameter> listByPage(SpringParameterDTO springParameterQuery);
+
+	List<SpringParameter> listByIds(@Param("ids") List<String> ids);
+
+	void setDelete(@Param("ids") List<String> ids);
 }

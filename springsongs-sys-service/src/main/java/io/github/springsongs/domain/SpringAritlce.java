@@ -163,7 +163,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte topStatus;
+    private boolean topStatus;
 
     /**
      *
@@ -172,7 +172,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte hotStatus;
+    private boolean hotStatus;
 
     /**
      *
@@ -181,7 +181,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte featured;
+    private boolean featured;
 
     /**
      *
@@ -734,7 +734,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getTopStatus() {
+    public boolean getTopStatus() {
         return topStatus;
     }
 
@@ -746,7 +746,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setTopStatus(Byte topStatus) {
+    public void setTopStatus(boolean topStatus) {
         this.topStatus = topStatus;
     }
 
@@ -758,7 +758,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getHotStatus() {
+    public boolean getHotStatus() {
         return hotStatus;
     }
 
@@ -770,7 +770,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setHotStatus(Byte hotStatus) {
+    public void setHotStatus(boolean hotStatus) {
         this.hotStatus = hotStatus;
     }
 
@@ -782,7 +782,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getFeatured() {
+    public boolean getFeatured() {
         return featured;
     }
 
@@ -794,7 +794,7 @@ public class SpringAritlce {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setFeatured(Byte featured) {
+    public void setFeatured(boolean featured) {
         this.featured = featured;
     }
 

@@ -1,7 +1,10 @@
 package io.github.springsongs.mapper;
 
-import io.github.springsongs.domain.SpringResource;
 import java.util.List;
+
+import io.github.springsongs.domain.SpringResource;
+import io.github.springsongs.dto.ResourceRoleDTO;
+import io.github.springsongs.dto.SpringResourceDTO;
 
 public interface SpringResourceMapper {
     /**
@@ -43,4 +46,20 @@ public interface SpringResourceMapper {
      * @mbg.generated Mon Dec 14 16:39:39 CST 2020
      */
     int updateByPrimaryKey(SpringResource record);
+
+	List<SpringResource> listByPage(SpringResourceDTO springResourceQuery);
+
+	List<SpringResource> getInParentId(List<String> ids);
+
+	List<SpringResource> findAllById(List<String> ids);
+
+	void setDelete(List<String> ids);
+
+	List<SpringResource> listModuleByUserId(String userId);
+
+	List<SpringResource> getByParentId(String parentId, String systemId);
+
+	List<ResourceRoleDTO> listAllRoleModules(List<String> roleCode);
+
+	List<SpringResource> listAllResources(String systemCode);
 }
