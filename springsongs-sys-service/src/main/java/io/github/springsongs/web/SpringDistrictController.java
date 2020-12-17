@@ -51,7 +51,7 @@ public class SpringDistrictController{
 
 	@ApiOperation(value = "获取行政区域", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringDistrictDTO> get(@NotEmpty(message = "id不能为空") Long id) {
 		SpringDistrictDTO entity = SpringDistrictService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

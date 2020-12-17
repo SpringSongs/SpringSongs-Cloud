@@ -25,8 +25,8 @@ public interface ISpringArticleCommentService {
 	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(
 			@RequestBody SpringArticleCommentDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/SpringArticleComment/Detail")
-	public ResponseDTO<String> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/SpringArticleComment/Detail")
+	public ResponseDTO<String> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	@PostMapping(value = "/SpringArticleComment/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringArticleCommentDTO viewEntity);

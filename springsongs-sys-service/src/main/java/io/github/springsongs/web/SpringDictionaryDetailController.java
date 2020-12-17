@@ -52,7 +52,7 @@ public class SpringDictionaryDetailController{
 
 	@ApiOperation(value = "获取字典明细", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringDictionaryDetailDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringDictionaryDetailDTO entity = springDictionaryDetailService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

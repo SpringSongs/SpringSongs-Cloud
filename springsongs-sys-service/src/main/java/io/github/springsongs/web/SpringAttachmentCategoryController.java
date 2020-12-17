@@ -51,7 +51,7 @@ public class SpringAttachmentCategoryController {
 
 	@ApiOperation(value = "获取附件分类", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringAttachmentCategoryDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringAttachmentCategoryDTO entity = springAttachmentCategoryService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

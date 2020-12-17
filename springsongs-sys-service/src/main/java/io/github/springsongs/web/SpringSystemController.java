@@ -51,7 +51,7 @@ public class SpringSystemController{
 
 	@ApiOperation(value = "获取子系统", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSystemDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringSystemDTO entity = springSystemService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

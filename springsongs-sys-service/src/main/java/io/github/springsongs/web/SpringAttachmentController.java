@@ -61,7 +61,7 @@ public class SpringAttachmentController {
 
 	@ApiOperation(value = "获取附件", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringAttachmentDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringAttachmentDTO entity = springAttachmentService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

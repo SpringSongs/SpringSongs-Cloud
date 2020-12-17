@@ -24,8 +24,8 @@ public interface ISpringDictionaryDetailService {
 	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(
 			@RequestBody SpringDictionaryDetailDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/SpringDictionaryDetail/Detail")
-	public ResponseDTO<SpringDictionaryDetailDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/SpringDictionaryDetail/Detail")
+	public ResponseDTO<SpringDictionaryDetailDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	@PostMapping(value = "/SpringDictionaryDetail/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringDictionaryDetailDTO viewEntity);

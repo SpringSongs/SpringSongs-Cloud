@@ -29,8 +29,8 @@ public interface ISpringUserService {
 	public ReponseResultPageDTO<SpringUserDTO> listByRoleId(
 			@PathVariable(value = "roleId", required = true) String roleId,@RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/Detail")
-	public ResponseDTO<SpringUserDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/Detail")
+	public ResponseDTO<SpringUserDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	@PostMapping(value = "/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringUserDTO viewEntity);

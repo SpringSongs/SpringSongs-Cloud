@@ -51,7 +51,7 @@ public class SpringSiteNoticeController{
 
 	@ApiOperation(value = "获取站内公告", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSiteNoticeDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringSiteNoticeDTO entity = SpringSiteNoticeService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

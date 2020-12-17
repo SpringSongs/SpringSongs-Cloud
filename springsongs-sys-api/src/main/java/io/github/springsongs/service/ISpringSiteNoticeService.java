@@ -23,8 +23,8 @@ public interface ISpringSiteNoticeService{
 	@PostMapping(value = "/ListByPage")
 	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(@RequestBody SpringSiteNoticeDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/Detail")
-	public ResponseDTO<SpringSiteNoticeDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/Detail")
+	public ResponseDTO<SpringSiteNoticeDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	@PostMapping(value = "/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringSiteNoticeDTO viewEntity);

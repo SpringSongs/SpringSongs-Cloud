@@ -25,8 +25,8 @@ public interface ISpringDistrictService {
 	public ReponseResultPageDTO<SpringDistrictDTO> listByPage(@RequestBody SpringDistrictDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/SpringDistrict/Detail")
-	public ResponseDTO<SpringContactDTO> get(@NotEmpty(message = "id不能为空") Long id);
+	@PostMapping(value = "/SpringDistrict/Detail")
+	public ResponseDTO<SpringContactDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") Long id);
 
 	@PostMapping(value = "/SpringDistrict/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringDistrictDTO viewEntity);

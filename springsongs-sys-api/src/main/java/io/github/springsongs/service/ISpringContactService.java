@@ -25,8 +25,8 @@ public interface ISpringContactService{
 	public ReponseResultPageDTO<SpringContactDTO> listByPage(@RequestBody SpringContactDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	
-	@GetMapping(value = "/SpringContact/Detail")
-	public ResponseDTO<SpringContactDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/SpringContact/Detail")
+	public ResponseDTO<SpringContactDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	
 	@PostMapping(value = "/SpringContact/Create")

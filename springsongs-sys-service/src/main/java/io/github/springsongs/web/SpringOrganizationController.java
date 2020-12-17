@@ -52,7 +52,7 @@ public class SpringOrganizationController{
 
 	@ApiOperation(value = "获取组织机构", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringOrganizationDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringOrganizationDTO entity = springOrganizationService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

@@ -24,8 +24,8 @@ public interface ISpringAttachmentCategoryService {
 	public ReponseResultPageDTO<SpringAttachmentCategoryDTO> listByPage(
 			@RequestBody SpringAttachmentCategoryDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/SpringAttachmentCategory/Detail")
-	public ResponseDTO<SpringAttachmentCategoryDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/SpringAttachmentCategory/Detail")
+	public ResponseDTO<SpringAttachmentCategoryDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	@PostMapping(value = "/SpringAttachmentCategory/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringAttachmentCategoryDTO viewEntity);

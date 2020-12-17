@@ -50,7 +50,7 @@ public class SpringSiteMessageController{
 
 	@ApiOperation(value = "获取站内消息", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSiteMessageDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringSiteMessageDTO entity = SpringSiteMessageService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

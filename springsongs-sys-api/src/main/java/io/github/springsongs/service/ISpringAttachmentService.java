@@ -26,8 +26,8 @@ public interface ISpringAttachmentService {
 	public ReponseResultPageDTO<SpringAttachmentDTO> listByPage(@RequestBody SpringAttachmentDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	
-	@GetMapping(value = "/SpringAttachment/Detail")
-	public ResponseDTO<SpringAttachmentDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/SpringAttachment/Detail")
+	public ResponseDTO<SpringAttachmentDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 
 	
 	@PostMapping(value = "/SpringAttachment/Create")

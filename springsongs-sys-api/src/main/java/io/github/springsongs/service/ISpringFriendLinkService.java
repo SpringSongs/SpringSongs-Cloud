@@ -24,8 +24,8 @@ public interface ISpringFriendLinkService {
 	@PostMapping(value = "/ListByPage")
 	public ReponseResultPageDTO<SpringFriendLinkDTO> listByPage(@RequestBody SpringFriendLinkDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 	
-	@GetMapping(value = "/Detail")
-	public ResponseDTO<SpringContactDTO> get(@NotEmpty(message = "id不能为空") String id);
+	@PostMapping(value = "/Detail")
+	public ResponseDTO<SpringContactDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);
 	
 	@PostMapping(value = "/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringFriendLinkDTO viewEntity);

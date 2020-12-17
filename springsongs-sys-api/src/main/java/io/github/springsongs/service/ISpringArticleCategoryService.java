@@ -21,7 +21,7 @@ public interface ISpringArticleCategoryService {
 	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(
 			@RequestBody SpringArticleCategoryDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
-	@GetMapping(value = "/SpringArticleCategory/Detail")
+	@PostMapping(value = "/SpringArticleCategory/Detail")
 	public ResponseDTO<String> get(@RequestParam(value = "id", required = true) String id);
 
 	@PostMapping(value = "/SpringArticleCategory/Create")

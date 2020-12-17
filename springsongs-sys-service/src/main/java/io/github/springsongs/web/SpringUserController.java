@@ -73,7 +73,7 @@ public class SpringUserController {
 
 	@ApiOperation(value = "获取用户", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringUserDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringUserDTO entity = springUserService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
