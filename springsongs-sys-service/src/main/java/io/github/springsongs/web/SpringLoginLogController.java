@@ -30,12 +30,12 @@ public class SpringLoginLogController{
 	private ISpringLoginLogService springLoginLogService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringLoginLogDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringLoginLogDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringLoginLogDTO> listByPage(@RequestBody SpringLoginLogDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringLoginLogDTO> listByPage(@RequestBody SpringLoginLogDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringLoginLogDTO> lists = springLoginLogService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringLoginLogDTO> lists = springLoginLogService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

@@ -39,18 +39,18 @@ public class SpringSiteInfoController{
 	private ISpringSiteInfoService SpringSiteInfoService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringSiteInfoDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteInfoDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteInfoDTO> listByPage(@RequestBody SpringSiteInfoDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringSiteInfoDTO> listByPage(@RequestBody SpringSiteInfoDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringSiteInfoDTO> lists = SpringSiteInfoService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringSiteInfoDTO> lists = SpringSiteInfoService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取站点信息", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
-	@GetMapping(value = "/Detail")
+	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSiteInfoDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringSiteInfoDTO entity = SpringSiteInfoService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);

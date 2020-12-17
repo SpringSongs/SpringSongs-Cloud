@@ -42,12 +42,12 @@ public class SpringAritlceController {
 	private ISpringAritlceService springAritlceService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAritlceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringAritlceDTO> listByPage(@RequestBody SpringAritlceDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringAritlceDTO> listByPage(@RequestBody SpringAritlceDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringAritlceDTO> lists = springAritlceService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringAritlceDTO> lists = springAritlceService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

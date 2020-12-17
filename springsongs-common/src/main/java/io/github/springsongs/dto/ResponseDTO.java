@@ -23,6 +23,14 @@ public class ResponseDTO<T> {
 		responseDTO.setMsg(message);
 		return responseDTO;
 	}
+	
+	public static ResponseDTO successed(ResultCode resultCode) {
+		ResponseDTO responseDTO = new ResponseDTO();
+		responseDTO.setData(null);
+		responseDTO.setCode(resultCode.getCode());
+		responseDTO.setMsg(resultCode.getMessage());
+		return responseDTO;
+	}
 
 	public static ResponseDTO successed(int code, String message) {
 		ResponseDTO responseDTO = new ResponseDTO();

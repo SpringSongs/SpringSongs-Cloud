@@ -130,7 +130,7 @@
 	        </if>
 	  </where>
   </update>
-  <select id="countNotReadMessageByUserId" resultMap="java.util.Integer">
+  <select id="countNotReadMessageByUserId" resultType="java.lang.Integer">
   	select count(*) from spring_site_message where status=0 and to_user_id=#{toUserId,jdbcType=VARCHAR}
   </select>
 </mapper>

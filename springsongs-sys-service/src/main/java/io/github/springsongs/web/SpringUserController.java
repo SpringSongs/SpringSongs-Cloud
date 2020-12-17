@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 
-import io.github.springsongs.domain.SpringUser;
 import io.github.springsongs.domain.SpringUserRole;
 import io.github.springsongs.domain.SpringUserSecurity;
 import io.github.springsongs.dto.ReponseResultPageDTO;
@@ -51,12 +50,12 @@ public class SpringUserController {
 
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringUserDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringUserDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringUserDTO> listByPage(@RequestBody SpringUserDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringUserDTO> listByPage(@RequestBody SpringUserDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringUserDTO> lists = springUserService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringUserDTO> lists = springUserService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
@@ -75,8 +74,8 @@ public class SpringUserController {
 	@ApiOperation(value = "获取用户", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@NotEmpty(message = "id不能为空") String id) {
-		SpringUser entity = springUserService.selectByPrimaryKey(id);
+	public ResponseDTO<SpringUserDTO> get(@NotEmpty(message = "id不能为空") String id) {
+		SpringUserDTO entity = springUserService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}
 
@@ -120,7 +119,7 @@ public class SpringUserController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "viewEntity", dataType = "SpringUserSecurity"),
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest"), })
 	@PostMapping(value = "/SetPwd")
-	public ResponseDTO<String> SetPwd(@RequestBody SpringUserSecurity viewEntity, HttpServletRequest request) {
+	public ResponseDTO<String> setPwd(@RequestBody SpringUserSecurity viewEntity, HttpServletRequest request) {
 
 		if (StringUtils.isEmpty(viewEntity.getUserId())) {
 			return ResponseDTO.successed(null, ResultCode.PARAMETER_NOT_NULL_ERROR);

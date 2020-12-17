@@ -3,12 +3,10 @@ package io.github.springsongs.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class MenuRouterDTO {
-	@JsonIgnore
+
 	private String id;
-	@JsonIgnore
+
 	private String parentId;
 	private String path;
 	private String component;

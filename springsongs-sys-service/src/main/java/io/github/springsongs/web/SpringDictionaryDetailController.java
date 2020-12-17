@@ -41,20 +41,20 @@ public class SpringDictionaryDetailController{
 	private ISpringDictionaryDetailService springDictionaryDetailService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDetailDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(@RequestBody SpringDictionaryDetailDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringDictionaryDetailDTO> lists = springDictionaryDetailService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringDictionaryDetailDTO> lists = springDictionaryDetailService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取字典明细", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@NotEmpty(message = "id不能为空") String id) {
-		SpringDictionaryDetail entity = springDictionaryDetailService.selectByPrimaryKey(id);
+	public ResponseDTO<SpringDictionaryDetailDTO> get(@NotEmpty(message = "id不能为空") String id) {
+		SpringDictionaryDetailDTO entity = springDictionaryDetailService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}
 

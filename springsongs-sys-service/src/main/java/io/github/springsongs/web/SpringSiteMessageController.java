@@ -39,12 +39,12 @@ public class SpringSiteMessageController{
 	private ISpringSiteMessageService SpringSiteMessageService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringSiteMessageDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteMessageDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteMessageDTO> listByPage(@RequestBody SpringSiteMessageDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringSiteMessageDTO> listByPage(@RequestBody SpringSiteMessageDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringSiteMessageDTO> lists = SpringSiteMessageService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringSiteMessageDTO> lists = SpringSiteMessageService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

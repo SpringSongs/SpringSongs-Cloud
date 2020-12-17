@@ -42,19 +42,19 @@ public class SpringArticleCommentController{
 	private ISpringArticleCommentService springArticleCommentService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCommentDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(@RequestBody SpringArticleCommentDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(@RequestBody SpringArticleCommentDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringArticleCommentDTO> lists = springArticleCommentService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringArticleCommentDTO> lists = springArticleCommentService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取单一内容评论", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@NotEmpty(message = "id不能为空") String id) {
+	public ResponseDTO<SpringArticleCommentDTO> get(@NotEmpty(message = "id不能为空") String id) {
 		SpringArticleCommentDTO entity = springArticleCommentService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}

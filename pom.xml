@@ -92,5 +92,6 @@
 		<module>springsongs-job-api</module>
 		<module>springsongs-sys-api</module>
     <module>springsongs-common</module>
+    <module>springsongs-sys-domain</module>
   </modules>
 </project>

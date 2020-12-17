@@ -18,7 +18,7 @@
     <result column="author_id" jdbcType="VARCHAR" property="authorId" />
     <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="author_url" jdbcType="VARCHAR" property="authorUrl" />
-    <result column="status" jdbcType="BIT" property="status" />
+    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="link" jdbcType="VARCHAR" property="link" />
     <result column="read_count" jdbcType="INTEGER" property="readCount" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
@@ -137,8 +137,8 @@
     top_status, hot_status, featured, comment_count, sort_order, come_from, come_from_link, 
     deleted_status, created_user_id, created_by, created_on, created_ip, updated_user_id, 
     updated_by, updated_on, updated_ip, version, contents
-    from spring_aritlce
-    where id = #{id,jdbcType=VARCHAR}
+    from spring_aritlce where deleted_status=0
+    and id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     <!--

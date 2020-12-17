@@ -141,7 +141,7 @@
 	        </if>
 	  </where>
   </update>
-    <update id="setDeleteByCode">
+   <update id="setDeleteByCode">
 	  upate spring_dictionary_detail set deleted_status=1 where dictionary_code=#{dictionaryCode,jdbcType=VARCHAR}
   </update>
   <update id="setDeleteByDictionCode">

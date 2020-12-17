@@ -64,4 +64,5 @@ public class Constant {
 	public static final String EXPORT_SUCCESSED = "导出成功";
 	public static final String TASK_HADED_SUBMIT = "任务已经提交了";
 	public static final String TASK_HADED_CONFIG = "任务已经处理";
+	public static final String SERCIE_BUSING = "服务器正忙，请稍后！";
 }

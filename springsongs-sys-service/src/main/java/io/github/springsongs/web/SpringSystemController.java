@@ -40,12 +40,12 @@ public class SpringSystemController{
 	private ISpringSystemService springSystemService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringSystemDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSystemDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSystemDTO> listByPage(@RequestBody SpringSystemDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringSystemDTO> listByPage(@RequestBody SpringSystemDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringSystemDTO> lists = springSystemService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringSystemDTO> lists = springSystemService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

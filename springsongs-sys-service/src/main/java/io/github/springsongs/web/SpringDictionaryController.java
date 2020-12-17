@@ -39,12 +39,12 @@ public class SpringDictionaryController{
 	private ISpringDictionaryService springDictionaryService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDTO> listByPage(@RequestBody SpringDictionaryDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringDictionaryDTO> listByPage(@RequestBody SpringDictionaryDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringDictionaryDTO> lists = springDictionaryService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringDictionaryDTO> lists = springDictionaryService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

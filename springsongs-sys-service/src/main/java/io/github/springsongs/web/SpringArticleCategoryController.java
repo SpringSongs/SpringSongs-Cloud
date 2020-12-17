@@ -39,19 +39,19 @@ public class SpringArticleCategoryController{
 	private ISpringArticleCategoryService springArticleCategoryService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCategoryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(@RequestBody SpringArticleCategoryDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(@RequestBody SpringArticleCategoryDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringArticleCategoryDTO> lists = springArticleCategoryService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringArticleCategoryDTO> lists = springArticleCategoryService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取单一内容分类管理", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@RequestParam(value = "id", required = true) String id) {
+	public ResponseDTO<SpringArticleCategoryDTO> get(@RequestParam(value = "id", required = true) String id) {
 		SpringArticleCategoryDTO entity = springArticleCategoryService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}
@@ -85,7 +85,7 @@ public class SpringArticleCategoryController{
 	@ApiOperation(value = "根据上级获取内容分类", notes = "根据String上级获取内容分类", response = ResponseDTO.class)
 	@ApiImplicitParam(dataType = "parentId", name = "ids", value = "内容分类编号", required = true)
 	@GetMapping(value = "/GetCategorysByParent")
-	public ResponseDTO<ElementUiTreeDTO> getModuleByParentId(
+	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId) {
 		List<ElementUiTreeDTO> elementUiTreeDtoList = springArticleCategoryService.getCategoryByParentId(parentId);
 		return ResponseDTO.successed(elementUiTreeDtoList, ResultCode.SELECT_SUCCESSED);
@@ -93,14 +93,14 @@ public class SpringArticleCategoryController{
 
 	@ApiOperation(value = "获取全部内容分类", notes = "全部内容分类", response = ResponseDTO.class)
 	@GetMapping(value = "/listAllRecord")
-	public ResponseDTO<SpringArticleCategoryDTO> listAllRecord() {
+	public ResponseDTO<List<SpringArticleCategoryDTO>> listAllRecord() {
 		List<SpringArticleCategoryDTO> entitys = springArticleCategoryService.listAll();
 		return ResponseDTO.successed(entitys, ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "查询全部组织机构树", notes = "查询全部组织机构树", response = ResponseDTO.class)
 	@GetMapping(value = "/ListAllToTree")
-	public ResponseDTO<SpringArticleCategoryDTO> ListAllToTree() {
+	public ResponseDTO<List<SpringArticleCategoryDTO>> ListAllToTree() {
 		List<SpringArticleCategoryDTO> entitys = springArticleCategoryService.ListAllToTree();
 		return ResponseDTO.successed(entitys, ResultCode.SELECT_SUCCESSED);
 	}

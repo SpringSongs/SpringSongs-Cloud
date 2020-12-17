@@ -46,20 +46,19 @@ public class SpringResourceController{
 	private ISpringResourceService springResourceService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringResourceDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringResourceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringResourceDTO> listByPage(@RequestBody SpringResourceDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringResourceDTO> listByPage(@RequestBody SpringResourceDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringResourceDTO> lists = springResourceService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringResourceDTO> lists = springResourceService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 	@ApiOperation(value = "获取资源", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<SpringParameterDTO> get(@NotEmpty(message = "id不能为空") String id) {
-
-		SpringResource entity = springResourceService.selectByPrimaryKey(id);
+	public ResponseDTO<SpringResourceDTO> get(@NotEmpty(message = "id不能为空") String id) {
+		SpringResourceDTO entity = springResourceService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}
 
@@ -91,7 +90,7 @@ public class SpringResourceController{
 
 	@ApiOperation(value = "获取资源菜单", notes = "获取资源菜单", response = ResponseDTO.class)
 	@GetMapping(value = "/GetMenus")
-	public ResponseDTO<MenuDTO> getMenus() {
+	public ResponseDTO<List<MenuDTO>> getMenus() {
 		//TODO
 		List<MenuDTO> menuList = springResourceService.ListModuleByUserId("");
 		return ResponseDTO.successed(menuList, ResultCode.SELECT_SUCCESSED);
@@ -117,7 +116,7 @@ public class SpringResourceController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "parentId", dataType = "String"),
 			@ApiImplicitParam(name = "systemId", dataType = "String"), })
 	@GetMapping(value = "/GetMenusByParent")
-	public ResponseDTO<ElementUiTreeDTO> getModuleByParentId(
+	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId,
 			@RequestParam(value = "systemId", required = true) String systemId) {
 		List<ElementUiTreeDTO> elementUiTreeDtoList = springResourceService.getModulesByParentId(parentId, systemId);
@@ -126,7 +125,7 @@ public class SpringResourceController{
 
 	@ApiOperation(value = "查询资源树", notes = "查询资源树", response = ResponseDTO.class)
 	@GetMapping(value = "/ListAllToTree")
-	public ResponseDTO<SpringResourceDTO> ListAllToTree(
+	public ResponseDTO<List<SpringResourceDTO>> ListAllToTree(
 			@RequestParam(value = "systemId", required = true) String systemId) {
 		List<SpringResourceDTO> entitys = springResourceService.ListAllToTree(systemId);
 		return ResponseDTO.successed(entitys, ResultCode.SELECT_SUCCESSED);

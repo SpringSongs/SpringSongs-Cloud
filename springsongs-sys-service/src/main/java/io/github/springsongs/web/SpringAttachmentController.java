@@ -50,20 +50,20 @@ public class SpringAttachmentController {
 	private String uploadPath;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAttachmentDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringAttachmentDTO> listByPage(@RequestBody SpringAttachmentDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringAttachmentDTO> listByPage(@RequestBody SpringAttachmentDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringAttachmentDTO> lists = springAttachmentService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringAttachmentDTO> lists = springAttachmentService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取附件", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@NotEmpty(message = "id不能为空") String id) {
-		SpringAttachment entity = springAttachmentService.selectByPrimaryKey(id);
+	public ResponseDTO<SpringAttachmentDTO> get(@NotEmpty(message = "id不能为空") String id) {
+		SpringAttachmentDTO entity = springAttachmentService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}
 

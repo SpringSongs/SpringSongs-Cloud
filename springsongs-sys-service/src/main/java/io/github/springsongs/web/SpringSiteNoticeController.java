@@ -39,12 +39,12 @@ public class SpringSiteNoticeController{
 	private ISpringSiteNoticeService SpringSiteNoticeService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringSiteNoticeDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteNoticeDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(@RequestBody SpringSiteNoticeDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(@RequestBody SpringSiteNoticeDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringSiteNoticeDTO> lists = SpringSiteNoticeService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringSiteNoticeDTO> lists = SpringSiteNoticeService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 

@@ -40,12 +40,12 @@ public class SpringParameterController{
 	private ISpringParameterService springParameterService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringLoginLogDTO"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringLoginLogDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringParameterDTO> listByPage(@RequestBody SpringParameterDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringParameterDTO> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringParameterDTO> lists = springParameterService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringParameterDTO> lists = springParameterService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 	@ApiOperation(value = "获取参数", response = ResponseDTO.class)

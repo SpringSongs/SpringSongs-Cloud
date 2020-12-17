@@ -5,6 +5,8 @@ import io.github.springsongs.dto.SpringUserDTO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.github.pagehelper.Page;
 
 public interface SpringUserMapper {
@@ -48,15 +50,15 @@ public interface SpringUserMapper {
      */
     int updateByPrimaryKey(SpringUser record);
 
-	SpringUser getByUserName(String userName);
+	SpringUser getByUserName(@Param("userName") String userName);
 
 	List<SpringUser> listByPage(SpringUserDTO springUserQuery);
 
-	List<SpringUser> findAllById(List<String> ids);
+	List<SpringUser> findAllById(@Param("ids") List<String> ids);
 
-	void setDelete(List<String> ids);
+	void setDelete(@Param("ids") List<String> ids);
 
-	List<SpringUser> listUserByIds(List<String> ids);
+	List<SpringUser> listUserByIds(@Param("ids") List<String> ids);
 
-	Page<SpringUser> ListUsersByRoleId(String roleId);
+	Page<SpringUser> ListUsersByRoleId(@Param("roleId") String roleId);
 }

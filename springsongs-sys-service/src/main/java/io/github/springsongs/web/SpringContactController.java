@@ -40,12 +40,12 @@ public class SpringContactController{
 	private ISpringContactService springContactService;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
-	@ApiImplicitParams({ @ApiImplicitParam(name = "springAritlceQuery", dataType = "SpringAritlceQuery"),
+	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringContactDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringContactDTO> listByPage(@RequestBody SpringContactDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<SpringContactDTO> listByPage(@RequestBody SpringContactDTO searchQuery, int page,
 			int size) {
-		PageInfo<SpringContactDTO> lists = springContactService.getAllRecordByPage(springAritlceQuery, page, size);
+		PageInfo<SpringContactDTO> lists = springContactService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
 
