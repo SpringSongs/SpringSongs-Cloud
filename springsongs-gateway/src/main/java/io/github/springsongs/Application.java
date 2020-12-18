@@ -1,5 +1,6 @@
 package io.github.springsongs;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -14,6 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableHystrix
+@MapperScan(basePackages = "io.github.springsongs.mapper")
 public class Application {
 
 	public static void main(String[] args) {

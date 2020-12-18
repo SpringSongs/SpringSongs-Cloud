@@ -9,9 +9,11 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.DefaultClock;
 import sun.misc.BASE64Decoder;
 
 public class JwtUtil {
@@ -19,8 +21,9 @@ public class JwtUtil {
 	public static final String jwtId = "tokenId";
 	private static final String JWT_SECRET = "!@#2341231";
 	private static BASE64Decoder decoder = new BASE64Decoder();
+	private Clock clock = DefaultClock.INSTANCE;
 
-	public static String createJWT(Map<String, Object> claims, Long time) throws IOException {
+	public String createJWT(Map<String, Object> claims, Long time) throws IOException {
 		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 		Date now = new Date(System.currentTimeMillis());
 
@@ -36,7 +39,7 @@ public class JwtUtil {
 		return builder.compact();
 	}
 
-	public static Claims getClaimsFromToken(String token) throws IOException {
+	public Claims getClaimsFromToken(String token) throws IOException {
 		SecretKey key = generalKey();
 		Claims claims;
 		try {
@@ -47,18 +50,58 @@ public class JwtUtil {
 		return claims;
 	}
 
-	public static SecretKey generalKey() throws IOException {
+	public SecretKey generalKey() throws IOException {
 		String stringKey = JWT_SECRET;
 		byte[] encodedKey = decoder.decodeBuffer(stringKey);
 		SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
 		return key;
 	}
 
-	public static String generateToken(String userId, String userName) throws IOException {
+	public String generateToken(String userId, String userName) throws IOException {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", userId);
 		map.put("userName", userName);
+		map.put("expiredDate", userName);
+		map.put("sub", userName);
 		return createJWT(map, TOKEN_EXPIRED_TIME);
 	}
 
+	public String getUserNameFromToken(String token) throws IOException {
+		Claims claims = this.getClaimsFromToken(token);
+		return claims.get("userName").toString();
+	}
+
+	public String getUserIdFromToken(String token) throws IOException {
+		Claims claims = this.getClaimsFromToken(token);
+		return claims.get("userId").toString();
+	}
+
+	public boolean isTokenExpired(String token) throws IOException {
+		Claims claims = this.getClaimsFromToken(token);
+		final Date expiration = claims.getExpiration();
+		return expiration.before(clock.now());
+	}
+
+	public boolean validateToken(String token, String userName) throws IOException {
+		final String userNameTemp = this.getUserNameFromToken(token);
+		if (userName.equals(userNameTemp) && !this.isTokenExpired(token)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public String refreshToken(String token) throws IOException {
+		SecretKey secretKey = generalKey();
+		Date now = new Date(System.currentTimeMillis());
+		Claims claims = this.getClaimsFromToken(token);
+		claims.setIssuedAt(now);
+		long nowMillis = System.currentTimeMillis();
+		JwtBuilder builder = Jwts.builder().setClaims(claims).setId(jwtId).signWith(SignatureAlgorithm.HS256,
+				secretKey);
+		long expMillis = nowMillis + TOKEN_EXPIRED_TIME;
+		Date exp = new Date(nowMillis);
+		builder.setExpiration(exp);
+		return builder.compact();
+	}
 }
