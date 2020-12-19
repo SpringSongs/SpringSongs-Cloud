@@ -13,9 +13,10 @@ import io.github.springsongs.dto.ElementUiTreeDTO;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringArticleCategoryDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringArticleCategoryServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringArticleCategoryServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringArticleCategoryServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringArticleCategoryService {
 	@PostMapping(value = "/SpringArticleCategory/ListByPage")
 	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(

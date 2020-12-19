@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringArticleCommentDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringArticleCommentServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringArticleCommentServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringArticleCommentServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringArticleCommentService {
 
 	@PostMapping(value = "/SpringArticleComment/ListByPage")

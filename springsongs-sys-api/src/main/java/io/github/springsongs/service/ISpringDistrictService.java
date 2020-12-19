@@ -16,9 +16,10 @@ import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringContactDTO;
 import io.github.springsongs.dto.SpringDistrictDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringDistrictServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringDistrictServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringDistrictServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringDistrictService {
 
 	@PostMapping(value = "/SpringDistrict/ListByPage")

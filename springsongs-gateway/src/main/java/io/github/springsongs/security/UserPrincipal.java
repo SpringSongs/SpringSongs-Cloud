@@ -22,6 +22,10 @@ public class UserPrincipal implements UserDetails {
 		this.springUser = springUser;
 	}
 
+	public String getId() {
+		return this.springUser.getId();
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> auths = new ArrayList<>();

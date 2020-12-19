@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringRoleDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringRoleServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringRole", fallback = SpringRoleServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringRole", fallback = SpringRoleServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringRoleService {
 
 	@PostMapping(value = "/ListByPage")

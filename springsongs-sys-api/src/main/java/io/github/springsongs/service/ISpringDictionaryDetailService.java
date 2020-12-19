@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringDictionaryDetailDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringDictionaryDetailServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringDictionaryDetailServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringDictionaryDetailServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringDictionaryDetailService {
 
 	@PostMapping(value = "/SpringDictionaryDetail/ListByPage")

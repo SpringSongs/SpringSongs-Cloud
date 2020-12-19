@@ -8,13 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -24,9 +18,6 @@ import io.github.springsongs.utils.JwtUtil;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-
-	@Autowired
-	private UserDetailsService userDetailsService;
 
 	@Value("${jwt.header}")
 	private String tokenHeader;
@@ -53,19 +44,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 			} catch (Exception e) {
 				throw new SpringSongsException(ResultCode.LOGIN_FAIL);
 			}
-		}
-		if (!StringUtils.isEmpty(userName) && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-			if (null != userDetails && !StringUtils.isEmpty(userDetails.getUsername())) {
-				if (jwtUtil.validateToken(token, userName)) {
-					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-							userDetails, null, userDetails.getAuthorities());
-					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-					SecurityContextHolder.getContext().setAuthentication(authentication);
-				}else {
+			if (!StringUtils.isEmpty(userName)) {
+				if (!jwtUtil.validateToken(token, userName)) {
 					throw new SpringSongsException(ResultCode.LOGIN_FAIL);
 				}
 			}
+		} else {
+			throw new SpringSongsException(ResultCode.LOGIN_FAIL);
 		}
 		filterChain.doFilter(request, response);
 	}

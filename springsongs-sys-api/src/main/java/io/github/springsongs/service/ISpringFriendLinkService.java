@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +15,10 @@ import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringContactDTO;
 import io.github.springsongs.dto.SpringFriendLinkDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringFriendLinkServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE",path = "/SpringFriendLink",  fallback = SpringFriendLinkServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE",path = "/SpringFriendLink",  fallback = SpringFriendLinkServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringFriendLinkService {
 
 	@PostMapping(value = "/ListByPage")

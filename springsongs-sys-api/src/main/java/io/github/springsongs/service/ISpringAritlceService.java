@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringAritlceDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringAritlceServiceHystrix;
 import io.github.springsongs.utils.Constant;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringAritlceServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringAritlceServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringAritlceService {
 
 	@PostMapping(value = "/SpringArticle/ListByPage")

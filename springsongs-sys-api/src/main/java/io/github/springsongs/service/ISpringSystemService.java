@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringSystemDTO;
+import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringSystemServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringSystem", fallback = SpringSystemServiceHystrix.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringSystem", fallback = SpringSystemServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringSystemService {
 
 	@PostMapping(value = "/ListByPage")
