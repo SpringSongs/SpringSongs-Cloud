@@ -43,7 +43,7 @@
                   <el-table-column type="selection" width="55" />
                   <el-table-column type="index" width="60" />
                   <el-table-column prop="title" label="名称" width="250" />
-                  <el-table-column prop="desc" label="说明" width="250" />
+                  <el-table-column prop="description" label="说明" width="250" />
                   <el-table-column prop="enableEdit" label="允许编辑" width="180">
                     <template slot-scope="scope">
                       <el-tag v-if="scope.row.enableEdit === true" size="small" @click="handleAuditStatus(scope.$index, scope.row)">允许</el-tag>
@@ -87,8 +87,8 @@
                   <el-form-item label="名称" prop="title">
                     <el-input v-model="addForm.title" auto-complete="off" />
                   </el-form-item>
-                  <el-form-item label="说明" prop="desc">
-                    <el-input v-model="addForm.desc" auto-complete="off" />
+                  <el-form-item label="说明" prop="description">
+                    <el-input v-model="addForm.description" auto-complete="off" />
                   </el-form-item>
                   <el-form-item label="允许编辑" prop="enableEdit">
                     <el-switch
@@ -120,8 +120,8 @@
                   <el-form-item label="名称" prop="title">
                     <el-input v-model="editForm.title" auto-complete="off" />
                   </el-form-item>
-                  <el-form-item label="说明" prop="desc">
-                    <el-input v-model="editForm.desc" auto-complete="off" />
+                  <el-form-item label="说明" prop="description">
+                    <el-input v-model="editForm.description" auto-complete="off" />
                   </el-form-item>
                   <el-form-item label="允许编辑" prop="enableEdit">
                     <el-switch

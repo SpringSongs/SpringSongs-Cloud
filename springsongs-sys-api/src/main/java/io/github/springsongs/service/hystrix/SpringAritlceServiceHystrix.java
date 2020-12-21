@@ -63,4 +63,6 @@ public class SpringAritlceServiceHystrix implements ISpringAritlceService {
 		return ResponseDTO.successed(ResultCode.SERCIE_BUSING);
 	}
 
+	
+
 }

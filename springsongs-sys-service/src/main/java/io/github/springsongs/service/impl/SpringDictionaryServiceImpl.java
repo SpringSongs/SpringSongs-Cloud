@@ -122,7 +122,7 @@ public class SpringDictionaryServiceImpl implements ISpringDictionaryService {
 			entity.setSortCode(springDictionaryDTO.getSortCode());
 			entity.setEnableEdit(springDictionaryDTO.getEnableEdit());
 			try {
-				springDictionaryMapper.insert(entity);
+				springDictionaryMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {
 				logger.error(ex.getMessage());
 				throw new SpringSongsException(ResultCode.SYSTEM_ERROR);

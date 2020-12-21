@@ -20,7 +20,7 @@ import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringAritlceServiceHystrix;
 import io.github.springsongs.utils.Constant;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringAritlceServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE",fallback = SpringAritlceServiceHystrix.class,  configuration = SecuringRequestInterceptor.class)
 public interface ISpringAritlceService {
 
 	@PostMapping(value = "/SpringArticle/ListByPage")

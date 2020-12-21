@@ -61,7 +61,7 @@ public class SpringRoleController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "userId", dataType = "String"),
 		@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int")  })
 	@PostMapping(value = "ListByUserId/{userId}")
-	public ReponseResultPageDTO<SpringRoleDTO> listByUserId(
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByUserId(
 			@PathVariable(value = "userId", required = true) String userId,
 			int page,
 			int size) {

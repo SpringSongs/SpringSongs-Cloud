@@ -12,7 +12,8 @@ export default {
       total: 1,
       multipleSelection: [],
       searchForm: {
-        size: 20
+        size: 20,
+        page:0
       },
       dialogAddVisible: false,
       dialogEditVisible: false,

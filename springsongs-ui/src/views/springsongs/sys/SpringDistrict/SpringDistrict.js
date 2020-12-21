@@ -60,6 +60,7 @@ export default {
     }
   },
   created() {
+    self.searchForm.parentId=0;
     this.handleSearch()
     this.listSpringDistrictByParentId(0)
   },
@@ -73,7 +74,7 @@ export default {
       this.multipleSelection = val
     },
     handleCurrentChange(val) {
-      this.searchForm.currPage = val
+      this.searchForm.page = val
       this.handleSearch()
     },
     // 重置表单
@@ -278,11 +279,13 @@ export default {
     },
     listSpringDistrictByParentId(parentId) {
       const self = this
+      this.searchForm.page = 0
       listSpringDistrictByParentId(parentId).then(res => {
         self.provinceData = res.data
       })
     },
     chooseProvince(value) {
+      this.searchForm.page = 0
       const self = this
       this.cityValue = ''
       this.areaValue = ''
@@ -295,6 +298,7 @@ export default {
       this.handleSearch()
     },
     chooseCity(value) {
+      this.searchForm.page = 0
       const self = this
       this.areaValue = ''
       listSpringDistrictByParentId(this.cityValue).then(res => {
@@ -304,6 +308,7 @@ export default {
       this.handleSearch()
     },
     chooseArea() {
+      this.searchForm.page = 0
       this.searchForm.parentId = this.areaValue
       this.handleSearch()
     },
