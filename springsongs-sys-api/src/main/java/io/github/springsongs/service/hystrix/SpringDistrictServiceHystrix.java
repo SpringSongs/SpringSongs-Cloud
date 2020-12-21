@@ -18,7 +18,7 @@ import io.github.springsongs.service.ISpringDistrictService;
 public class SpringDistrictServiceHystrix implements ISpringDistrictService {
 
 	@Override
-	public ReponseResultPageDTO<SpringDistrictDTO> listByPage(SpringDistrictDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringDistrictDTO>> listByPage(SpringDistrictDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

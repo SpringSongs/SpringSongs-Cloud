@@ -2,6 +2,8 @@ package io.github.springsongs.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import io.github.springsongs.domain.SpringResource;
 import io.github.springsongs.dto.ResourceRoleDTO;
 import io.github.springsongs.dto.SpringResourceDTO;
@@ -49,17 +51,17 @@ public interface SpringResourceMapper {
 
 	List<SpringResource> listByPage(SpringResourceDTO springResourceQuery);
 
-	List<SpringResource> getInParentId(List<String> ids);
+	List<SpringResource> getInParentId(@Param("ids")List<String> ids);
 
-	List<SpringResource> findAllById(List<String> ids);
+	List<SpringResource> findAllById(@Param("ids")List<String> ids);
 
-	void setDelete(List<String> ids);
+	void setDelete(@Param("ids")List<String> ids);
 
-	List<SpringResource> listModuleByUserId(String userId);
+	List<SpringResource> listModuleByUserId(@Param("userId")String userId);
 
-	List<SpringResource> getByParentId(String parentId, String systemId);
+	List<SpringResource> getByParentId(@Param("parentId") String parentId,@Param("systemId")  String systemId);
 
-	List<ResourceRoleDTO> listAllRoleModules(List<String> roleCode);
+	List<ResourceRoleDTO> listAllRoleModules(@Param("roleCodes")List<String> roleCodes);
 
-	List<SpringResource> listAllResources(String systemCode);
+	List<SpringResource> listAllResources(@Param("systemCode")String systemCode);
 }

@@ -307,7 +307,7 @@ public class SpringUserServiceImpl implements ISpringUserService {
 	@Override
 	public PageInfo<SpringUserDTO> ListUsersByRoleId(String roleId, int page, int size) {
 		PageHelper.startPage(page, size);
-		Page<SpringUser> springUsers = springUserMapper.ListUsersByRoleId(roleId);
+		Page<SpringUser> springUsers = springUserMapper.listUsersByRoleId(roleId);
 		List<SpringUserDTO> springUserDTOs = new ArrayList<>();
 		springUsers.stream().forEach(springUser -> {
 			SpringUserDTO springUserDTO = new SpringUserDTO();

@@ -142,8 +142,8 @@ public class SpringRoleServiceImpl implements ISpringRoleService {
 	 * @since [产品/模块版本] （可选）
 	 */
 	@Override
-	public PageInfo<SpringRoleDTO> getAllRecordByPage(SpringRoleDTO springRoleQuery,int page,int size) {
-		if (size> Constant.MAX_PAGE_SIZE) {
+	public PageInfo<SpringRoleDTO> getAllRecordByPage(SpringRoleDTO springRoleQuery, int page, int size) {
+		if (size > Constant.MAX_PAGE_SIZE) {
 			throw new SpringSongsException(ResultCode.PARAMETER_NOT_NULL_ERROR);
 		}
 		PageHelper.startPage(page, size);
@@ -253,13 +253,16 @@ public class SpringRoleServiceImpl implements ISpringRoleService {
 	@Transactional
 	public void saveUserToRole(List<SpringUserRole> baseUserRoleEntityList, String roleId) {
 		springUserRoleMapper.deleteByRoleId(roleId);
-		springUserRoleMapper.saveAll(baseUserRoleEntityList);
+		for (SpringUserRole springUserRole : baseUserRoleEntityList) {
+			springUserRole.setId(UUID.randomUUID().toString());
+			springUserRoleMapper.insert(springUserRole);
+		}
 	}
 
 	@Override
-	public PageInfo<SpringRoleDTO> ListRoleByUserId(String userId,int page,int size) {
+	public PageInfo<SpringRoleDTO> ListRoleByUserId(String userId, int page, int size) {
 		PageHelper.startPage(page, size);
-		List<SpringRole> springRoles = springRoleMapper.ListRoleByUserId(userId);
+		List<SpringRole> springRoles = springRoleMapper.listRoleByUserId(userId);
 		List<SpringRoleDTO> springRoleDTOs = new ArrayList<>();
 		springRoles.stream().forEach(springRole -> {
 			SpringRoleDTO springRoleDTO = new SpringRoleDTO();

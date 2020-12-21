@@ -39,9 +39,9 @@ public class SpringSiteInfoController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteInfoDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteInfoDTO> listByPage(@RequestBody SpringSiteInfoDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteInfoDTO>> listByPage(@RequestBody SpringSiteInfoDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringSiteInfoDTO> reponseResultPageDTO = SpringSiteInfoService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringSiteInfoDTO>> reponseResultPageDTO = SpringSiteInfoService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

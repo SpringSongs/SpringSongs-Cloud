@@ -2,10 +2,6 @@ package io.github.springsongs.service.hystrix;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-
 import org.springframework.stereotype.Component;
 
 import io.github.springsongs.dto.ReponseResultPageDTO;
@@ -18,7 +14,7 @@ import io.github.springsongs.service.ISpringDictionaryDetailService;
 public class SpringDictionaryDetailServiceHystrix implements ISpringDictionaryDetailService {
 
 	@Override
-	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(SpringDictionaryDetailDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(SpringDictionaryDetailDTO springAritlceQuery,
 			int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringSiteMessageService;
 public class SpringSiteMessageServiceHystrix implements ISpringSiteMessageService {
 
 	@Override
-	public ReponseResultPageDTO<SpringSiteMessageDTO> listByPage(SpringSiteMessageDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteMessageDTO>> listByPage(SpringSiteMessageDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

@@ -15,12 +15,12 @@ import io.github.springsongs.service.ISpringUserService;
 public class SpringUserServiceHystrix implements ISpringUserService {
 
 	@Override
-	public ReponseResultPageDTO<SpringUserDTO> listByPage(SpringUserDTO springAritlceQuery, int page, int size) {
+	public ReponseResultPageDTO<List<SpringUserDTO>> listByPage(SpringUserDTO springAritlceQuery, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 
 	@Override
-	public ReponseResultPageDTO<SpringUserDTO> listByRoleId(String roleId, int page, int size) {
+	public ReponseResultPageDTO<List<SpringUserDTO>> listByRoleId(String roleId, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 

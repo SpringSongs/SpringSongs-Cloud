@@ -15,7 +15,7 @@ import io.github.springsongs.service.ISpringFriendLinkService;
 public class SpringFriendLinkServiceHystrix implements ISpringFriendLinkService {
 
 	@Override
-	public ReponseResultPageDTO<SpringFriendLinkDTO> listByPage(SpringFriendLinkDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringFriendLinkDTO>> listByPage(SpringFriendLinkDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

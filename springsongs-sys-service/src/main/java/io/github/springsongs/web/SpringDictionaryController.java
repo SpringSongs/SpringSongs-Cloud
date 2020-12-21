@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "字典管理")
 @RestController
 @RequestMapping(value = "/SpringDictionary")
-public class SpringDictionaryController{
+public class SpringDictionaryController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringDictionaryController.class);
 	@Autowired
@@ -42,8 +42,8 @@ public class SpringDictionaryController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDTO> listByPage(@RequestBody SpringDictionaryDTO searchQuery, int page,
-			int size) {
+	public ReponseResultPageDTO<List<SpringDictionaryDTO>> listByPage(@RequestBody SpringDictionaryDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
 		PageInfo<SpringDictionaryDTO> lists = springDictionaryService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}

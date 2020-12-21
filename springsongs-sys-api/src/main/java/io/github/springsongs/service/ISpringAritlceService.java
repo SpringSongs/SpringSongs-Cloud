@@ -24,7 +24,7 @@ import io.github.springsongs.utils.Constant;
 public interface ISpringAritlceService {
 
 	@PostMapping(value = "/SpringArticle/ListByPage")
-	public ReponseResultPageDTO<SpringAritlceDTO> listByPage(@RequestBody SpringAritlceDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringAritlceDTO>> listByPage(@RequestBody SpringAritlceDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@GetMapping(value = "/SpringArticle/Detail/{id}")

@@ -45,7 +45,7 @@ public class SpringArticleCommentController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCommentDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(@RequestBody SpringArticleCommentDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringArticleCommentDTO>> listByPage(@RequestBody SpringArticleCommentDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringArticleCommentDTO> lists = springArticleCommentService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

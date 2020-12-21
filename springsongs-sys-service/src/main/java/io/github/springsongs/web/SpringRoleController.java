@@ -51,7 +51,7 @@ public class SpringRoleController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringRoleDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringRoleDTO> listByPage(@RequestBody SpringRoleDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByPage(@RequestBody SpringRoleDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringRoleDTO> lists = springRoleService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

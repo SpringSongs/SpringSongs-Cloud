@@ -22,7 +22,7 @@ import io.github.springsongs.service.hystrix.SpringArticleCommentServiceHystrix;
 public interface ISpringArticleCommentService {
 
 	@PostMapping(value = "/SpringArticleComment/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(
+	public ReponseResultPageDTO<List<SpringArticleCommentDTO>> listByPage(
 			@RequestBody SpringArticleCommentDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringArticleComment/Detail")

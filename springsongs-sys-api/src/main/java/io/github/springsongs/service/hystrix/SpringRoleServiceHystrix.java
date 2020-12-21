@@ -2,8 +2,6 @@ package io.github.springsongs.service.hystrix;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Component;
 
 import io.github.springsongs.dto.ReponseResultPageDTO;
@@ -15,12 +13,12 @@ import io.github.springsongs.service.ISpringRoleService;
 public class SpringRoleServiceHystrix implements ISpringRoleService {
 
 	@Override
-	public ReponseResultPageDTO<SpringRoleDTO> listByPage(SpringRoleDTO springAritlceQuery, int page, int size) {
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByPage(SpringRoleDTO springAritlceQuery, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 
 	@Override
-	public ReponseResultPageDTO<SpringRoleDTO> listByUserId(String userId, int page, int size) {
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByUserId(String userId, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 

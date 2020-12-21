@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringAritlceService;
 public class SpringAritlceServiceHystrix implements ISpringAritlceService {
 
 	@Override
-	public ReponseResultPageDTO<SpringAritlceDTO> listByPage(SpringAritlceDTO springAritlceQuery, int page, int size) {
+	public ReponseResultPageDTO<List<SpringAritlceDTO>> listByPage(SpringAritlceDTO springAritlceQuery, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 

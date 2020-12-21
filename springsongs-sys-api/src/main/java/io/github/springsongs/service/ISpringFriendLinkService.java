@@ -22,7 +22,7 @@ import io.github.springsongs.service.hystrix.SpringFriendLinkServiceHystrix;
 public interface ISpringFriendLinkService {
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringFriendLinkDTO> listByPage(@RequestBody SpringFriendLinkDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringFriendLinkDTO>> listByPage(@RequestBody SpringFriendLinkDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 	
 	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringContactDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);

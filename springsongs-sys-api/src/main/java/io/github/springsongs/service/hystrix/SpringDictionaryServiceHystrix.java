@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringDictionaryService;
 public class SpringDictionaryServiceHystrix implements ISpringDictionaryService {
 
 	@Override
-	public ReponseResultPageDTO<SpringDictionaryDTO> listByPage(SpringDictionaryDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringDictionaryDTO>> listByPage(SpringDictionaryDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

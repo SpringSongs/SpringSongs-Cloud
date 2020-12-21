@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringAttachmentCategoryService;
 public class SpringAttachmentCategoryServiceHystrix implements ISpringAttachmentCategoryService {
 
 	@Override
-	public ReponseResultPageDTO<SpringAttachmentCategoryDTO> listByPage(SpringAttachmentCategoryDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringAttachmentCategoryDTO>> listByPage(SpringAttachmentCategoryDTO springAritlceQuery,
 			int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

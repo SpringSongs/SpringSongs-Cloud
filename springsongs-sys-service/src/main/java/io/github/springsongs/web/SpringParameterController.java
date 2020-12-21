@@ -43,7 +43,7 @@ public class SpringParameterController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringLoginLogDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringParameterDTO> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringParameterDTO> lists = springParameterService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

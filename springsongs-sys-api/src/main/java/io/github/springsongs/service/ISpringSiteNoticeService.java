@@ -21,7 +21,7 @@ import io.github.springsongs.service.hystrix.SpringSiteNoticeServiceHystrix;
 public interface ISpringSiteNoticeService{
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(@RequestBody SpringSiteNoticeDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringSiteNoticeDTO>> listByPage(@RequestBody SpringSiteNoticeDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSiteNoticeDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);

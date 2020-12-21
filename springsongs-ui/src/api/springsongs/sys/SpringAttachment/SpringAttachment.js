@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(data) {
   return request({
-    url: '/SpringAttachment/ListByPage',
+    url: '/SYS-API/SpringAttachment/ListByPage',
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(data) {
 
 export function get(id) {
   return request({
-    url: '/SpringAttachment/Detail/' + id,
+    url: '/SYS-API/SpringAttachment/Detail/' + id,
     method: 'post'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringAttachment/Create',
+    url: '/SYS-API/SpringAttachment/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringAttachment/Edit/',
+    url: '/SYS-API/SpringAttachment/Edit/',
     method: 'post',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringAttachment/SetDeleted',
+    url: '/SYS-API/SpringAttachment/SetDeleted',
     method: 'post',
     data
   })
@@ -46,7 +46,7 @@ export function batchDelete(data) {
 
 export function uploadFile(data) {
   return request({
-    url: '/SpringAttachment/Upload',
+    url: '/SYS-API/SpringAttachment/Upload',
     method: 'post',
     data,
     headers: {

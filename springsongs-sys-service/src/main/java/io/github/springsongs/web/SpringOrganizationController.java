@@ -44,7 +44,7 @@ public class SpringOrganizationController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringOrganizationDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringOrganizationDTO> listByPage(@RequestBody SpringOrganizationDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringOrganizationDTO>> listByPage(@RequestBody SpringOrganizationDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringOrganizationDTO> lists = springOrganizationService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

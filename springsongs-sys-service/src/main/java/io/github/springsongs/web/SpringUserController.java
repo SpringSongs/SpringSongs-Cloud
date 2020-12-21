@@ -53,7 +53,7 @@ public class SpringUserController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringUserDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringUserDTO> listByPage(@RequestBody SpringUserDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringUserDTO>> listByPage(@RequestBody SpringUserDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringUserDTO> lists = springUserService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

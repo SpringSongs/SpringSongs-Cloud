@@ -19,17 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 
-import io.github.springsongs.domain.SpringResource;
 import io.github.springsongs.dto.EasyUiMenuDTO;
 import io.github.springsongs.dto.ElementUiTreeDTO;
 import io.github.springsongs.dto.MenuDTO;
 import io.github.springsongs.dto.MenuRouterDTO;
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
-import io.github.springsongs.dto.SpringParameterDTO;
 import io.github.springsongs.dto.SpringResourceDTO;
 import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.service.ISpringResourceService;
+import io.github.springsongs.util.AuthenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -38,10 +37,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "资源管理")
 @RestController
 @RequestMapping(value = "/SpringResource")
-public class SpringResourceController{
+public class SpringResourceController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringResourceController.class);
-
+	@Autowired
+	private AuthenUtil authenUtil;
 	@Autowired
 	private ISpringResourceService springResourceService;
 
@@ -54,6 +54,7 @@ public class SpringResourceController{
 		PageInfo<SpringResourceDTO> lists = springResourceService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);
 	}
+
 	@ApiOperation(value = "获取资源", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@PostMapping(value = "/Detail")
@@ -91,7 +92,7 @@ public class SpringResourceController{
 	@ApiOperation(value = "获取资源菜单", notes = "获取资源菜单", response = ResponseDTO.class)
 	@GetMapping(value = "/GetMenus")
 	public ResponseDTO<List<MenuDTO>> getMenus() {
-		//TODO
+		// TODO
 		List<MenuDTO> menuList = springResourceService.ListModuleByUserId("");
 		return ResponseDTO.successed(menuList, ResultCode.SELECT_SUCCESSED);
 	}
@@ -99,15 +100,14 @@ public class SpringResourceController{
 	@ApiOperation(value = "获取资源菜单路由", notes = "获取资源菜单路由", response = ResponseDTO.class)
 	@GetMapping(value = "/GetRouters")
 	public ResponseDTO<List<MenuRouterDTO>> getRouters() {
-		//TODO
-		List<MenuRouterDTO> menuRouterDTOs = springResourceService.listResourceByUserId("");
+		List<MenuRouterDTO> menuRouterDTOs = springResourceService.listResourceByUserId(authenUtil.getUser().getId());
 		return ResponseDTO.successed(menuRouterDTOs, ResultCode.SELECT_SUCCESSED);
 	}
 
 	@ApiOperation(value = "获取EASYUI菜单", notes = "获取EASYUI菜单", response = ResponseDTO.class)
 	@PostMapping(value = "/GetEasyUIMenu")
 	public ResponseDTO<List<EasyUiMenuDTO>> getEasyUIMenu() {
-		//TODO
+		// TODO
 		List<EasyUiMenuDTO> easyUiMenuDTO = springResourceService.listEasyUiResourceByUserId("");
 		return ResponseDTO.successed(easyUiMenuDTO, ResultCode.SELECT_SUCCESSED);
 	}

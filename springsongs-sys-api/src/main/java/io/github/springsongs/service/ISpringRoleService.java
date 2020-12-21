@@ -22,10 +22,10 @@ import io.github.springsongs.service.hystrix.SpringRoleServiceHystrix;
 public interface ISpringRoleService {
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringRoleDTO> listByPage(@RequestBody SpringRoleDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByPage(@RequestBody SpringRoleDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "ListByUserId/{userId}")
-	public ReponseResultPageDTO<SpringRoleDTO> listByUserId(
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByUserId(
 			@PathVariable(value = "userId", required = true) String userId,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/Detail")

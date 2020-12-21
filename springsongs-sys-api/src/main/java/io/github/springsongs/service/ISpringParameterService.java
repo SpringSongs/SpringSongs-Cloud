@@ -23,7 +23,7 @@ public interface ISpringParameterService{
 	
 	
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringParameterDTO> listByPage(@RequestBody SpringParameterDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(@RequestBody SpringParameterDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 	
 	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringParameterDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);

@@ -1,5 +1,7 @@
 package io.github.springsongs.service;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,5 +16,5 @@ import io.github.springsongs.service.hystrix.SpringLoginLogServiceHystrix;
 public interface ISpringLoginLogService{
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringLoginLogDTO> listByPage(@RequestBody SpringLoginLogDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringLoginLogDTO>> listByPage(@RequestBody SpringLoginLogDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 }

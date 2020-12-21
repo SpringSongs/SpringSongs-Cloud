@@ -22,7 +22,7 @@ import io.github.springsongs.service.hystrix.SpringSiteMessageServiceHystrix;
 public interface ISpringSiteMessageService {
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteMessageDTO> listByPage(@RequestBody SpringSiteMessageDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringSiteMessageDTO>> listByPage(@RequestBody SpringSiteMessageDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/Detail")

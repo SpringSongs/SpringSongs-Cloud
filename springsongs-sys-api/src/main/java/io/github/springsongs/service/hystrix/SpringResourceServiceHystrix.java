@@ -17,7 +17,7 @@ import io.github.springsongs.service.ISpringResourceService;
 public class SpringResourceServiceHystrix implements ISpringResourceService {
 
 	@Override
-	public ReponseResultPageDTO<SpringResourceDTO> listByPage(SpringResourceDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringResourceDTO>> listByPage(SpringResourceDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

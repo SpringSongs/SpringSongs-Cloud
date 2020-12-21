@@ -43,7 +43,7 @@ public class SpringAttachmentCategoryController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAttachmentCategoryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringAttachmentCategoryDTO> listByPage(@RequestBody SpringAttachmentCategoryDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringAttachmentCategoryDTO>> listByPage(@RequestBody SpringAttachmentCategoryDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringAttachmentCategoryDTO> lists = springAttachmentCategoryService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

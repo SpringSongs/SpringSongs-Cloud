@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringOrganizationService;
 public class SpringOrganizationServiceHystrix implements ISpringOrganizationService {
 
 	@Override
-	public ReponseResultPageDTO<SpringOrganizationDTO> listByPage(SpringOrganizationDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringOrganizationDTO>> listByPage(SpringOrganizationDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

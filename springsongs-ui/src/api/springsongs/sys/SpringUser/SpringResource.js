@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringResource/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringResource/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(page, size, data) {
 
 export function get(id) {
   return request({
-    url: '/SpringResource/Detail?id=' + id,
+    url: '/SYS-API/SpringResource/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringResource/Create',
+    url: '/SYS-API/SpringResource/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringResource/Edit/',
+    url: '/SYS-API/SpringResource/Edit/',
     method: 'put',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringResource/SetDeleted',
+    url: '/SYS-API/SpringResource/SetDeleted',
     method: 'post',
     data
   })
@@ -46,14 +46,14 @@ export function batchDelete(data) {
 
 export function listAllSystem() {
   return request({
-    url: '/SpringSystem/ListAll',
+    url: '/SYS-API/SpringSystem/ListAll',
     method: 'get'
   })
 }
 
 export function ListAllToTree(systemId) {
   return request({
-    url: '/SpringResource/ListAllToTree?systemId=' + systemId,
+    url: '/SYS-API/SpringResource/ListAllToTree?systemId=' + systemId,
     method: 'get'
   })
 }

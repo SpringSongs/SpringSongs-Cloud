@@ -23,7 +23,7 @@ public interface ISpringAttachmentService {
 	
 	
 	@PostMapping(value = "/SpringAttachment/ListByPage")
-	public ReponseResultPageDTO<SpringAttachmentDTO> listByPage(@RequestBody SpringAttachmentDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringAttachmentDTO>> listByPage(@RequestBody SpringAttachmentDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	
 	@PostMapping(value = "/SpringAttachment/Detail")

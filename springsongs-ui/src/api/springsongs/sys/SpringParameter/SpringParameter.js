@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringParameter/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringParameter/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(page, size, data) {
 
 export function get(id) {
   return request({
-    url: '/SpringParameter/Detail?id=' + id,
+    url: '/SYS-API/SpringParameter/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringParameter/Create',
+    url: '/SYS-API/SpringParameter/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringParameter/Edit/',
+    url: '/SYS-API/SpringParameter/Edit/',
     method: 'put',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringParameter/SetDeleted',
+    url: '/SYS-API/SpringParameter/SetDeleted',
     method: 'post',
     data
   })

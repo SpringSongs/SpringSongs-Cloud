@@ -23,7 +23,7 @@ import io.github.springsongs.service.hystrix.SpringDistrictServiceHystrix;
 public interface ISpringDistrictService {
 
 	@PostMapping(value = "/SpringDistrict/ListByPage")
-	public ReponseResultPageDTO<SpringDistrictDTO> listByPage(@RequestBody SpringDistrictDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringDistrictDTO>> listByPage(@RequestBody SpringDistrictDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringDistrict/Detail")

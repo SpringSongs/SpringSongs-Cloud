@@ -13,7 +13,7 @@ import io.github.springsongs.service.ISpringSiteInfoService;
 public class SpringSiteInfoServiceHystrix implements ISpringSiteInfoService {
 
 	@Override
-	public ReponseResultPageDTO<SpringSiteInfoDTO> listByPage(SpringSiteInfoDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteInfoDTO>> listByPage(SpringSiteInfoDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

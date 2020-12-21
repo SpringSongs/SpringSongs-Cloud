@@ -46,10 +46,10 @@ import io.github.springsongs.utils.Constant;
 public class SpringResourceServiceImpl implements ISpringResourceService {
 	static Logger logger = LoggerFactory.getLogger(SpringResourceServiceImpl.class);
 	@Autowired
-	private SpringResourceMapper springResourceDao;
+	private SpringResourceMapper springResourceMapper;
 
 	@Autowired
-	private SpringResourceRoleMapper springResourceRoleDao;
+	private SpringResourceRoleMapper springResourceRoleMapper;
 
 	/**
 	 *
@@ -63,7 +63,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	@Override
 	public void deleteByPrimaryKey(String id) {
 		try {
-			springResourceDao.deleteByPrimaryKey(id);
+			springResourceMapper.deleteByPrimaryKey(id);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
@@ -88,7 +88,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 		}
 		BeanUtils.copyProperties(record, springResource);
 		try {
-			springResourceDao.insert(springResource);
+			springResourceMapper.insert(springResource);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
@@ -108,7 +108,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	public SpringResourceDTO selectByPrimaryKey(String id) {
 		SpringResource springResource = null;
 		try {
-			springResource = springResourceDao.selectByPrimaryKey(id);
+			springResource = springResourceMapper.selectByPrimaryKey(id);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.INFO_NOT_FOUND);
@@ -129,7 +129,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	 */
 	@Override
 	public void updateByPrimaryKey(SpringResourceDTO springResourceDTO) {
-		SpringResource entity = springResourceDao.selectByPrimaryKey(springResourceDTO.getId());
+		SpringResource entity = springResourceMapper.selectByPrimaryKey(springResourceDTO.getId());
 		if (null == entity) {
 			throw new SpringSongsException(ResultCode.INFO_NOT_FOUND);
 		} else if (!entity.getEnableEdit()) {
@@ -148,7 +148,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 			entity.setEnableEdit(springResourceDTO.getEnableEdit());
 			entity.setEnableDelete(springResourceDTO.getEnableDelete());
 			try {
-				springResourceDao.updateByPrimaryKey(entity);
+				springResourceMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {
 				logger.error(ex.getMessage());
 				throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
@@ -166,7 +166,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	 * @since [产品/模块版本] （可选）
 	 */
 	@Override
-	public PageInfo<SpringResourceDTO> getAllRecordByPage(SpringResourceDTO springResourceQuery,int page,int size) {
+	public PageInfo<SpringResourceDTO> getAllRecordByPage(SpringResourceDTO springResourceQuery, int page, int size) {
 
 		if (size > Constant.MAX_PAGE_SIZE) {
 			throw new SpringSongsException(ResultCode.PARAMETER_NOT_NULL_ERROR);
@@ -174,8 +174,8 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 		PageHelper.startPage(page, size);
 		// Pageable pageable = PageRequest.of(currPage - 1, size);
-		// return springResourceDao.findAll(specification, pageable);
-		List<SpringResource> springResources = springResourceDao.listByPage(springResourceQuery);
+		// return springResourceMapper.findAll(specification, pageable);
+		List<SpringResource> springResources = springResourceMapper.listByPage(springResourceQuery);
 		List<SpringResourceDTO> springResourceDTOs = new ArrayList<>();
 		springResources.stream().forEach(springResource -> {
 			SpringResourceDTO springResourceDTO = new SpringResourceDTO();
@@ -203,18 +203,18 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 		} else if (ids.size() > 1000) {
 			throw new SpringSongsException(ResultCode.PARAMETER_MORE_1000);
 		}
-		List<SpringResource> springResourceList = springResourceDao.getInParentId(ids);
+		List<SpringResource> springResourceList = springResourceMapper.getInParentId(ids);
 		if (!CollectionUtils.isEmpty(springResourceList)) {
 			throw new SpringSongsException(ResultCode.HASED_CHILD_IDS_CANNOT_DELETE);
 		}
-		List<SpringResource> entityList = springResourceDao.findAllById(ids);
+		List<SpringResource> entityList = springResourceMapper.findAllById(ids);
 		for (SpringResource entity : entityList) {
 			if (entity.getEnableDelete() == false) {
 				throw new SpringSongsException(ResultCode.INFO_CAN_NOT_DELETE);
 			}
 		}
 		try {
-			springResourceDao.setDelete(ids);
+			springResourceMapper.setDelete(ids);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
@@ -237,7 +237,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public List<MenuDTO> ListModuleByUserId(String userId) {
-		List<SpringResource> modules = springResourceDao.listModuleByUserId(userId);
+		List<SpringResource> modules = springResourceMapper.listModuleByUserId(userId);
 		return getSoredModules(modules);
 	}
 
@@ -287,14 +287,14 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 		} else if (ids.size() > Constant.MAX_ITEM_SIZE) {
 			throw new SpringSongsException(ResultCode.PARAMETER_MORE_1000);
 		}
-		List<SpringResource> entityList = springResourceDao.findAllById(ids);
+		List<SpringResource> entityList = springResourceMapper.findAllById(ids);
 		for (SpringResource entity : entityList) {
 			if (entity.getEnableDelete() == false) {
 				throw new SpringSongsException(ResultCode.INFO_CAN_NOT_DELETE);
 			}
 		}
 		try {
-			springResourceDao.setDelete(ids);
+			springResourceMapper.setDelete(ids);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
@@ -303,7 +303,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public List<SpringResourceDTO> listByIds(List<String> ids) {
-		List<SpringResource> springResources = springResourceDao.findAllById(ids);
+		List<SpringResource> springResources = springResourceMapper.findAllById(ids);
 		List<SpringResourceDTO> springResourceDTOs = new ArrayList<>();
 		springResources.stream().forEach(springResource -> {
 			SpringResourceDTO springResourceDTO = new SpringResourceDTO();
@@ -315,14 +315,14 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public List<ElementUiTreeDTO> getModulesByParentId(String parentId, String systemId) {
-		List<SpringResource> baseModulesEntityList = springResourceDao.getByParentId(parentId, systemId);
+		List<SpringResource> baseModulesEntityList = springResourceMapper.getByParentId(parentId, systemId);
 		List<ElementUiTreeDTO> elementUiTreeDtoList = new ArrayList<ElementUiTreeDTO>();
 		List<String> ids = new ArrayList<String>();
 		for (SpringResource entity : baseModulesEntityList) {
 			ids.add(entity.getId());
 		}
 		if (ids.size() > 0) {
-			List<SpringResource> baseModulesEntityList1 = springResourceDao.getInParentId(ids);
+			List<SpringResource> baseModulesEntityList1 = springResourceMapper.getInParentId(ids);
 			for (SpringResource entity : baseModulesEntityList) {
 				ElementUiTreeDTO elementUiTreeDto = new ElementUiTreeDTO();
 				elementUiTreeDto.setId(entity.getId());
@@ -347,31 +347,34 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 			Entry<String, String> entry = it.next();
 			String roleId = entry.getKey();
 			String moduleId = entry.getValue();
-			springResourceRoleDao.delete(roleId, moduleId);
+			springResourceRoleMapper.delete(roleId, moduleId);
 		}
 	}
 
 	@Override
 	@Transactional
 	public void saveModuleToRole(List<SpringResourceRole> baseModuleRoleEntityList, String roleId) {
-		springResourceRoleDao.delete(roleId, roleId);
-		springResourceRoleDao.saveAll(baseModuleRoleEntityList);
+		springResourceRoleMapper.delete(roleId, roleId);
+		for (SpringResourceRole springResourceRole : baseModuleRoleEntityList) {
+			springResourceRole.setId(UUID.randomUUID().toString());
+			springResourceRoleMapper.insert(springResourceRole);
+		}
 	}
 
 	@Override
 	public List<SpringResourceRole> listModulesByRoleId(String roleId) {
-		return springResourceRoleDao.listModulesByRoleId(roleId);
+		return springResourceRoleMapper.listModulesByRoleId(roleId);
 	}
 
 	@Override
 	public List<ResourceRoleDTO> listAllRoleModules(List<String> roleCode) {
-		return springResourceDao.listAllRoleModules(roleCode);
+		return springResourceMapper.listAllRoleModules(roleCode);
 	}
 
 	@Override
 	public List<MenuRouterDTO> listResourceByUserId(String userId) {
 		// List<MenuRouterTreeDTO> menuRouterTreeDTOList=new ArrayList<>();
-		List<SpringResource> springResourceList = springResourceDao.listModuleByUserId(userId);
+		List<SpringResource> springResourceList = springResourceMapper.listModuleByUserId(userId);
 		final List<MenuRouterDTO> menuRouterDTOList = new ArrayList<>();
 		springResourceList.stream().forEach(springResource -> {
 			MenuRouterDTO node = new MenuRouterDTO();
@@ -396,7 +399,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public List<SpringResourceDTO> ListAllToTree(String systemCode) {
-		List<SpringResource> springResourceList = springResourceDao.listAllResources(systemCode);
+		List<SpringResource> springResourceList = springResourceMapper.listAllResources(systemCode);
 		final List<SpringResourceDTO> springResourceDTOList = new ArrayList<>();
 		springResourceList.stream().forEach(springResource -> {
 			SpringResourceDTO springResourceDTO = new SpringResourceDTO();
@@ -411,7 +414,7 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public List<EasyUiMenuDTO> listEasyUiResourceByUserId(String userId) {
-		List<SpringResource> springResourceList = springResourceDao.listModuleByUserId(userId);
+		List<SpringResource> springResourceList = springResourceMapper.listModuleByUserId(userId);
 		final List<EasyUiMenuDTO> easyUiMenuDTOList = new ArrayList<>();
 		springResourceList.stream().forEach(springResource -> {
 			EasyUiMenuDTO easyUiMenuDTO = new EasyUiMenuDTO();
@@ -433,20 +436,20 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	public void saveModuleToRole(String moduleId, String roleId) {
-		SpringResourceRole springResourceRole = springResourceRoleDao.findByRoleIdAndModuleId(roleId, moduleId);
+		SpringResourceRole springResourceRole = springResourceRoleMapper.findByRoleIdAndModuleId(roleId, moduleId);
 		if (null == springResourceRole) {
 			SpringResourceRole springResourceRoleDO = new SpringResourceRole();
 			springResourceRoleDO.setRoleId(roleId);
 			springResourceRoleDO.setModuleId(moduleId);
 			springResourceRoleDO.setCreatedOn(new Date());
-			springResourceRoleDao.insert(springResourceRoleDO);
+			springResourceRoleMapper.insert(springResourceRoleDO);
 		}
 	}
 
 	@Override
 	public void deleteByRoleIdAndModuleId(String roleId, String moduleId) {
 		try {
-			springResourceRoleDao.deleteByRoleIdAndModuleId(roleId, moduleId);
+			springResourceRoleMapper.deleteByRoleIdAndModuleId(roleId, moduleId);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);

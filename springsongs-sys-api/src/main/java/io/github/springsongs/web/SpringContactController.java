@@ -40,9 +40,9 @@ public class SpringContactController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringContactDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringContactDTO> listByPage(@RequestBody SpringContactDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringContactDTO>> listByPage(@RequestBody SpringContactDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringContactDTO> reponseResultPageDTO =  springContactService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringContactDTO>> reponseResultPageDTO =  springContactService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

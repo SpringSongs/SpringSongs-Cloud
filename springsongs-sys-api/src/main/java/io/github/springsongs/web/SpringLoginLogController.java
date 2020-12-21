@@ -1,5 +1,7 @@
 package io.github.springsongs.web;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,9 @@ public class SpringLoginLogController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringLoginLogDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringLoginLogDTO> listByPage(@RequestBody SpringLoginLogDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringLoginLogDTO>> listByPage(@RequestBody SpringLoginLogDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringLoginLogDTO> reponseResultPageDTO =springLoginLogService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringLoginLogDTO>> reponseResultPageDTO =springLoginLogService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

@@ -42,7 +42,7 @@ public class SpringSiteNoticeController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteNoticeDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(@RequestBody SpringSiteNoticeDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteNoticeDTO>> listByPage(@RequestBody SpringSiteNoticeDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringSiteNoticeDTO> lists = SpringSiteNoticeService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

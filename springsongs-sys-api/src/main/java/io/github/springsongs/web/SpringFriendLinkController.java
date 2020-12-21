@@ -41,9 +41,9 @@ public class SpringFriendLinkController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringFriendLinkDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringFriendLinkDTO> listByPage(@RequestBody SpringFriendLinkDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringFriendLinkDTO>> listByPage(@RequestBody SpringFriendLinkDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringFriendLinkDTO> reponseResultPageDTO = springFriendLinkService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringFriendLinkDTO>> reponseResultPageDTO = springFriendLinkService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringParameterService;
 public class SpringParameterServiceHystrix implements ISpringParameterService {
 
 	@Override
-	public ReponseResultPageDTO<SpringParameterDTO> listByPage(SpringParameterDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(SpringParameterDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

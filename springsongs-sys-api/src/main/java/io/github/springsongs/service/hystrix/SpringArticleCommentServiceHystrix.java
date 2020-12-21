@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringArticleCommentService;
 public class SpringArticleCommentServiceHystrix implements ISpringArticleCommentService {
 
 	@Override
-	public ReponseResultPageDTO<SpringArticleCommentDTO> listByPage(SpringArticleCommentDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringArticleCommentDTO>> listByPage(SpringArticleCommentDTO springAritlceQuery,
 			int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

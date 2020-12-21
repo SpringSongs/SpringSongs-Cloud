@@ -21,7 +21,7 @@ import io.github.springsongs.service.hystrix.SpringSiteInfoServiceHystrix;
 public interface ISpringSiteInfoService {
 
 	@PostMapping(value = "/SpringSiteInfo/ListByPage")
-	public ReponseResultPageDTO<SpringSiteInfoDTO> listByPage(@RequestBody SpringSiteInfoDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringSiteInfoDTO>> listByPage(@RequestBody SpringSiteInfoDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringSiteInfo/Detail")

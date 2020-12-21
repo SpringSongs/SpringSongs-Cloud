@@ -42,7 +42,7 @@ public class SpringSiteMessageController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteMessageDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSiteMessageDTO> listByPage(@RequestBody SpringSiteMessageDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteMessageDTO>> listByPage(@RequestBody SpringSiteMessageDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringSiteMessageDTO> lists = SpringSiteMessageService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

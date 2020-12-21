@@ -41,9 +41,9 @@ public class SpringSystemController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSystemDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSystemDTO> listByPage(@RequestBody SpringSystemDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringSystemDTO>> listByPage(@RequestBody SpringSystemDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringSystemDTO> reponseResultPageDTO =springSystemService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringSystemDTO>> reponseResultPageDTO =springSystemService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

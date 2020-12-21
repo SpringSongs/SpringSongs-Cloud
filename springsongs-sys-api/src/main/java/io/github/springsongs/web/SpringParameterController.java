@@ -40,9 +40,9 @@ public class SpringParameterController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringParameterDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringParameterDTO> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringParameterDTO> reponseResultPageDTO =springParameterService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringParameterDTO>> reponseResultPageDTO =springParameterService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 	@ApiOperation(value = "获取参数", response = ResponseDTO.class)

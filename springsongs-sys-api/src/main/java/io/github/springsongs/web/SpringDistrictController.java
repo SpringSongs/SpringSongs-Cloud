@@ -40,9 +40,9 @@ public class SpringDistrictController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDistrictDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDistrictDTO> listByPage(@RequestBody SpringDistrictDTO searchQuery,
+	public ReponseResultPageDTO<List<SpringDistrictDTO>> listByPage(@RequestBody SpringDistrictDTO searchQuery,
 			int page, int size) {
-		ReponseResultPageDTO<SpringDistrictDTO> reponseResultPageDTO = SpringDistrictService
+		ReponseResultPageDTO<List<SpringDistrictDTO>> reponseResultPageDTO = SpringDistrictService
 				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}

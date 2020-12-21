@@ -17,7 +17,7 @@ import io.github.springsongs.service.ISpringAttachmentService;
 public class SpringAttachmentServiceHystrix implements ISpringAttachmentService {
 
 	@Override
-	public ReponseResultPageDTO<SpringAttachmentDTO> listByPage(SpringAttachmentDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringAttachmentDTO>> listByPage(SpringAttachmentDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

@@ -45,13 +45,13 @@ public interface SpringResourceRoleMapper {
      */
     int updateByPrimaryKey(SpringResourceRole record);
 
-	void delete(String roleId, String moduleId);
+	void delete(@Param("roleId")String roleId,@Param("moduleId") String moduleId);
 
 	void saveAll(List<SpringResourceRole> baseModuleRoleEntityList);
 
-	List<SpringResourceRole> listModulesByRoleId(String roleId);
+	List<SpringResourceRole> listModulesByRoleId(@Param("roleId")String roleId);
 
-	SpringResourceRole findByRoleIdAndModuleId(String roleId, String moduleId);
+	SpringResourceRole findByRoleIdAndModuleId(@Param("roleId")String roleId,@Param("moduleId") String moduleId);
 
-	void deleteByRoleIdAndModuleId(String roleId, String moduleId);
+	void deleteByRoleIdAndModuleId(@Param("roleId")String roleId,@Param("moduleId") String moduleId);
 }

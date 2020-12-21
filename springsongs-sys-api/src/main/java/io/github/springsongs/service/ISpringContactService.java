@@ -22,7 +22,7 @@ public interface ISpringContactService{
 
 
 	@PostMapping(value = "/SpringContact/ListByPage")
-	public ReponseResultPageDTO<SpringContactDTO> listByPage(@RequestBody SpringContactDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringContactDTO>> listByPage(@RequestBody SpringContactDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	
 	@PostMapping(value = "/SpringContact/Detail")

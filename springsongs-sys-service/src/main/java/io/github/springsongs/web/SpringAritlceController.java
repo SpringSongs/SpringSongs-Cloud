@@ -45,7 +45,7 @@ public class SpringAritlceController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAritlceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringAritlceDTO> listByPage(@RequestBody SpringAritlceDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringAritlceDTO>> listByPage(@RequestBody SpringAritlceDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringAritlceDTO> lists = springAritlceService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

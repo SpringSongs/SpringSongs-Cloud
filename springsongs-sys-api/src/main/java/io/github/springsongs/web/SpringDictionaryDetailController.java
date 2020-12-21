@@ -40,9 +40,9 @@ public class SpringDictionaryDetailController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDetailDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringDictionaryDetailDTO> reponseResultPageDTO = springDictionaryDetailService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> reponseResultPageDTO = springDictionaryDetailService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

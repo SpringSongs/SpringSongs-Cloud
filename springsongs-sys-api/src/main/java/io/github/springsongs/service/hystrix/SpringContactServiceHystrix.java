@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringContactService;
 public class SpringContactServiceHystrix implements ISpringContactService {
 
 	@Override
-	public ReponseResultPageDTO<SpringContactDTO> listByPage(SpringContactDTO springAritlceQuery, int page, int size) {
+	public ReponseResultPageDTO<List<SpringContactDTO>> listByPage(SpringContactDTO springAritlceQuery, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 

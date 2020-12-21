@@ -21,7 +21,7 @@ import io.github.springsongs.service.hystrix.SpringAttachmentCategoryServiceHyst
 public interface ISpringAttachmentCategoryService {
 
 	@PostMapping(value = "/SpringAttachmentCategory/ListByPage")
-	public ReponseResultPageDTO<SpringAttachmentCategoryDTO> listByPage(
+	public ReponseResultPageDTO<List<SpringAttachmentCategoryDTO>> listByPage(
 			@RequestBody SpringAttachmentCategoryDTO springAritlceQuery, @RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringAttachmentCategory/Detail")

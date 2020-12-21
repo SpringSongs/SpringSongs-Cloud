@@ -22,7 +22,7 @@ import io.github.springsongs.service.hystrix.SpringDictionaryDetailServiceHystri
 public interface ISpringDictionaryDetailService {
 
 	@PostMapping(value = "/SpringDictionaryDetail/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(
+	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(
 			@RequestBody SpringDictionaryDetailDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringDictionaryDetail/Detail")

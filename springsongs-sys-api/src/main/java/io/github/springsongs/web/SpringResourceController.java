@@ -44,9 +44,9 @@ public class SpringResourceController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringResourceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringResourceDTO> listByPage(@RequestBody SpringResourceDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringResourceDTO>> listByPage(@RequestBody SpringResourceDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringResourceDTO> reponseResultPageDTO = springResourceService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringResourceDTO>> reponseResultPageDTO = springResourceService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 	@ApiOperation(value = "获取资源", response = ResponseDTO.class)

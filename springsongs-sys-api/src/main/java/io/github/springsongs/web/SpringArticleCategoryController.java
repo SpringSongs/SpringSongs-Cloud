@@ -39,9 +39,9 @@ public class SpringArticleCategoryController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCategoryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(@RequestBody SpringArticleCategoryDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringArticleCategoryDTO>> listByPage(@RequestBody SpringArticleCategoryDTO searchQuery, int page,
 			int size) {
-		ReponseResultPageDTO<SpringArticleCategoryDTO>  reponseResultPageDTO = springArticleCategoryService.listByPage(searchQuery, page, size);
+		ReponseResultPageDTO<List<SpringArticleCategoryDTO>>  reponseResultPageDTO = springArticleCategoryService.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

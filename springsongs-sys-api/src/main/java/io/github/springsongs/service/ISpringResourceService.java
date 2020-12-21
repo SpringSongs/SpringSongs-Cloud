@@ -22,11 +22,11 @@ import io.github.springsongs.dto.SpringResourceDTO;
 import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringResourceServiceHystrix;
 
-@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringRole", fallback = SpringResourceServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
+@FeignClient(name = "SPRINGSONGS-SYS-SERVICE", path = "/SpringResource", fallback = SpringResourceServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringResourceService {
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringResourceDTO> listByPage(@RequestBody SpringResourceDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringResourceDTO>> listByPage(@RequestBody SpringResourceDTO springAritlceQuery,
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/Detail")

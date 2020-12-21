@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(data) {
   return request({
-    url: '/SpringOrganization/ListByPage',
+    url: '/SYS-API/SpringOrganization/ListByPage',
     method: 'post',
     data
   })
@@ -10,21 +10,21 @@ export function search(data) {
 
 export function listAllToTree() {
   return request({
-    url: '/SpringOrganization/ListAllToTree',
+    url: '/SYS-API/SpringOrganization/ListAllToTree',
     method: 'get'
   })
 }
 
 export function get(id) {
   return request({
-    url: '/SpringOrganization/Detail?id=' + id,
+    url: '/SYS-API/SpringOrganization/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringOrganization/Create',
+    url: '/SYS-API/SpringOrganization/Create',
     method: 'post',
     data
   })
@@ -32,7 +32,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringOrganization/Edit',
+    url: '/SYS-API/SpringOrganization/Edit',
     method: 'put',
     data
   })
@@ -45,7 +45,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringOrganization/SetDeleted',
+    url: '/SYS-API/SpringOrganization/SetDeleted',
     method: 'post',
     data
   })
@@ -56,7 +56,7 @@ export function listOrganizationsByParent(parentId) {
     'parentId': parentId
   })
   return request({
-    url: '/SpringOrganization/listOrganizationsByParent',
+    url: '/SYS-API/SpringOrganization/listOrganizationsByParent',
     method: 'get',
     parentId
   })

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringRole/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringRole/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(page, size, data) {
 
 export function get(id) {
   return request({
-    url: '/SpringRole/Detail?id=' + id,
+    url: '/SYS-API/SpringRole/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringRole/Create',
+    url: '/SYS-API/SpringRole/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringRole/Edit',
+    url: '/SYS-API/SpringRole/Edit',
     method: 'put',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringUser/SetDeleted',
+    url: '/SYS-API/SpringUser/SetDeleted',
     method: 'post',
     data
   })
@@ -46,7 +46,7 @@ export function batchDelete(data) {
 
 export function listSpringResources(page, size, data) {
   return request({
-    url: '/SpringResource/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringResource/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -54,7 +54,7 @@ export function listSpringResources(page, size, data) {
 
 export function listAuthority(roleId) {
   return request({
-    url: '/SpringRole/ListAuthority/' + roleId,
+    url: '/SYS-API/SpringRole/ListAuthority/' + roleId,
     method: 'post'
   })
 }
@@ -66,7 +66,7 @@ export function setAuthority(roleId, data) {
     indices: false
   })
   return request({
-    url: '/SpringRole/SetAuthority/' + roleId,
+    url: '/SYS-API/SpringRole/SetAuthority/' + roleId,
     method: 'post',
     data
   })
@@ -74,7 +74,7 @@ export function setAuthority(roleId, data) {
 
 export function listUserPage(page, size, data) {
   return request({
-    url: '/SpringUser/ListByPage/?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringUser/ListByPage/?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -82,7 +82,7 @@ export function listUserPage(page, size, data) {
 
 export function ListUsersByRoleId(roleId, page, size, data) {
   return request({
-    url: '/SpringUser/ListByRoleId/' + roleId + '?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringUser/ListByRoleId/' + roleId + '?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -95,7 +95,7 @@ export function setUsersToRole(roleId, data) {
     indices: false
   })
   return request({
-    url: '/SpringRole/SetUsers/' + roleId,
+    url: '/SYS-API/SpringRole/SetUsers/' + roleId,
     method: 'post',
     data
   })

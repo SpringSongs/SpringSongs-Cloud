@@ -21,7 +21,7 @@ import io.github.springsongs.service.hystrix.SpringSystemServiceHystrix;
 public interface ISpringSystemService {
 
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringSystemDTO> listByPage(@RequestBody SpringSystemDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
+	public ReponseResultPageDTO<List<SpringSystemDTO>> listByPage(@RequestBody SpringSystemDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/Detail")
 	public ResponseDTO<SpringSystemDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") String id);

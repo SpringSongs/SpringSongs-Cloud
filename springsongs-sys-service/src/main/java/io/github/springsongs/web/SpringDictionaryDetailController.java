@@ -44,7 +44,7 @@ public class SpringDictionaryDetailController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDetailDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<SpringDictionaryDetailDTO> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
+	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
 			int size) {
 		PageInfo<SpringDictionaryDetailDTO> lists = springDictionaryDetailService.getAllRecordByPage(searchQuery, page, size);
 		return ReponseResultPageDTO.successed(lists.getList(), lists.getTotal(), ResultCode.SELECT_SUCCESSED);

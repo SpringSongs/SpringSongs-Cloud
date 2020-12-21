@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringSystemService;
 public class SpringSystemServiceHystrix implements ISpringSystemService {
 
 	@Override
-	public ReponseResultPageDTO<SpringSystemDTO> listByPage(SpringSystemDTO springAritlceQuery, int page, int size) {
+	public ReponseResultPageDTO<List<SpringSystemDTO>> listByPage(SpringSystemDTO springAritlceQuery, int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
 

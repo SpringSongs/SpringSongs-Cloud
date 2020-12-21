@@ -15,7 +15,7 @@ import io.github.springsongs.service.ISpringArticleCategoryService;
 public class SpringArticleCategoryServiceHystrix implements ISpringArticleCategoryService {
 
 	@Override
-	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(SpringArticleCategoryDTO springAritlceQuery,
+	public ReponseResultPageDTO<List<SpringArticleCategoryDTO>> listByPage(SpringArticleCategoryDTO springAritlceQuery,
 			int page, int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}

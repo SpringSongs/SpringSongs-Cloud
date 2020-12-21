@@ -19,7 +19,7 @@ import io.github.springsongs.service.hystrix.SpringArticleCategoryServiceHystrix
 @FeignClient(name = "SPRINGSONGS-SYS-SERVICE", fallback = SpringArticleCategoryServiceHystrix.class, configuration = SecuringRequestInterceptor.class)
 public interface ISpringArticleCategoryService {
 	@PostMapping(value = "/SpringArticleCategory/ListByPage")
-	public ReponseResultPageDTO<SpringArticleCategoryDTO> listByPage(
+	public ReponseResultPageDTO<List<SpringArticleCategoryDTO>> listByPage(
 			@RequestBody SpringArticleCategoryDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringArticleCategory/Detail")

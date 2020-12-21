@@ -60,5 +60,5 @@ public interface SpringUserMapper {
 
 	List<SpringUser> listUserByIds(@Param("ids") List<String> ids);
 
-	Page<SpringUser> ListUsersByRoleId(@Param("roleId") String roleId);
+	Page<SpringUser> listUsersByRoleId(@Param("roleId") String roleId);
 }

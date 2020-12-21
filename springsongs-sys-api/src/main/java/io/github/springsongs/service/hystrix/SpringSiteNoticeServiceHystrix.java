@@ -14,7 +14,7 @@ import io.github.springsongs.service.ISpringSiteNoticeService;
 public class SpringSiteNoticeServiceHystrix implements ISpringSiteNoticeService {
 
 	@Override
-	public ReponseResultPageDTO<SpringSiteNoticeDTO> listByPage(SpringSiteNoticeDTO springAritlceQuery, int page,
+	public ReponseResultPageDTO<List<SpringSiteNoticeDTO>> listByPage(SpringSiteNoticeDTO springAritlceQuery, int page,
 			int size) {
 		return ReponseResultPageDTO.successed(null, 0, ResultCode.SERCIE_BUSING);
 	}
