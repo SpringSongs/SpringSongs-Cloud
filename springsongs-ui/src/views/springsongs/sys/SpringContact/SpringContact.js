@@ -158,7 +158,7 @@ export default {
     // 查询
     handleSearch: function() {
       const self = this
-      search(self.searchForm).then(
+      search(self.searchForm,self.searchForm.page,self.searchForm.size).then(
         function(response) {
           self.tableData = response.data
           self.searchForm.total = response.count

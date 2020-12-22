@@ -120,7 +120,7 @@ export default {
     handleSearch: function() {
       const self = this
       self.searchForm.folderId = this.param
-      search(self.searchForm).then(
+      search(self.searchForm,self.searchForm.page,self.searchForm.size).then(
         function(response) {
           self.tableData = response.data
           self.searchForm.total = response.count
