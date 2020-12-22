@@ -48,9 +48,9 @@ public interface SpringArticleCategoryMapper {
      */
     int updateByPrimaryKey(SpringArticleCategory record);
 
-	List<SpringArticleCategory> listByPage(SpringArticleCategoryDTO record);
+	List<SpringArticleCategory> listByPage(@Param("record") SpringArticleCategoryDTO record);
 
-	List<SpringArticleCategory> getByParentId(@Param("id") String id);
+	List<SpringArticleCategory> getByParentId(@Param("parentId") String id);
 
 	void setDelete(@Param("ids") List<String> ids);
 

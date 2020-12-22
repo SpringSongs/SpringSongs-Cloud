@@ -121,7 +121,7 @@ public class SpringContactServiceImpl implements ISpringContactService {
 			entity.setTel(springContactDTO.getTel());
 			entity.setSortCode(springContactDTO.getSortCode());
 			try {
-				springContactMapper.insert(entity);
+				springContactMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {
 				logger.error(ex.getMessage());
 				throw new SpringSongsException(ResultCode.SYSTEM_ERROR);

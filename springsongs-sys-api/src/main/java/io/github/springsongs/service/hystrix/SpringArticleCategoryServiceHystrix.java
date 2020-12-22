@@ -41,7 +41,7 @@ public class SpringArticleCategoryServiceHystrix implements ISpringArticleCatego
 	}
 
 	@Override
-	public ResponseDTO<ElementUiTreeDTO> getModuleByParentId(String parentId) {
+	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(String parentId) {
 		return ResponseDTO.successed(ResultCode.SERCIE_BUSING);
 	}
 

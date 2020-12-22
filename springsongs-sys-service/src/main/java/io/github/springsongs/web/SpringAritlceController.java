@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,7 +56,7 @@ public class SpringAritlceController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail/{id}")
 	public ResponseDTO<SpringAritlceDTO> get(
-			@PathVariable(value = "id", required = true) @Valid @NotEmpty(message = "id不能为空") String id) {
+			@PathVariable(value = "id", required = true) @Validated @NotEmpty(message = "id不能为空") String id) {
 		SpringAritlceDTO entity = springAritlceService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}

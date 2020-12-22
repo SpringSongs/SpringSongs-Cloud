@@ -112,11 +112,11 @@
     updated_on, updated_ip, version
     from spring_article_category where deleted_status=0
     	<choose>
-			<when test="title != null and title !=''">
-				and title like concat(#{title,jdbcType=VARCHAR},'%')
+			<when test="record.title != null and record.title !=''">
+				and title like concat(#{record.title,jdbcType=VARCHAR},'%')
 			</when>
-			<when test="parent_id != null and parent_id !=''">
-				and parent_id = #{parentId,jdbcType=VARCHAR}
+			<when test="record.parentId != null and record.parentId !=''">
+				and parent_id = #{record.parentId,jdbcType=VARCHAR}
 			</when>
 		</choose>
   </select>
@@ -140,11 +140,7 @@
     created_user_id, created_by, created_on, created_ip, updated_user_id, updated_by, 
     updated_on, updated_ip, version
     from spring_article_category where deleted_status=0
-    	<choose>
-			<when test="parentId != null and parentId !=''">
-				and parent_id=#{parentId,jdbcType=VARCHAR}
-			</when>
-		</choose>
+    and parent_id=#{parentId,jdbcType=VARCHAR}		
   </select>
   <select id="getInParentId" resultMap="BaseResultMap">
     <!--
@@ -156,12 +152,10 @@
     created_user_id, created_by, created_on, created_ip, updated_user_id, updated_by, 
     updated_on, updated_ip, version
     from spring_article_category where deleted_status=0
-    	<where>
 	  		<if test="ids!=null and ids.size()>=1">
 	            <foreach collection="ids" item="id" open="AND id in (" separator="," close=")">
 	                #{id,jdbcType=VARCHAR}
 	            </foreach>
 	        </if>
-	  </where>
   </select>
 </mapper>

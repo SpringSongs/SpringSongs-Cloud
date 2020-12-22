@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,7 +51,7 @@ public class SpringSiteInfoController{
 	@ApiOperation(value = "获取站点信息", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@PostMapping(value = "/Detail")
-	public ResponseDTO<SpringSiteInfoDTO> get(@NotEmpty(message = "id不能为空") String id) {
+	public ResponseDTO<SpringSiteInfoDTO> get(@Validated @NotEmpty(message = "id不能为空") String id) {
 		SpringSiteInfoDTO entity = SpringSiteInfoService.selectByPrimaryKey(id);
 		return ResponseDTO.successed(entity, ResultCode.SELECT_SUCCESSED);
 	}

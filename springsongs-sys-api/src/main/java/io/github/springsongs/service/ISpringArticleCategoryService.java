@@ -35,7 +35,7 @@ public interface ISpringArticleCategoryService {
 	public ResponseDTO<String> setDeleted(@RequestParam(value = "ids", required = true) List<String> ids);
 
 	@GetMapping(value = "/SpringArticleCategory/GetCategorysByParent")
-	public ResponseDTO<ElementUiTreeDTO> getModuleByParentId(
+	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId);
 
 	@GetMapping(value = "/SpringArticleCategory/listAllRecord")

@@ -82,9 +82,9 @@ public class SpringArticleCategoryController{
 	@ApiOperation(value = "根据上级获取内容分类", notes = "根据String上级获取内容分类", response = ResponseDTO.class)
 	@ApiImplicitParam(dataType = "parentId", name = "ids", value = "内容分类编号", required = true)
 	@GetMapping(value = "/GetCategorysByParent")
-	public ResponseDTO<ElementUiTreeDTO> getModuleByParentId(
+	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId) {
-		ResponseDTO<ElementUiTreeDTO> responseDTO =springArticleCategoryService.getModuleByParentId(parentId);
+		ResponseDTO<List<ElementUiTreeDTO>> responseDTO =springArticleCategoryService.getModuleByParentId(parentId);
 		return responseDTO;
 	}
 
