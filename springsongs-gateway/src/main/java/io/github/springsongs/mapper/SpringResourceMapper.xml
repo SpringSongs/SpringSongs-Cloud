@@ -10,7 +10,7 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="menu_flag" jdbcType="BIT" property="menuFlag" />
+    <result column="menu_flag" jdbcType="TINYINT" property="menuFlag" />
     <result column="vue_icon" jdbcType="VARCHAR" property="vueIcon" />
     <result column="vue_url" jdbcType="VARCHAR" property="vueUrl" />
     <result column="angular_icon" jdbcType="VARCHAR" property="angularIcon" />

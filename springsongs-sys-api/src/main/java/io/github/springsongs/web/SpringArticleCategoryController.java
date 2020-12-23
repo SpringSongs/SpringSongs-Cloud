@@ -48,8 +48,8 @@ public class SpringArticleCategoryController{
 	@ApiOperation(value = "获取单一内容分类管理", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
-	public ResponseDTO<String> get(@RequestParam(value = "id", required = true) String id) {
-		ResponseDTO<String> responseDTO =springArticleCategoryService.get(id);
+	public ResponseDTO<SpringArticleCategoryDTO> get(@RequestParam(value = "id", required = true) String id) {
+		ResponseDTO<SpringArticleCategoryDTO> responseDTO =springArticleCategoryService.get(id);
 		return responseDTO;
 	}
 

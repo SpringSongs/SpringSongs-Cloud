@@ -104,7 +104,7 @@ public class SpringLoginLogServiceImpl implements ISpringLoginLogService {
 	public void updateByPrimaryKey(SpringLoginLogDTO record) {
 		SpringLoginLog springLoginLog = new SpringLoginLog();
 		BeanUtils.copyProperties(record, springLoginLog);
-		springLoginLogMapper.updateByPrimaryKey(record);
+		springLoginLogMapper.updateByPrimaryKey(springLoginLog);
 	}
 
 	/**

@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "字典明细管理")
 @RestController
 @RequestMapping(value = "/SpringDictionaryDetail")
-public class SpringDictionaryDetailController{
+public class SpringDictionaryDetailController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringDictionaryDetailController.class);
 
@@ -40,9 +40,11 @@ public class SpringDictionaryDetailController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringDictionaryDetailDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(@RequestBody SpringDictionaryDetailDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> reponseResultPageDTO = springDictionaryDetailService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> listByPage(
+			@RequestBody SpringDictionaryDetailDTO searchQuery, @RequestParam("page") int page,
+			@RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringDictionaryDetailDTO>> reponseResultPageDTO = springDictionaryDetailService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -95,7 +97,7 @@ public class SpringDictionaryDetailController{
 	@GetMapping(value = "/ListSpringDictionaryDetailByDictionaryCode")
 	public ResponseDTO<List<SpringDictionaryDetailDTO>> listSpringDictionaryDetailByDictionaryCode(
 			@RequestParam(value = "dictionaryCode", required = true) String dictionaryCode) {
-		ResponseDTO<List<SpringDictionaryDetailDTO>> responseDTO= springDictionaryDetailService
+		ResponseDTO<List<SpringDictionaryDetailDTO>> responseDTO = springDictionaryDetailService
 				.listSpringDictionaryDetailByDictionaryCode(dictionaryCode);
 		return responseDTO;
 	}

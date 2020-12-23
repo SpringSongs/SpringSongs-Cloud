@@ -15,9 +15,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.springsongs.dto.LoginRequest;
@@ -51,15 +53,15 @@ public class SpringUserController {
 	private SpringUserMapper springUserMapper;
 
 	@PostMapping(value = "/Login")
-	public ResponseDTO<String> login(@RequestBody   @Valid  LoginRequest loginRequest,HttpServletRequest request) {
+	public ResponseDTO<String> login(@RequestBody @Valid LoginRequest loginRequest, HttpServletRequest request) {
 		jwtUtil = new JwtUtil();
 		UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(
 				loginRequest.getUsername(), loginRequest.getPassword());
 		final UserPrincipal springUser = (UserPrincipal) userDetailsService.loadUserByUsername(upToken.getName());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String currentPassWord= springUser.getPassword();
-		String formPassWord=upToken.getCredentials().toString();
-		if (springUser != null&& passwordEncoder.matches(formPassWord, currentPassWord)) {
+		String currentPassWord = springUser.getPassword();
+		String formPassWord = upToken.getCredentials().toString();
+		if (springUser != null && passwordEncoder.matches(formPassWord, currentPassWord)) {
 			final Authentication authentication = authenticationManager.authenticate(upToken);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			String token;
@@ -69,7 +71,8 @@ public class SpringUserController {
 				springRoleList.stream().forEach(springRole -> {
 					sb.append(springRole.getAuthority()).append(",");
 				});
-				token = jwtUtil.generateToken(springUser.getId(), springUser.getUsername(), sb.toString(),IpKit.getRealIp(request));
+				token = jwtUtil.generateToken(springUser.getId(), springUser.getUsername(), sb.toString(),
+						IpKit.getRealIp(request));
 			} catch (IOException e) {
 				throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
 			}
@@ -77,5 +80,29 @@ public class SpringUserController {
 		} else {
 			return ResponseDTO.successed("", ResultCode.LOGIN_FAIL);
 		}
+	}
+
+	@PostMapping(value = "/RefreshToken")
+	public ResponseDTO<String> refresh(@RequestParam(value = "oldToken") String oldToken, HttpServletRequest request) throws IOException {
+		String token = oldToken.substring(tokenHead.length());
+		String username = jwtUtil.getUserNameFromToken(token);
+		final UserPrincipal springUser = (UserPrincipal) userDetailsService.loadUserByUsername(username);
+		if (springUser != null) {
+			StringBuilder sb = new StringBuilder();
+			Collection<? extends GrantedAuthority> springRoleList = springUser.getAuthorities();
+			springRoleList.stream().forEach(springRole -> {
+				sb.append(springRole.getAuthority()).append(",");
+			});
+			token = jwtUtil.generateToken(springUser.getId(), springUser.getUsername(), sb.toString(),
+					IpKit.getRealIp(request));
+			return ResponseDTO.successed(token, ResultCode.LOGIN_SUCCESSED);
+		} else {
+			return ResponseDTO.successed("", ResultCode.LOGIN_FAIL);
+		}
+	}
+
+	@PostMapping(value = "/Logout")
+	public ResponseDTO<String> sessionHasedGone() {
+		return ResponseDTO.successed("", ResultCode.LOGIN_FAIL);
 	}
 }

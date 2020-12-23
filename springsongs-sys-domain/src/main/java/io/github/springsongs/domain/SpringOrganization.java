@@ -46,7 +46,7 @@ public class SpringOrganization {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    private Byte deletedStatus;
+    private boolean deletedStatus;
 
     /**
      *
@@ -224,7 +224,7 @@ public class SpringOrganization {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public Byte getDeletedStatus() {
+    public boolean getDeletedStatus() {
         return deletedStatus;
     }
 
@@ -236,7 +236,7 @@ public class SpringOrganization {
      *
      * @mbg.generated Mon Dec 14 16:38:23 CST 2020
      */
-    public void setDeletedStatus(Byte deletedStatus) {
+    public void setDeletedStatus(boolean deletedStatus) {
         this.deletedStatus = deletedStatus;
     }
 

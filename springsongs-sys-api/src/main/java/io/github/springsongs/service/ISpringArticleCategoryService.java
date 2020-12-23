@@ -23,7 +23,7 @@ public interface ISpringArticleCategoryService {
 			@RequestBody SpringArticleCategoryDTO springAritlceQuery,@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringArticleCategory/Detail")
-	public ResponseDTO<String> get(@RequestParam(value = "id", required = true) String id);
+	public ResponseDTO<SpringArticleCategoryDTO> get(@RequestParam(value = "id", required = true) String id);
 
 	@PostMapping(value = "/SpringArticleCategory/Create")
 	public ResponseDTO<String> save(@RequestBody SpringArticleCategoryDTO viewEntity);

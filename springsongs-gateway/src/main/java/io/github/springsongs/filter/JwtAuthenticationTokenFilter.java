@@ -46,12 +46,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 		if (null != requestHeader && requestHeader.startsWith(this.tokenHead)) {
 			token = requestHeader.substring(this.tokenHead.length());
 			if (StringUtils.isEmpty(token)) {
-				throw new SpringSongsException(ResultCode.LOGIN_FAIL);
+				request.getRequestDispatcher("/SpringUser/Logout").forward(request, response);
 			}
 			try {
 				userName = jwtUtil.getUserNameFromToken(token);
 			} catch (Exception e) {
-				throw new SpringSongsException(ResultCode.LOGIN_FAIL);
+				request.getRequestDispatcher("/SpringUser/Logout").forward(request, response);
 			}
 		}
 		if (!StringUtils.isEmpty(userName) && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -63,7 +63,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}else {
-					throw new SpringSongsException(ResultCode.LOGIN_FAIL);
+					request.getRequestDispatcher("/SpringUser/Logout").forward(request, response);
 				}
 			}
 		}

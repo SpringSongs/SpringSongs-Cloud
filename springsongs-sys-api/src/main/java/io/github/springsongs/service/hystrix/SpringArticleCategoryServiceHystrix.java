@@ -21,7 +21,7 @@ public class SpringArticleCategoryServiceHystrix implements ISpringArticleCatego
 	}
 
 	@Override
-	public ResponseDTO<String> get(String id) {
+	public ResponseDTO<SpringArticleCategoryDTO> get(String id) {
 		return ResponseDTO.successed(ResultCode.SERCIE_BUSING);
 	}
 

@@ -24,6 +24,7 @@ import io.github.springsongs.dto.ResponseDTO;
 import io.github.springsongs.dto.SpringSiteMessageDTO;
 import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.service.ISpringSiteMessageService;
+import io.github.springsongs.util.AuthenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -37,6 +38,9 @@ public class SpringSiteMessageController{
 	private static final Logger logger = LoggerFactory.getLogger(SpringSiteMessageController.class);
 	@Autowired
 	private ISpringSiteMessageService SpringSiteMessageService;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteMessageDTO"),
@@ -93,8 +97,7 @@ public class SpringSiteMessageController{
 	@ApiOperation(value = "查询未读消息", notes = "根据toUserId对象删除站内消息", response = ResponseDTO.class)
 	@GetMapping(value = "/CountNotReadMessageByUserId")
 	public ResponseDTO<Integer> countNotReadMessageByUserId() {
-		//TODO
-		Integer numbers = SpringSiteMessageService.countNotReadMessageByUserId("");
+		Integer numbers = SpringSiteMessageService.countNotReadMessageByUserId(authenUtil.getUser().getId());
 		return ResponseDTO.successed(numbers, ResultCode.SELECT_SUCCESSED);
 	}
 }
