@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import io.github.springsongs.mapper.SpringUserMapper;
 import io.github.springsongs.mapper.SpringUserRoleMapper;
 import io.github.springsongs.mapper.SpringUserSecurityMapper;
 import io.github.springsongs.service.ISpringUserService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -48,6 +50,9 @@ public class SpringUserServiceImpl implements ISpringUserService {
 
 	@Autowired
 	private ISpringUserService springUserService;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -81,6 +86,10 @@ public class SpringUserServiceImpl implements ISpringUserService {
 	@Override
 	public void insert(SpringUserDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringUser springUserDo = springUserMapper.getByUserName(record.getUserName());
 		if (null != springUserDo) {
 			throw new SpringSongsException(ResultCode.ACCOUNT_HAS_REGISTER);
@@ -150,6 +159,10 @@ public class SpringUserServiceImpl implements ISpringUserService {
 			entity.setOrganizationName(springUserDTO.getOrganizationName());
 			entity.setEnableEdit(springUserDTO.getEnableEdit());
 			entity.setEnableDelete(springUserDTO.getEnableDelete());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springUserMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

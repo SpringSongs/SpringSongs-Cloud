@@ -57,11 +57,12 @@ public class JwtUtil {
 		return key;
 	}
 
-	public String generateToken(String userId, String userName,String roles) throws IOException {
+	public String generateToken(String userId, String userName,String roles,String ip) throws IOException {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", userId);
 		map.put("userName", userName);
 		map.put("roles", roles);
+		map.put("ip", ip);
 		map.put("sub", userName);
 		return createJWT(map, TOKEN_EXPIRED_TIME);
 	}
@@ -74,6 +75,11 @@ public class JwtUtil {
 	public String getUserIdFromToken(String token) throws IOException {
 		Claims claims = this.getClaimsFromToken(token);
 		return claims.get("userId").toString();
+	}
+	
+	public String getIPFromToken(String token) throws IOException {
+		Claims claims = this.getClaimsFromToken(token);
+		return claims.get("ip").toString();
 	}
 	
 	public String getRolesFromToken(String token) throws IOException {

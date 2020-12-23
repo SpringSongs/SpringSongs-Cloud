@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringSystemMapper;
 import io.github.springsongs.service.ISpringSystemService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -29,6 +31,9 @@ public class SpringSystemServiceImpl implements ISpringSystemService {
 
 	@Autowired
 	private SpringSystemMapper springSystemMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -62,6 +67,10 @@ public class SpringSystemServiceImpl implements ISpringSystemService {
 	@Override
 	public void insert(SpringSystemDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringSystem springSystem = new SpringSystem();
 		BeanUtils.copyProperties(record, springSystem);
 		try {
@@ -115,6 +124,10 @@ public class SpringSystemServiceImpl implements ISpringSystemService {
 			entity.setDescription(springSystemDTO.getDescription());
 			entity.setEnableDelete(springSystemDTO.getEnableDelete());
 			entity.setEnableEdit(springSystemDTO.getEnableEdit());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springSystemMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

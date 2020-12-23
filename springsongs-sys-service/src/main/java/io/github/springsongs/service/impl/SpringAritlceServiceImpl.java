@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringAritlceMapper;
 import io.github.springsongs.service.ISpringAritlceService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -30,6 +32,9 @@ public class SpringAritlceServiceImpl implements ISpringAritlceService {
 
 	@Autowired
 	private SpringAritlceMapper springAritlceMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -62,6 +67,10 @@ public class SpringAritlceServiceImpl implements ISpringAritlceService {
 	@Override
 	public void insert(SpringAritlceDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringAritlce springAritlce = new SpringAritlce();
 		BeanUtils.copyProperties(record, springAritlce);
 		try {
@@ -134,6 +143,10 @@ public class SpringAritlceServiceImpl implements ISpringAritlceService {
 			entity.setSortOrder(springAritlceDTO.getSortOrder());
 			entity.setComeFrom(springAritlceDTO.getComeFrom());
 			entity.setComeFromLink(springAritlceDTO.getComeFromLink());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springAritlceMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,12 +22,18 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringSiteMessageMapper;
 import io.github.springsongs.service.ISpringSiteMessageService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
 public class SpringSiteMessageServiceImpl implements ISpringSiteMessageService {
 
 	static Logger logger = LoggerFactory.getLogger(SpringSiteMessageServiceImpl.class);
+	
+
+	@Autowired
+	private AuthenUtil authenUtil;
+
 
 	@Autowired
 	private SpringSiteMessageMapper springSiteMessageMapper;
@@ -45,6 +52,10 @@ public class SpringSiteMessageServiceImpl implements ISpringSiteMessageService {
 	@Override
 	public void insert(SpringSiteMessageDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringSiteMessage springSiteMessage = new SpringSiteMessage();
 		BeanUtils.copyProperties(record, springSiteMessage);
 		try {
@@ -77,6 +88,10 @@ public class SpringSiteMessageServiceImpl implements ISpringSiteMessageService {
 		if (null == springSiteMessage) {
 			throw new SpringSongsException(ResultCode.INFO_NOT_FOUND);
 		}
+		record.setUpdatedUserId(authenUtil.getUser().getId());
+		record.setUpdatedBy(authenUtil.getUser().getUserName());
+		record.setUpdatedIp(authenUtil.getUser().getIp());
+		record.setUpdatedOn(new Date());
 		SpringSiteMessage springSiteMessageDO = new SpringSiteMessage();
 		BeanUtils.copyProperties(record, springSiteMessageDO);
 		try {

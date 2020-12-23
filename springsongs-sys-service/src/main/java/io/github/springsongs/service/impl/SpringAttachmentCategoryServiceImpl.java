@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringAttachmentCategoryMapper;
 import io.github.springsongs.service.ISpringAttachmentCategoryService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -30,6 +32,10 @@ public class SpringAttachmentCategoryServiceImpl implements ISpringAttachmentCat
 	@Autowired
 	private SpringAttachmentCategoryMapper springAttachmentCategoryMapper;
 
+	@Autowired
+	private AuthenUtil authenUtil;
+	
+	
 	/**
 	 *
 	 * 物理删除
@@ -61,6 +67,10 @@ public class SpringAttachmentCategoryServiceImpl implements ISpringAttachmentCat
 	@Override
 	public void insert(SpringAttachmentCategoryDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringAttachmentCategory SpringAttachmentCategory = new SpringAttachmentCategory();
 		BeanUtils.copyProperties(record, SpringAttachmentCategory);
 		try {
@@ -107,6 +117,10 @@ public class SpringAttachmentCategoryServiceImpl implements ISpringAttachmentCat
 			entity.setDescription(springAttachmentCategoryDTO.getDescription());
 			entity.setDictionaryCode(springAttachmentCategoryDTO.getDictionaryCode());
 			entity.setDictionaryName(springAttachmentCategoryDTO.getDictionaryName());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springAttachmentCategoryMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

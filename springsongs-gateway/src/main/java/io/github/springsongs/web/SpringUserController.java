@@ -3,6 +3,7 @@ package io.github.springsongs.web;
 import java.io.IOException;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringUserMapper;
 import io.github.springsongs.security.UserPrincipal;
+import io.github.springsongs.utils.IpKit;
 import io.github.springsongs.utils.JwtUtil;
 
 @RestController
@@ -49,7 +51,7 @@ public class SpringUserController {
 	private SpringUserMapper springUserMapper;
 
 	@PostMapping(value = "/Login")
-	public ResponseDTO<String> login(@RequestBody   @Valid  LoginRequest loginRequest) {
+	public ResponseDTO<String> login(@RequestBody   @Valid  LoginRequest loginRequest,HttpServletRequest request) {
 		jwtUtil = new JwtUtil();
 		UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(
 				loginRequest.getUsername(), loginRequest.getPassword());
@@ -67,7 +69,7 @@ public class SpringUserController {
 				springRoleList.stream().forEach(springRole -> {
 					sb.append(springRole.getAuthority()).append(",");
 				});
-				token = jwtUtil.generateToken(springUser.getId(), springUser.getUsername(), sb.toString());
+				token = jwtUtil.generateToken(springUser.getId(), springUser.getUsername(), sb.toString(),IpKit.getRealIp(request));
 			} catch (IOException e) {
 				throw new SpringSongsException(ResultCode.SYSTEM_ERROR);
 			}

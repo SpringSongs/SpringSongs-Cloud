@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringDistrictMapper;
 import io.github.springsongs.service.ISpringDistrictService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -29,6 +31,10 @@ public class SpringDistrictServiceImpl implements ISpringDistrictService {
 
 	@Autowired
 	private SpringDistrictMapper springDistrictMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
+	
 
 	@Override
 	public void deleteByPrimaryKey(Long id) {
@@ -43,6 +49,10 @@ public class SpringDistrictServiceImpl implements ISpringDistrictService {
 	@Override
 	public void insert(SpringDistrictDTO record) {
 		SpringDistrict springDistrict = new SpringDistrict();
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		BeanUtils.copyProperties(record, springDistrict);
 		try {
 			springDistrictMapper.insert(springDistrict);
@@ -71,6 +81,10 @@ public class SpringDistrictServiceImpl implements ISpringDistrictService {
 			throw new SpringSongsException(ResultCode.INFO_NOT_FOUND);
 		}
 		SpringDistrict springDistrictDO = new SpringDistrict();
+		record.setUpdatedUserId(authenUtil.getUser().getId());
+		record.setUpdatedBy(authenUtil.getUser().getUserName());
+		record.setUpdatedIp(authenUtil.getUser().getIp());
+		record.setUpdatedOn(new Date());
 		BeanUtils.copyProperties(record, springDistrictDO);
 		try {
 			springDistrictMapper.updateByPrimaryKey(springDistrictDO);

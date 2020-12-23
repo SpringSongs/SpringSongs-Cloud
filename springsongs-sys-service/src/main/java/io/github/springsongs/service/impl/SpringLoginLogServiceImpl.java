@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringLoginLogMapper;
 import io.github.springsongs.service.ISpringLoginLogService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -31,6 +33,9 @@ public class SpringLoginLogServiceImpl implements ISpringLoginLogService {
 	
 	@Autowired
 	private SpringLoginLogMapper springLoginLogMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -59,6 +64,10 @@ public class SpringLoginLogServiceImpl implements ISpringLoginLogService {
 	@Override
 	public void insert(SpringLoginLogDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringLoginLog springLoginLog = new SpringLoginLog();
 		BeanUtils.copyProperties(record, springLoginLog);
 		springLoginLogMapper.insert(springLoginLog);

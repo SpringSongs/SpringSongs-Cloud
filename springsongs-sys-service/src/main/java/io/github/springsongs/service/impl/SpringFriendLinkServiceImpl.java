@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringFriendLinkMapper;
 import io.github.springsongs.service.ISpringFriendLinkService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -30,6 +32,9 @@ public class SpringFriendLinkServiceImpl implements ISpringFriendLinkService {
 
 	@Autowired
 	private SpringFriendLinkMapper springFriendLinkMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	@Override
 	public void deleteByPrimaryKey(String id) {
@@ -44,6 +49,10 @@ public class SpringFriendLinkServiceImpl implements ISpringFriendLinkService {
 	@Override
 	public void insert(SpringFriendLinkDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringFriendLink springFriendLink = new SpringFriendLink();
 		BeanUtils.copyProperties(record, springFriendLink);
 		try {
@@ -74,6 +83,10 @@ public class SpringFriendLinkServiceImpl implements ISpringFriendLinkService {
 			throw new SpringSongsException(ResultCode.INFO_NOT_FOUND);
 		}
 		SpringFriendLink springFriendLinkDO = new SpringFriendLink();
+		record.setUpdatedUserId(authenUtil.getUser().getId());
+		record.setUpdatedBy(authenUtil.getUser().getUserName());
+		record.setUpdatedIp(authenUtil.getUser().getIp());
+		record.setUpdatedOn(new Date());
 		BeanUtils.copyProperties(record, springFriendLinkDO);
 		try {
 			springFriendLinkMapper.updateByPrimaryKey(springFriendLinkDO);

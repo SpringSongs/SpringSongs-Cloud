@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringDictionaryDetailMapper;
 import io.github.springsongs.mapper.SpringDictionaryMapper;
 import io.github.springsongs.service.ISpringDictionaryService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -34,6 +36,10 @@ public class SpringDictionaryServiceImpl implements ISpringDictionaryService {
 
 	@Autowired
 	private SpringDictionaryDetailMapper springDictionaryDetailMapper;
+	
+
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -66,6 +72,10 @@ public class SpringDictionaryServiceImpl implements ISpringDictionaryService {
 	@Override
 	public void insert(SpringDictionaryDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringDictionary springDictionary = new SpringDictionary();
 		BeanUtils.copyProperties(record, springDictionary);
 		try {
@@ -121,6 +131,10 @@ public class SpringDictionaryServiceImpl implements ISpringDictionaryService {
 			entity.setDescription(springDictionaryDTO.getDescription());
 			entity.setSortCode(springDictionaryDTO.getSortCode());
 			entity.setEnableEdit(springDictionaryDTO.getEnableEdit());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springDictionaryMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

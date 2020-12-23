@@ -40,6 +40,7 @@ import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringResourceMapper;
 import io.github.springsongs.mapper.SpringResourceRoleMapper;
 import io.github.springsongs.service.ISpringResourceService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -51,6 +52,10 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	@Autowired
 	private SpringResourceRoleMapper springResourceRoleMapper;
 
+	@Autowired
+	private AuthenUtil authenUtil;
+
+	
 	/**
 	 *
 	 * 物理删除
@@ -82,6 +87,10 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 	@Override
 	public void insert(SpringResourceDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringResource springResource = new SpringResource();
 		if (StringUtils.isEmpty(record.getParentId())) {
 			record.setParentId("0");
@@ -147,6 +156,10 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 			entity.setShowStatus(springResourceDTO.getShowStatus());
 			entity.setEnableEdit(springResourceDTO.getEnableEdit());
 			entity.setEnableDelete(springResourceDTO.getEnableDelete());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springResourceMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

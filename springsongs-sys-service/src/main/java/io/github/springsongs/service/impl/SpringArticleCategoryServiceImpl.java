@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringArticleCategoryMapper;
 import io.github.springsongs.service.ISpringArticleCategoryService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -32,6 +34,9 @@ public class SpringArticleCategoryServiceImpl implements ISpringArticleCategoryS
 
 	@Autowired
 	private SpringArticleCategoryMapper springArticleCategoryMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -64,6 +69,10 @@ public class SpringArticleCategoryServiceImpl implements ISpringArticleCategoryS
 	@Override
 	public void insert(SpringArticleCategoryDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringArticleCategory springArticleCategory = new SpringArticleCategory();
 		if (StringUtils.isEmpty(record.getParentId())) {
 			record.setParentId("0");
@@ -122,6 +131,10 @@ public class SpringArticleCategoryServiceImpl implements ISpringArticleCategoryS
 			entity.setDescription(springArticleCategoryDTO.getDescription());
 			entity.setSortOrder(springArticleCategoryDTO.getSortOrder());
 			entity.setVersion(springArticleCategoryDTO.getVersion());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springArticleCategoryMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

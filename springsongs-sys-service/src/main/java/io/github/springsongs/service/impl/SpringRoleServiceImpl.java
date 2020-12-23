@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringRoleMapper;
 import io.github.springsongs.mapper.SpringUserRoleMapper;
 import io.github.springsongs.service.ISpringRoleService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -37,6 +39,9 @@ public class SpringRoleServiceImpl implements ISpringRoleService {
 
 	@Autowired
 	private SpringUserRoleMapper springUserRoleMapper;
+	
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -69,6 +74,10 @@ public class SpringRoleServiceImpl implements ISpringRoleService {
 	@Override
 	public void insert(SpringRoleDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringRole springRole = new SpringRole();
 		BeanUtils.copyProperties(record, springRole);
 		try {
@@ -123,6 +132,10 @@ public class SpringRoleServiceImpl implements ISpringRoleService {
 			entity.setDescription(springRoleDTO.getDescription());
 			entity.setEnableEdit(springRoleDTO.getEnableEdit());
 			entity.setEnableDelete(springRoleDTO.getEnableDelete());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springRoleMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

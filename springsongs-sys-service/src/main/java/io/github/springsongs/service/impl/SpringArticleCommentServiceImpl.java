@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringArticleCommentMapper;
 import io.github.springsongs.service.ISpringArticleCommentService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -29,6 +31,11 @@ public class SpringArticleCommentServiceImpl implements ISpringArticleCommentSer
 
 	@Autowired
 	private SpringArticleCommentMapper springArticleCommentMapper;
+	
+
+	@Autowired
+	private AuthenUtil authenUtil;
+	
 
 	/**
 	 *
@@ -61,6 +68,10 @@ public class SpringArticleCommentServiceImpl implements ISpringArticleCommentSer
 	@Override
 	public void insert(SpringArticleCommentDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringArticleComment springArticleComment = new SpringArticleComment();
 		BeanUtils.copyProperties(record, springArticleComment);
 		try {
@@ -115,6 +126,10 @@ public class SpringArticleCommentServiceImpl implements ISpringArticleCommentSer
 			entity.setAuditFlag(springArticleCommentDTO.getAuditFlag());
 			entity.setSortCode(springArticleCommentDTO.getSortCode());
 			entity.setDeletedStatus(springArticleCommentDTO.getDeletedStatus());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springArticleCommentMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {

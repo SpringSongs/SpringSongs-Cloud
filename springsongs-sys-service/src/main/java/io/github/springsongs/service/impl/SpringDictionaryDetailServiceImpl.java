@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringDictionaryDetailMapper;
 import io.github.springsongs.service.ISpringDictionaryDetailService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -30,6 +32,9 @@ public class SpringDictionaryDetailServiceImpl implements ISpringDictionaryDetai
 	@Autowired
 	private SpringDictionaryDetailMapper springDictionaryDetailMapper;
 
+	@Autowired
+	private AuthenUtil authenUtil;
+	
 	/**
 	 *
 	 * 物理删除
@@ -61,6 +66,10 @@ public class SpringDictionaryDetailServiceImpl implements ISpringDictionaryDetai
 	@Override
 	public void insert(SpringDictionaryDetailDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringDictionaryDetail springDictionaryDetail = new SpringDictionaryDetail();
 		BeanUtils.copyProperties(record, springDictionaryDetail);
 		try {
@@ -120,6 +129,10 @@ public class SpringDictionaryDetailServiceImpl implements ISpringDictionaryDetai
 			entity.setEnableEdit(springDictionaryDetailDTO.getEnableEdit());
 			entity.setEnableDelete(springDictionaryDetailDTO.getEnableDelete());
 			entity.setDeletedStatus(springDictionaryDetailDTO.getDeletedStatus());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springDictionaryDetailMapper.insert(entity);
 			} catch (Exception ex) {

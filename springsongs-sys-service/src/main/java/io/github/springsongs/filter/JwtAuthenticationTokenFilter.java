@@ -2,7 +2,6 @@ package io.github.springsongs.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.FilterChain;
@@ -44,6 +43,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 		String userName = "";
 		String userId = "";
 		String roles = "";
+		String ip;
 		if (null != requestHeader && requestHeader.startsWith(this.tokenHead)) {
 			token = requestHeader.substring(this.tokenHead.length());
 			if (StringUtils.isEmpty(token)) {
@@ -54,9 +54,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 			try {
 				userName = jwtUtil.getUserNameFromToken(token);
 				userId = jwtUtil.getUserIdFromToken(token);
+				ip = jwtUtil.getIPFromToken(token);
 				roles = jwtUtil.getRolesFromToken(token);
 				securityUser.setId(userId);
 				securityUser.setUserName(userName);
+				securityUser.setIp(ip);
 				String[] roleArr = roles.split(",");
 				for (String code : roleArr) {
 					auths.add(new SimpleGrantedAuthority(code));

@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringParameterMapper;
 import io.github.springsongs.service.ISpringParameterService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -29,6 +31,9 @@ public class SpringParameterServiceImpl implements ISpringParameterService {
 	static Logger logger = LoggerFactory.getLogger(SpringDictionaryServiceImpl.class);
 	@Autowired
 	private SpringParameterMapper springParameterMapper;
+
+	@Autowired
+	private AuthenUtil authenUtil;
 
 	/**
 	 *
@@ -61,6 +66,10 @@ public class SpringParameterServiceImpl implements ISpringParameterService {
 	@Override
 	public void insert(SpringParameterDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringParameter springParameter = new SpringParameter();
 		BeanUtils.copyProperties(record, springParameter);
 		try {
@@ -117,6 +126,10 @@ public class SpringParameterServiceImpl implements ISpringParameterService {
 			entity.setSortCode(springParameterDTO.getSortCode());
 			entity.setEnableEdit(springParameterDTO.getEnableEdit());
 			entity.setEnableDelete(springParameterDTO.getEnableDelete());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springParameterMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {
@@ -136,7 +149,8 @@ public class SpringParameterServiceImpl implements ISpringParameterService {
 	 * @since [产品/模块版本] （可选）
 	 */
 	@Override
-	public PageInfo<SpringParameterDTO> getAllRecordByPage(SpringParameterDTO springParameterQuery,int page,int size) {
+	public PageInfo<SpringParameterDTO> getAllRecordByPage(SpringParameterDTO springParameterQuery, int page,
+			int size) {
 		if (size > Constant.MAX_PAGE_SIZE) {
 			throw new SpringSongsException(ResultCode.PARAMETER_NOT_NULL_ERROR);
 		}
@@ -194,7 +208,7 @@ public class SpringParameterServiceImpl implements ISpringParameterService {
 	 */
 	@Override
 	public void batchSaveExcel(List<String[]> list) {
-		
+
 	}
 
 	@Override

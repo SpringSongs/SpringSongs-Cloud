@@ -1,6 +1,7 @@
 package io.github.springsongs.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.exception.SpringSongsException;
 import io.github.springsongs.mapper.SpringOrganizationMapper;
 import io.github.springsongs.service.ISpringOrganizationService;
+import io.github.springsongs.util.AuthenUtil;
 import io.github.springsongs.utils.Constant;
 
 @Service
@@ -32,6 +34,9 @@ public class SpringOrganizationServiceImpl implements ISpringOrganizationService
 	@Autowired
 	private SpringOrganizationMapper springOrganizationMapper;
 
+	@Autowired
+	private AuthenUtil authenUtil;
+	
 	/**
 	 *
 	 * 物理删除
@@ -63,6 +68,10 @@ public class SpringOrganizationServiceImpl implements ISpringOrganizationService
 	@Override
 	public void insert(SpringOrganizationDTO record) {
 		record.setId(UUID.randomUUID().toString());
+		record.setCreatedUserId(authenUtil.getUser().getId());
+		record.setCreatedBy(authenUtil.getUser().getUserName());
+		record.setCreatedIp(authenUtil.getUser().getIp());
+		record.setCreatedOn(new Date());
 		SpringOrganization SpringOrganization = new SpringOrganization();
 		BeanUtils.copyProperties(record, SpringOrganization);
 		try {
@@ -116,6 +125,10 @@ public class SpringOrganizationServiceImpl implements ISpringOrganizationService
 			entity.setCode(springOrganizationDTO.getCode());
 			entity.setTitle(springOrganizationDTO.getTitle());
 			entity.setDeletedStatus(springOrganizationDTO.getDeletedStatus());
+			entity.setUpdatedUserId(authenUtil.getUser().getId());
+			entity.setUpdatedBy(authenUtil.getUser().getUserName());
+			entity.setUpdatedIp(authenUtil.getUser().getIp());
+			entity.setUpdatedOn(new Date());
 			try {
 				springOrganizationMapper.updateByPrimaryKey(entity);
 			} catch (Exception ex) {
