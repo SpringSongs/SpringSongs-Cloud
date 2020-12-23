@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringSiteNotice/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringSiteNotice/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(page, size, data) {
 
 export function get(id) {
   return request({
-    url: '/SpringSiteNotice/Detail?id=' + id,
+    url: '/SYS-API/SpringSiteNotice/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringSiteNotice/Create',
+    url: '/SYS-API/SpringSiteNotice/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringSiteNotice/Edit',
+    url: '/SYS-API/SpringSiteNotice/Edit',
     method: 'put',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringSiteNotice/SetDeleted',
+    url: '/SYS-API/SpringSiteNotice/SetDeleted',
     method: 'post',
     data
   })

@@ -9,6 +9,15 @@ export function login(data) {
   })
 }
 
+export function refresh(data) {
+  var data=qs.stringify(data)
+  return request({
+    url: '/SpringUser/RefreshToken',
+    method: 'post',
+    data
+  })
+}
+
 export function getInfo(token) {
 	console.log(token);
   return request({

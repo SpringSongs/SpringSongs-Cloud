@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringSiteMessage/ListByPage?page=' + page + '&size=' + size,
+    url: '/SYS-API/SpringSiteMessage/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -10,14 +10,14 @@ export function search(page, size, data) {
 
 export function get(id) {
   return request({
-    url: '/SpringSiteMessage/Detail?id=' + id,
+    url: '/SYS-API/SpringSiteMessage/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringSiteMessage/Create',
+    url: '/SYS-API/SpringSiteMessage/Create',
     method: 'post',
     data
   })
@@ -25,7 +25,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringSiteMessage/Edit',
+    url: '/SYS-API/SpringSiteMessage/Edit',
     method: 'put',
     data
   })
@@ -38,7 +38,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringSiteMessage/SetDeleted',
+    url: '/SYS-API/SpringSiteMessage/SetDeleted',
     method: 'post',
     data
   })
@@ -46,7 +46,7 @@ export function batchDelete(data) {
 
 export function countNotReadMessageByUserId() {
   return request({
-    url: '/SpringSiteMessage/CountNotReadMessageByUserId',
+    url: '/SYS-API/SpringSiteMessage/CountNotReadMessageByUserId',
     method: 'get'
   })
 }

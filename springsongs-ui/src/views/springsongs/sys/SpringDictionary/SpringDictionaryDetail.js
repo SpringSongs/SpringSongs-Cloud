@@ -12,7 +12,8 @@ export default {
       total: 1,
       multipleSelection: [],
       searchForm: {
-        size: 20
+        size: 20,
+        page:0
       },
       dialogAddVisible: false,
       dialogEditVisible: false,
@@ -146,7 +147,7 @@ export default {
     handleSearch: function() {
       const self = this
       self.searchForm.dictionaryCode = this.param
-      search(self.searchForm).then(
+      search(self.searchForm,self.searchForm.page,self.searchForm.size).then(
         function(response) {
           self.tableData = response.data
           self.searchForm.total = response.count
