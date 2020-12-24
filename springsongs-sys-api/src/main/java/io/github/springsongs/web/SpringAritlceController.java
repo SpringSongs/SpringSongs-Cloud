@@ -42,10 +42,10 @@ public class SpringAritlceController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAritlceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringAritlceDTO>> listByPage(@RequestBody SpringAritlceDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringAritlceDTO>> reponseResultPageDTO = springAritlceService
-				.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringAritlceDTO>> listByPage(@RequestBody SpringAritlceDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringAritlceDTO>> reponseResultPageDTO = springAritlceService.listByPage(searchQuery,
+				page, size);
 		return reponseResultPageDTO;
 	}
 

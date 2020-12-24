@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "站点信息管理")
 @RestController
 @RequestMapping(value = "/SpringSiteInfo")
-public class SpringSiteInfoController{
+public class SpringSiteInfoController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringSiteInfoController.class);
 	@Autowired
@@ -39,9 +39,10 @@ public class SpringSiteInfoController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteInfoDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringSiteInfoDTO>> listByPage(@RequestBody SpringSiteInfoDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringSiteInfoDTO>> reponseResultPageDTO = SpringSiteInfoService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringSiteInfoDTO>> listByPage(@RequestBody SpringSiteInfoDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringSiteInfoDTO>> reponseResultPageDTO = SpringSiteInfoService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

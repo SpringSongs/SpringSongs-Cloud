@@ -10,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -42,12 +43,15 @@ public class JwtUtil {
 	public Claims getClaimsFromToken(String token) throws IOException {
 		SecretKey key = generalKey();
 		Claims claims;
-		try {
-			claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
-		} catch (Exception e) {
-			claims = null;
-		}
-		return claims;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(key) // 设置标识名
+                    .parseClaimsJws(token)  //解析token
+                    .getBody();
+        } catch (ExpiredJwtException e) {
+            claims = e.getClaims();
+        }
+        return claims;
 	}
 
 	public SecretKey generalKey() throws IOException {

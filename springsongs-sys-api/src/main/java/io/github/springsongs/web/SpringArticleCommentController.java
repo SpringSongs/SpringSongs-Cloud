@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "内容评论管理")
 @RestController
 @RequestMapping(value = "/SpringArticleComment")
-public class SpringArticleCommentController{
+public class SpringArticleCommentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringArticleCommentController.class);
 
@@ -43,9 +43,11 @@ public class SpringArticleCommentController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCommentDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringArticleCommentDTO>> listByPage(@RequestBody SpringArticleCommentDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringArticleCommentDTO>> reponseResultPageDTO = springArticleCommentService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringArticleCommentDTO>> listByPage(
+			@RequestBody SpringArticleCommentDTO searchQuery, @RequestParam("page") int page,
+			@RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringArticleCommentDTO>> reponseResultPageDTO = springArticleCommentService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -63,7 +65,7 @@ public class SpringArticleCommentController{
 	@PostMapping(value = "/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringArticleCommentDTO viewEntity,
 			HttpServletRequest request) {
-		ResponseDTO<String> responseDTO =springArticleCommentService.save(viewEntity);
+		ResponseDTO<String> responseDTO = springArticleCommentService.save(viewEntity);
 		return responseDTO;
 	}
 
@@ -73,7 +75,7 @@ public class SpringArticleCommentController{
 	@PutMapping(value = "/Edit")
 	public ResponseDTO<String> update(@RequestBody @Valid SpringArticleCommentDTO viewEntity,
 			HttpServletRequest request) {
-		ResponseDTO<String> responseDTO =springArticleCommentService.update(viewEntity);
+		ResponseDTO<String> responseDTO = springArticleCommentService.update(viewEntity);
 		return responseDTO;
 	}
 
@@ -81,7 +83,7 @@ public class SpringArticleCommentController{
 	@ApiImplicitParam(dataType = "List<String>", name = "ids", value = "内容评论编号", required = true)
 	@PostMapping(value = "/SetDeleted")
 	public ResponseDTO<String> setDeleted(@RequestParam(value = "ids", required = true) List<String> ids) {
-		ResponseDTO<String> responseDTO =springArticleCommentService.setDeleted(ids);
+		ResponseDTO<String> responseDTO = springArticleCommentService.setDeleted(ids);
 		return responseDTO;
 	}
 
@@ -89,7 +91,7 @@ public class SpringArticleCommentController{
 	@ApiImplicitParam(dataType = "List<String>", name = "ids", value = "内容评论编号", required = true)
 	@PostMapping(value = "/Deleted")
 	public ResponseDTO<String> deleted(@RequestParam(value = "ids", required = true) List<String> ids) {
-		ResponseDTO<String> responseDTO =springArticleCommentService.setDeleted(ids);
+		ResponseDTO<String> responseDTO = springArticleCommentService.setDeleted(ids);
 		return responseDTO;
 	}
 
@@ -100,7 +102,7 @@ public class SpringArticleCommentController{
 		if (StringUtils.isEmpty(id)) {
 			return ResponseDTO.successed(null, ResultCode.PARAMETER_NOT_NULL_ERROR);
 		}
-		ResponseDTO<String> responseDTO =springArticleCommentService.audit(id);
+		ResponseDTO<String> responseDTO = springArticleCommentService.audit(id);
 		return responseDTO;
 	}
 }

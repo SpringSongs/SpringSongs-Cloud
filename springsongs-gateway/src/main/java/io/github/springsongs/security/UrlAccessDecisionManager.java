@@ -35,8 +35,9 @@ public class UrlAccessDecisionManager implements AccessDecisionManager {
 
 			ConfigAttribute ca = it.next();
 			if ("ROLE_LOGIN".equalsIgnoreCase(ca.getAttribute())) {
+				String url=request.getRequestURI();
 				if (authentication instanceof AnonymousAuthenticationToken) {
-					if (request.getRequestURI().contains("Login")) {
+					if (url.contains("Login")||url.contains("RefreshToken")||url.contains("Logout")) {
 						return;
 					}
 				} else {

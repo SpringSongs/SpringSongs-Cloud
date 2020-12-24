@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "名片管理")
 @RestController
 @RequestMapping(value = "/SpringContact")
-public class SpringContactController{
+public class SpringContactController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringContactController.class);
 
@@ -40,9 +40,10 @@ public class SpringContactController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringContactDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringContactDTO>> listByPage(@RequestBody SpringContactDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringContactDTO>> reponseResultPageDTO =  springContactService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringContactDTO>> listByPage(@RequestBody SpringContactDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringContactDTO>> reponseResultPageDTO = springContactService.listByPage(searchQuery,
+				page, size);
 		return reponseResultPageDTO;
 	}
 

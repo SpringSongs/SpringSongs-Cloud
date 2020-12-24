@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "参数管理")
 @RestController
 @RequestMapping(value = "/SpringParameter")
-public class SpringParameterController{
+public class SpringParameterController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringParameterController.class);
 
@@ -40,11 +40,13 @@ public class SpringParameterController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringParameterDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(@RequestBody SpringParameterDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringParameterDTO>> reponseResultPageDTO =springParameterService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringParameterDTO>> listByPage(@RequestBody SpringParameterDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringParameterDTO>> reponseResultPageDTO = springParameterService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
+
 	@ApiOperation(value = "获取参数", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")

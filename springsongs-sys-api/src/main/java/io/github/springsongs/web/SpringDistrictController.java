@@ -41,7 +41,7 @@ public class SpringDistrictController {
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
 	public ReponseResultPageDTO<List<SpringDistrictDTO>> listByPage(@RequestBody SpringDistrictDTO searchQuery,
-			int page, int size) {
+			@RequestParam("page") int page, @RequestParam("size") int size) {
 		ReponseResultPageDTO<List<SpringDistrictDTO>> reponseResultPageDTO = SpringDistrictService
 				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;

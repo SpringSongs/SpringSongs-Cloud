@@ -45,9 +45,10 @@ public class SpringAttachmentController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringAttachmentDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringAttachmentDTO>> listByPage(@RequestBody SpringAttachmentDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringAttachmentDTO>> reponseResultPageDTO = springAttachmentService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringAttachmentDTO>> listByPage(@RequestBody SpringAttachmentDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringAttachmentDTO>> reponseResultPageDTO = springAttachmentService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -55,7 +56,7 @@ public class SpringAttachmentController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
 	public ResponseDTO<SpringAttachmentDTO> get(@NotEmpty(message = "id不能为空") String id) {
-		ResponseDTO<SpringAttachmentDTO> responseDTO =  springAttachmentService.get(id);
+		ResponseDTO<SpringAttachmentDTO> responseDTO = springAttachmentService.get(id);
 		return responseDTO;
 	}
 

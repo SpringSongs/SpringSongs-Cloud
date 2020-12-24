@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringJob;
+import io.github.springsongs.dto.SpringJobDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringJobMapper {
     /**
@@ -43,4 +47,8 @@ public interface SpringJobMapper {
      * @mbg.generated Mon Dec 14 16:28:43 CST 2020
      */
     int updateByPrimaryKey(SpringJob record);
+
+	List<SpringJob> listByPage(@Param("record") SpringJobDTO record);
+
+	SpringJob findByGroupCodeAndTaskClassTitle(@Param("groupCode") String groupCode,@Param("taskClassName")  String taskClassName);
 }

@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "站内公告管理")
 @RestController
 @RequestMapping(value = "/SpringSiteNotice")
-public class SpringSiteNoticeController{
+public class SpringSiteNoticeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringSiteNoticeController.class);
 	@Autowired
@@ -40,12 +40,12 @@ public class SpringSiteNoticeController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteNoticeDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringSiteNoticeDTO>> listByPage(@RequestBody SpringSiteNoticeDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringSiteNoticeDTO>> reponseResultPageDTO =SpringSiteNoticeService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringSiteNoticeDTO>> listByPage(@RequestBody SpringSiteNoticeDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringSiteNoticeDTO>> reponseResultPageDTO = SpringSiteNoticeService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
-
 
 	@ApiOperation(value = "获取站内公告", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })

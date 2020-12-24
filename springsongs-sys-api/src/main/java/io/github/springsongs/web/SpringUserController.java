@@ -44,26 +44,25 @@ public class SpringUserController {
 	@Autowired
 	private ISpringResourceService springResourceService;
 
-
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringUserDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringUserDTO>> listByPage(@RequestBody SpringUserDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringUserDTO>> reponseResultPageDTO =springUserService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringUserDTO>> listByPage(@RequestBody SpringUserDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringUserDTO>> reponseResultPageDTO = springUserService.listByPage(searchQuery, page,
+				size);
 		return reponseResultPageDTO;
 	}
 
 	@ApiOperation(value = "根据角色查询用户分页列表", response = ReponseResultPageDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "roleId", dataType = "String"),
-		@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
+			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByRoleId/{roleId}")
 	public ReponseResultPageDTO<List<SpringUserDTO>> listByRoleId(
-			@PathVariable(value = "roleId", required = true) String roleId,
-			int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringUserDTO>> reponseResultPageDTO =springUserService.listByRoleId(roleId, page,size);
+			@PathVariable(value = "roleId", required = true) String roleId, int page, int size) {
+		ReponseResultPageDTO<List<SpringUserDTO>> reponseResultPageDTO = springUserService.listByRoleId(roleId, page,
+				size);
 		return reponseResultPageDTO;
 	}
 
@@ -84,7 +83,6 @@ public class SpringUserController {
 		return responseDTO;
 	}
 
-	
 	@ApiOperation(value = "修改用户", notes = "根据SpringUserDTO修改用户", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "viewEntity", dataType = "SpringUserDTO"),
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest"), })

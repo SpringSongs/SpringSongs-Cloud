@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "子系统管理")
 @RestController
 @RequestMapping(value = "/SpringSystem")
-public class SpringSystemController{
+public class SpringSystemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringSystemController.class);
 
@@ -41,9 +41,10 @@ public class SpringSystemController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSystemDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringSystemDTO>> listByPage(@RequestBody SpringSystemDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringSystemDTO>> reponseResultPageDTO =springSystemService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringSystemDTO>> listByPage(@RequestBody SpringSystemDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringSystemDTO>> reponseResultPageDTO = springSystemService.listByPage(searchQuery,
+				page, size);
 		return reponseResultPageDTO;
 	}
 

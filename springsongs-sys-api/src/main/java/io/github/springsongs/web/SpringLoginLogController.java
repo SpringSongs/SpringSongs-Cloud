@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.springsongs.dto.ReponseResultPageDTO;
@@ -21,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "登录日志管理")
 @RestController
 @RequestMapping(value = "/SpringLoginLog")
-public class SpringLoginLogController{
+public class SpringLoginLogController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringLoginLogController.class);
 
@@ -32,9 +33,10 @@ public class SpringLoginLogController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringLoginLogDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringLoginLogDTO>> listByPage(@RequestBody SpringLoginLogDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringLoginLogDTO>> reponseResultPageDTO =springLoginLogService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringLoginLogDTO>> listByPage(@RequestBody SpringLoginLogDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringLoginLogDTO>> reponseResultPageDTO = springLoginLogService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 

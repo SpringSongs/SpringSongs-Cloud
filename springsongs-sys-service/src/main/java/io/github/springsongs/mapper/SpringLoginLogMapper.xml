@@ -89,12 +89,14 @@
     -->
     select id, description, created_user_id, created_by, created_on, created_ip, updated_user_id, 
     updated_by, updated_on, updated_ip
-    from spring_login_log  where deleted_status=0
+    from spring_login_log
+    <where>
     	<choose>
 			<when test="createdBy != null and createdBy !=''">
 				and created_by = #{createdBy,jdbcType=VARCHAR}
 			</when>
 		</choose>
+	</where>
   </select>
     <delete id="delete" parameterType="java.util.List">
     <!--

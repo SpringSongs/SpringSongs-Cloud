@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "内容分类管理")
 @RestController
 @RequestMapping(value = "/SpringArticleCategory")
-public class SpringArticleCategoryController{
+public class SpringArticleCategoryController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringArticleCategoryController.class);
 
@@ -39,9 +39,11 @@ public class SpringArticleCategoryController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringArticleCategoryDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringArticleCategoryDTO>> listByPage(@RequestBody SpringArticleCategoryDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringArticleCategoryDTO>>  reponseResultPageDTO = springArticleCategoryService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringArticleCategoryDTO>> listByPage(
+			@RequestBody SpringArticleCategoryDTO searchQuery, @RequestParam("page") int page,
+			@RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringArticleCategoryDTO>> reponseResultPageDTO = springArticleCategoryService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -49,7 +51,7 @@ public class SpringArticleCategoryController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
 	public ResponseDTO<SpringArticleCategoryDTO> get(@RequestParam(value = "id", required = true) String id) {
-		ResponseDTO<SpringArticleCategoryDTO> responseDTO =springArticleCategoryService.get(id);
+		ResponseDTO<SpringArticleCategoryDTO> responseDTO = springArticleCategoryService.get(id);
 		return responseDTO;
 	}
 
@@ -58,7 +60,7 @@ public class SpringArticleCategoryController{
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest"), })
 	@PostMapping(value = "/Create")
 	public ResponseDTO<String> save(@RequestBody SpringArticleCategoryDTO viewEntity, HttpServletRequest request) {
-		ResponseDTO<String> responseDTO =springArticleCategoryService.save(viewEntity);
+		ResponseDTO<String> responseDTO = springArticleCategoryService.save(viewEntity);
 		return responseDTO;
 	}
 
@@ -67,7 +69,7 @@ public class SpringArticleCategoryController{
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest"), })
 	@PutMapping(value = "/Edit")
 	public ResponseDTO<String> update(@RequestBody SpringArticleCategoryDTO viewEntity, HttpServletRequest request) {
-		ResponseDTO<String> responseDTO =springArticleCategoryService.update(viewEntity);
+		ResponseDTO<String> responseDTO = springArticleCategoryService.update(viewEntity);
 		return responseDTO;
 	}
 
@@ -75,7 +77,7 @@ public class SpringArticleCategoryController{
 	@ApiImplicitParam(dataType = "List<String>", name = "ids", value = "内容分类编号", required = true)
 	@PostMapping(value = "/SetDeleted")
 	public ResponseDTO<String> setDeleted(@RequestParam(value = "ids", required = true) List<String> ids) {
-		ResponseDTO<String> responseDTO =springArticleCategoryService.setDeleted(ids);
+		ResponseDTO<String> responseDTO = springArticleCategoryService.setDeleted(ids);
 		return responseDTO;
 	}
 
@@ -84,7 +86,7 @@ public class SpringArticleCategoryController{
 	@GetMapping(value = "/GetCategorysByParent")
 	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId) {
-		ResponseDTO<List<ElementUiTreeDTO>> responseDTO =springArticleCategoryService.getModuleByParentId(parentId);
+		ResponseDTO<List<ElementUiTreeDTO>> responseDTO = springArticleCategoryService.getModuleByParentId(parentId);
 		return responseDTO;
 	}
 

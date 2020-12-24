@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "资源管理")
 @RestController
 @RequestMapping(value = "/SpringResource")
-public class SpringResourceController{
+public class SpringResourceController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringResourceController.class);
 
@@ -44,11 +44,13 @@ public class SpringResourceController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringResourceDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringResourceDTO>> listByPage(@RequestBody SpringResourceDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringResourceDTO>> reponseResultPageDTO = springResourceService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringResourceDTO>> listByPage(@RequestBody SpringResourceDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringResourceDTO>> reponseResultPageDTO = springResourceService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
+
 	@ApiOperation(value = "获取资源", response = ResponseDTO.class)
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
@@ -87,21 +89,21 @@ public class SpringResourceController{
 	@ApiOperation(value = "获取资源菜单", notes = "获取资源菜单", response = ResponseDTO.class)
 	@GetMapping(value = "/GetMenus")
 	public ResponseDTO<List<MenuDTO>> getMenus() {
-		ResponseDTO<List<MenuDTO>>  responseDTO= springResourceService.getMenus();
+		ResponseDTO<List<MenuDTO>> responseDTO = springResourceService.getMenus();
 		return responseDTO;
 	}
 
 	@ApiOperation(value = "获取资源菜单路由", notes = "获取资源菜单路由", response = ResponseDTO.class)
 	@GetMapping(value = "/GetRouters")
 	public ResponseDTO<List<MenuRouterDTO>> getRouters() {
-		ResponseDTO<List<MenuRouterDTO>>  responseDTO= springResourceService.getRouters();
+		ResponseDTO<List<MenuRouterDTO>> responseDTO = springResourceService.getRouters();
 		return responseDTO;
 	}
 
 	@ApiOperation(value = "获取EASYUI菜单", notes = "获取EASYUI菜单", response = ResponseDTO.class)
 	@PostMapping(value = "/GetEasyUIMenu")
 	public ResponseDTO<List<EasyUiMenuDTO>> getEasyUIMenu() {
-		ResponseDTO<List<EasyUiMenuDTO>>  responseDTO= springResourceService.getEasyUIMenu();
+		ResponseDTO<List<EasyUiMenuDTO>> responseDTO = springResourceService.getEasyUIMenu();
 		return responseDTO;
 	}
 
@@ -112,7 +114,7 @@ public class SpringResourceController{
 	public ResponseDTO<List<ElementUiTreeDTO>> getModuleByParentId(
 			@RequestParam(value = "parentId", required = true) String parentId,
 			@RequestParam(value = "systemId", required = true) String systemId) {
-		ResponseDTO<List<ElementUiTreeDTO>>  responseDTO= springResourceService.getModuleByParentId(parentId, systemId);
+		ResponseDTO<List<ElementUiTreeDTO>> responseDTO = springResourceService.getModuleByParentId(parentId, systemId);
 		return responseDTO;
 	}
 
@@ -120,7 +122,7 @@ public class SpringResourceController{
 	@GetMapping(value = "/ListAllToTree")
 	public ResponseDTO<List<SpringResourceDTO>> ListAllToTree(
 			@RequestParam(value = "systemId", required = true) String systemId) {
-		ResponseDTO<List<SpringResourceDTO>>  responseDTO= springResourceService.ListAllToTree(systemId);
+		ResponseDTO<List<SpringResourceDTO>> responseDTO = springResourceService.ListAllToTree(systemId);
 		return responseDTO;
 	}
 

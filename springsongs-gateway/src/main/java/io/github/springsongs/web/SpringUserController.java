@@ -84,6 +84,7 @@ public class SpringUserController {
 
 	@PostMapping(value = "/RefreshToken")
 	public ResponseDTO<String> refresh(@RequestParam(value = "oldToken") String oldToken, HttpServletRequest request) throws IOException {
+		jwtUtil = new JwtUtil();
 		String token = oldToken.substring(tokenHead.length());
 		String username = jwtUtil.getUserNameFromToken(token);
 		final UserPrincipal springUser = (UserPrincipal) userDetailsService.loadUserByUsername(username);

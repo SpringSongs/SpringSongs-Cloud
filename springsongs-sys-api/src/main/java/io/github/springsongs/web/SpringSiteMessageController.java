@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "站内消息管理")
 @RestController
 @RequestMapping(value = "/SpringSiteMessage")
-public class SpringSiteMessageController{
+public class SpringSiteMessageController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringSiteMessageController.class);
 	@Autowired
@@ -39,9 +39,10 @@ public class SpringSiteMessageController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringSiteMessageDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringSiteMessageDTO>> listByPage(@RequestBody SpringSiteMessageDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringSiteMessageDTO>> reponseResultPageDTO = SpringSiteMessageService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringSiteMessageDTO>> listByPage(@RequestBody SpringSiteMessageDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringSiteMessageDTO>> reponseResultPageDTO = SpringSiteMessageService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -49,7 +50,7 @@ public class SpringSiteMessageController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", dataType = "String") })
 	@GetMapping(value = "/Detail")
 	public ResponseDTO<SpringSiteMessageDTO> get(@NotEmpty(message = "id不能为空") String id) {
-		ResponseDTO<SpringSiteMessageDTO> responseDTO =SpringSiteMessageService.get(id);
+		ResponseDTO<SpringSiteMessageDTO> responseDTO = SpringSiteMessageService.get(id);
 		return responseDTO;
 	}
 
@@ -67,7 +68,7 @@ public class SpringSiteMessageController{
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest"), })
 	@PutMapping(value = "/Edit")
 	public ResponseDTO<String> update(@RequestBody @Valid SpringSiteMessageDTO viewEntity, HttpServletRequest request) {
-		ResponseDTO<String> responseDTO =SpringSiteMessageService.update(viewEntity);
+		ResponseDTO<String> responseDTO = SpringSiteMessageService.update(viewEntity);
 		return responseDTO;
 	}
 
@@ -90,8 +91,8 @@ public class SpringSiteMessageController{
 	@ApiOperation(value = "查询未读消息", notes = "根据toUserId对象删除站内消息", response = ResponseDTO.class)
 	@GetMapping(value = "/CountNotReadMessageByUserId")
 	public ResponseDTO<Integer> countNotReadMessageByUserId() {
-		//TODO
-		 ResponseDTO<Integer> responseDTO= SpringSiteMessageService.countNotReadMessageByUserId();
+		// TODO
+		ResponseDTO<Integer> responseDTO = SpringSiteMessageService.countNotReadMessageByUserId();
 		return responseDTO;
 	}
 }

@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "组织机构管理")
 @RestController
 @RequestMapping(value = "/SpringOrganization")
-public class SpringOrganizationController{
+public class SpringOrganizationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringOrganizationController.class);
 
@@ -40,9 +40,10 @@ public class SpringOrganizationController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringOrganizationDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringOrganizationDTO>> listByPage(@RequestBody SpringOrganizationDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringOrganizationDTO>> reponseResultPageDTO =springOrganizationService.listByPage(searchQuery, page, size);
+	public ReponseResultPageDTO<List<SpringOrganizationDTO>> listByPage(@RequestBody SpringOrganizationDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringOrganizationDTO>> reponseResultPageDTO = springOrganizationService
+				.listByPage(searchQuery, page, size);
 		return reponseResultPageDTO;
 	}
 
@@ -86,7 +87,7 @@ public class SpringOrganizationController{
 	@GetMapping(value = "/listOrganizationsByParent")
 	public ResponseDTO<List<SpringOrganizationDTO>> getOrganizationsByParent(
 			@RequestParam(value = "parentId", required = true) @Valid @NotEmpty(message = "id不能为空") String parentId) {
-		ResponseDTO<List<SpringOrganizationDTO>> responseDTO= springOrganizationService
+		ResponseDTO<List<SpringOrganizationDTO>> responseDTO = springOrganizationService
 				.getOrganizationsByParent(parentId);
 		return responseDTO;
 	}
@@ -94,14 +95,14 @@ public class SpringOrganizationController{
 	@ApiOperation(value = "查询全部组织机构", notes = "查询全部组织机构", response = ResponseDTO.class)
 	@GetMapping(value = "/listAllRecord")
 	public ResponseDTO<List<SpringOrganizationDTO>> listAllRecord() {
-		ResponseDTO<List<SpringOrganizationDTO>> responseDTO= springOrganizationService.listAllRecord();
+		ResponseDTO<List<SpringOrganizationDTO>> responseDTO = springOrganizationService.listAllRecord();
 		return responseDTO;
 	}
 
 	@ApiOperation(value = "查询全部组织机构树", notes = "查询全部组织机构树", response = ResponseDTO.class)
 	@GetMapping(value = "/ListAllToTree")
 	public ResponseDTO<List<SpringOrganizationDTO>> ListAllToTree() {
-		ResponseDTO<List<SpringOrganizationDTO>> responseDTO= springOrganizationService.ListAllToTree();
+		ResponseDTO<List<SpringOrganizationDTO>> responseDTO = springOrganizationService.ListAllToTree();
 		return responseDTO;
 	}
 }

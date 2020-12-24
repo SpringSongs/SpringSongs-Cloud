@@ -45,10 +45,10 @@ public class SpringRoleController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "searchQuery", dataType = "SpringRoleDTO"),
 			@ApiImplicitParam(name = "page", dataType = "int"), @ApiImplicitParam(name = "size", dataType = "int") })
 	@PostMapping(value = "/ListByPage")
-	public ReponseResultPageDTO<List<SpringRoleDTO>> listByPage(@RequestBody SpringRoleDTO searchQuery, int page,
-			int size) {
-		ReponseResultPageDTO<List<SpringRoleDTO>> reponseResultPageDTO = springRoleService.listByPage(searchQuery,
-				page, size);
+	public ReponseResultPageDTO<List<SpringRoleDTO>> listByPage(@RequestBody SpringRoleDTO searchQuery,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		ReponseResultPageDTO<List<SpringRoleDTO>> reponseResultPageDTO = springRoleService.listByPage(searchQuery, page,
+				size);
 		return reponseResultPageDTO;
 	}
 
@@ -58,7 +58,8 @@ public class SpringRoleController {
 	@PostMapping(value = "ListByUserId/{userId}")
 	public ReponseResultPageDTO<List<SpringRoleDTO>> listByUserId(
 			@PathVariable(value = "userId", required = true) String userId, int page, int size) {
-		ReponseResultPageDTO<List<SpringRoleDTO>> reponseResultPageDTO = springRoleService.listByUserId(userId, page, size);
+		ReponseResultPageDTO<List<SpringRoleDTO>> reponseResultPageDTO = springRoleService.listByUserId(userId, page,
+				size);
 		return reponseResultPageDTO;
 	}
 

@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/SpringUser/Login","/SpringUser/RefreshToken","/SpringUser/Logout");
+		//web.ignoring().antMatchers("/SpringUser/Login","/SpringUser/RefreshToken","/SpringUser/Logout");
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				o.setAccessDecisionManager(urlAccessDecisionManager);
 				return o;
 			}
-		}).antMatchers("/SpringUser/Login").permitAll().anyRequest().authenticated().and()
+		}).antMatchers("/SpringUser/Login","/SpringUser/RefreshToken","/SpringUser/Logout","/error").permitAll().anyRequest().authenticated().and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.headers().frameOptions().disable();
 		http.csrf().disable();

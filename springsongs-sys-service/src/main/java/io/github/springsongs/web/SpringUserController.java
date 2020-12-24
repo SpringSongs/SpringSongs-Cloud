@@ -47,6 +47,8 @@ public class SpringUserController {
 
 	@Autowired
 	private ISpringResourceService springResourceService;
+	
+	
 
 
 	@ApiOperation(value = "获取内容管理分页列表", response = ReponseResultPageDTO.class)

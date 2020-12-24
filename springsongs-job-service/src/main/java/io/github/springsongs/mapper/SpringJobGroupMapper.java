@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringJobGroup;
+import io.github.springsongs.dto.SpringJobGroupDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringJobGroupMapper {
     /**
@@ -43,4 +47,12 @@ public interface SpringJobGroupMapper {
      * @mbg.generated Mon Dec 14 16:28:43 CST 2020
      */
     int updateByPrimaryKey(SpringJobGroup record);
+
+	SpringJobGroup getByCode(@Param("code") String code);
+
+	List<SpringJobGroup> listByPage(@Param("springJobGroupQuery") SpringJobGroupDTO springJobGroupQuery);
+
+	void setDelete(@Param("ids") List<String> ids);
+
+	List<SpringJobGroup> listAll();
 }

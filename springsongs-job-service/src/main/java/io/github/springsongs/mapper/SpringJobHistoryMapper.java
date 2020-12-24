@@ -1,7 +1,11 @@
 package io.github.springsongs.mapper;
 
 import io.github.springsongs.domain.SpringJobHistory;
+import io.github.springsongs.dto.SpringJobHistoryDTO;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface SpringJobHistoryMapper {
     /**
@@ -43,4 +47,8 @@ public interface SpringJobHistoryMapper {
      * @mbg.generated Mon Dec 14 16:28:43 CST 2020
      */
     int updateByPrimaryKey(SpringJobHistory record);
+
+	List<SpringJobHistory> listByPage(@Param("record") SpringJobHistoryDTO record);
+
+	void setDelete(@Param("ids") List<String> ids);
 }
