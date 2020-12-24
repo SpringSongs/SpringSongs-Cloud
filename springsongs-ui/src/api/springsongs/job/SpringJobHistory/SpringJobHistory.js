@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 export function search(page, size, data) {
   return request({
-    url: '/SpringJobHistory/ListByPage?page=' + page + '&size=' + size,
+    url: '/JOB-API/SpringJobHistory/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -15,7 +15,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringJobHistory/SetDeleted',
+    url: '/JOB-API/SpringJobHistory/SetDeleted',
     method: 'post',
     data
   })

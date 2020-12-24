@@ -27,7 +27,7 @@ export default {
       this.multipleSelection = val
     },
     handleCurrentChange(val) {
-      this.searchForm.currPage = val
+      this.searchForm.page = val
       this.handleSearch()
     },
     // 查询

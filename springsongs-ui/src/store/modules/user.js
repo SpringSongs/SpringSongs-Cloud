@@ -105,7 +105,9 @@ const actions = {
 
   // remove token
   resetToken({ commit }) {
-    refresh({oldToken:getToken()}).then(response => {
+    var token=getToken();
+    removeToken();
+    refresh({oldToken:token}).then(response => {
       const { data } = response
       console.log(data);
       commit('SET_TOKEN', data)
