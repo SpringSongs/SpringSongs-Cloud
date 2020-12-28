@@ -1,7 +1,9 @@
 package io.github.springsongs;
 
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -17,7 +19,10 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 @EnableScheduling
 @EnableCircuitBreaker
 @EnableHystrix
-@MapperScan(basePackages = "io.github.springsongs.mapper")
+@EnableAutoConfiguration(exclude = { SecurityAutoConfiguration.class,
+		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+		})
+//@MapperScan(value = "io.github.springsongs.mapper")
 public class Application {
 
 	public static void main(String[] args) {

@@ -2,14 +2,14 @@ import request from '@/utils/request'
 export function search(page, size, category) {
   // var data = qs.stringify(data)
   return request({
-    url: '/SpringProcess/ListByPage?page=' + page + '&size=' + size + '&category=' + category,
+    url: '/ACTIVITI-SERVICE/SpringProcess/ListByPage?page=' + page + '&size=' + size + '&category=' + category,
     method: 'get'
   })
 }
 
 export function updateState(state, procDefId) {
   return request({
-    url: `/SpringProcess/ActiveOrSuspend/${state}`,
+    url: `/ACTIVITI-API/SpringProcess/ActiveOrSuspend/${state}`,
     method: 'put',
     params: {
       procDefId: procDefId
@@ -19,14 +19,14 @@ export function updateState(state, procDefId) {
 
 export function converToModel(procDefId) {
   return request({
-    url: `/SpringProcess/Convert/${procDefId}`,
+    url: `/ACTIVITI-API/SpringProcess/Convert/${procDefId}`,
     method: 'put'
   })
 }
 
 export function save(data) {
   return request({
-    url: '/SpringActProcessRouter/Create',
+    url: '/ACTIVITI-API/SpringActProcessRouter/Create',
     method: 'post',
     data
   })
@@ -42,7 +42,7 @@ export function edit(data, id) {
 
 export function findSpringActProcessRouterByProcDefKey(procDefKey) {
   return request({
-    url: `/SpringActProcessRouter/FindSpringActProcessRouterByProcDefKey?procDefKey=${procDefKey}`,
+    url: `/ACTIVITI-API/SpringActProcessRouter/FindSpringActProcessRouterByProcDefKey?procDefKey=${procDefKey}`,
     method: 'get'
   })
 }

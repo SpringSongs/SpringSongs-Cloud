@@ -88,7 +88,7 @@ public class SpringSystemController{
 
 	@ApiOperation(value = "查询全部子系统", notes = "查询全部子系统", response = ResponseDTO.class)
 	@GetMapping(value = "/ListAll")
-	public ResponseDTO<SpringSystemDTO> listAll() {
+	public ResponseDTO<List<SpringSystemDTO>> listAll() {
 		List<SpringSystemDTO> springSystemList = springSystemService.ListAll();
 		return ResponseDTO.successed(springSystemList, ResultCode.SELECT_SUCCESSED);
 	}

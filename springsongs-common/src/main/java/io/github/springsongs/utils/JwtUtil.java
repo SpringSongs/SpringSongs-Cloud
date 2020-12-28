@@ -1,6 +1,7 @@
 package io.github.springsongs.utils;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,13 +16,12 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
-import sun.misc.BASE64Decoder;
 
 public class JwtUtil {
 	private static final long TOKEN_EXPIRED_TIME = 30 * 24 * 60 * 60;
 	public static final String jwtId = "tokenId";
 	private static final String JWT_SECRET = "!@#2341231";
-	private static BASE64Decoder decoder = new BASE64Decoder();
+	private static Base64.Encoder encoder = Base64.getEncoder();
 	private Clock clock = DefaultClock.INSTANCE;
 
 	public String createJWT(Map<String, Object> claims, Long time) throws IOException {
@@ -56,8 +56,9 @@ public class JwtUtil {
 
 	public SecretKey generalKey() throws IOException {
 		String stringKey = JWT_SECRET;
-		byte[] encodedKey = decoder.decodeBuffer(stringKey);
-		SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
+		String encodedKey = encoder.encodeToString(stringKey.getBytes("UTF-8"));
+		byte[] encodedKeyByte=encodedKey.getBytes("UTF-8");
+		SecretKey key = new SecretKeySpec(encodedKeyByte, 0, encodedKeyByte.length, "AES");
 		return key;
 	}
 

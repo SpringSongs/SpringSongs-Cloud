@@ -55,7 +55,7 @@ public interface ISpringResourceService {
 			@RequestParam(value = "parentId", required = true) String parentId,
 			@RequestParam(value = "systemId", required = true) String systemId);
 
-	@GetMapping(value = "/ListAllToTree")
+	@PostMapping(value = "/ListAllToTree")
 	public ResponseDTO<List<SpringResourceDTO>> ListAllToTree(
 			@RequestParam(value = "systemId", required = true) String systemId);
 

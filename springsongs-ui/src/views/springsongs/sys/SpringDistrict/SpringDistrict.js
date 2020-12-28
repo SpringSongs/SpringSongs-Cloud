@@ -19,10 +19,11 @@ export default {
       fileList: [],
       multipleSelection: [],
       searchForm: {
-        size: 20,
-        page: 0,
-        total: 0
+        
       },
+      size: 20,
+        page: 0,
+        total: 0,
       dialogAddVisible: false,
       dialogEditVisible: false,
       dialogImportVisible: false,
@@ -60,21 +61,20 @@ export default {
     }
   },
   created() {
-    self.searchForm.parentId=0;
     this.handleSearch()
     this.listSpringDistrictByParentId(0)
   },
   methods: {
     sizeChangeHandle(val) {
-      this.searchForm.size = val
-      this.searchForm.page = 0
+      this.size = val
+      this.page = 0
       this.handleSearch()
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
     handleCurrentChange(val) {
-      this.searchForm.page = val
+      this.page = val
       this.handleSearch()
     },
     // 重置表单
@@ -84,10 +84,10 @@ export default {
     // 查询
     handleSearch: function() {
       const self = this
-      search(self.searchForm.page, self.searchForm.size, self.searchForm).then(
+      search(self.page, self.size, self.searchForm).then(
         function(response) {
           self.tableData = response.data
-          self.searchForm.total = response.count
+          self.total = response.count
           self.loading = false
         }
       )

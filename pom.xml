@@ -66,5 +66,6 @@
 		<module>springsongs-common</module>
 		<module>springsongs-sys-domain</module>
     <module>springsongs-job-domain</module>
+    <module>springsongs-activiti-domain</module>
   </modules>
 </project>

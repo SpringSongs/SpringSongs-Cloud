@@ -8150,6 +8150,16 @@ if (!ORYX.Core.StencilSet) {
     ORYX.Core.StencilSet = {};
 }
 
+function getCookie(name)
+{
+var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+if(arr=document.cookie.match(reg))
+return unescape(arr[2]);
+else
+return null;
+}
+
+ORYX.Core.StencilSet.Token=getCookie("Admin-Token");
 /**
  * This class represents a stencil set. It offers methods for accessing
  *  the attributes of the stencil set description JSON file and the stencil set's
@@ -8186,10 +8196,11 @@ ORYX.Core.StencilSet.StencilSet = Clazz.extend({
 		if(ORYX.CONFIG.BACKEND_SWITCH) {
 			this._baseUrl = "editor/stencilsets/bpmn2.0/";
 			this._source = "stencilsets/bpmn2.0/bpmn2.0.json";
-			//debugger;
+			
 			new Ajax.Request(ACTIVITI.CONFIG.contextRoot + '/editor/stencilset?version=' + Date.now(), {
 	            asynchronous: false,
-	            method: 'get',
+				method: 'get',
+				token: ORYX.Core.StencilSet.Token,
 	            onSuccess: this._init.bind(this),
 	            onFailure: this._cancelInit.bind(this)
 	        });

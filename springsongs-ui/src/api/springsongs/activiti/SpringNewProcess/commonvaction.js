@@ -3,7 +3,7 @@ import qs from 'qs'
 export function search(page, size, data) {
   // var data = qs.stringify(data)
   return request({
-    url: '/SpringActVacation/ListByPage?page=' + page + '&size=' + size,
+    url: '/ACTIVITI-API/SpringActVacation/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })
@@ -11,7 +11,7 @@ export function search(page, size, data) {
 
 export function save(data) {
   return request({
-    url: '/SpringActVacation/Create',
+    url: '/ACTIVITI-API/SpringActVacation/Create',
     method: 'post',
     data
   })
@@ -19,7 +19,7 @@ export function save(data) {
 
 export function edit(data) {
   return request({
-    url: '/SpringActVacation/Edit',
+    url: '/ACTIVITI-API/SpringActVacation/Edit',
     method: 'put',
     data
   })
@@ -32,7 +32,7 @@ export function batchDelete(data) {
     indices: false
   })
   return request({
-    url: '/SpringActVacation/SetDeleted',
+    url: '/ACTIVITI-API/SpringActVacation/SetDeleted',
     method: 'post',
     data
   })
@@ -40,28 +40,28 @@ export function batchDelete(data) {
 
 export function submitSpringActVacation(data) {
   return request({
-    url: '/SpringActVacation/SubmitSpringActVacation',
+    url: '/ACTIVITI-API/SpringActVacation/SubmitSpringActVacation',
     method: 'post',
     data
   })
 }
 export function get(id) {
   return request({
-    url: '/SpringActVacation/Detail?id=' + id,
+    url: '/ACTIVITI-API/SpringActVacation/Detail?id=' + id,
     method: 'get'
   })
 }
 
 export function listSpringDictionaryDetailByDictionaryCode(dictionaryCode) {
   return request({
-    url: '/SpringDictionaryDetail/ListSpringDictionaryDetailByDictionaryCode?dictionaryCode=' + dictionaryCode,
+    url: '/SYS-API/SpringDictionaryDetail/ListSpringDictionaryDetailByDictionaryCode?dictionaryCode=' + dictionaryCode,
     method: 'get'
   })
 }
 
 export function passOrReject(data, taskId) {
   return request({
-    url: '/SpringActVacationApprove/CompleteSpringActVacationApprove?taskId=' + taskId,
+    url: '/ACTIVITI-API/SpringActVacationApprove/CompleteSpringActVacationApprove?taskId=' + taskId,
     method: 'post',
     data
   })
@@ -69,7 +69,7 @@ export function passOrReject(data, taskId) {
 
 export function findByVacationId(vacationId) {
   return request({
-    url: '/SpringActVacationApprove/FindByVacationId?vacationId=' + vacationId,
+    url: '/ACTIVITI-API/SpringActVacationApprove/FindByVacationId?vacationId=' + vacationId,
     method: 'get'
   })
 }

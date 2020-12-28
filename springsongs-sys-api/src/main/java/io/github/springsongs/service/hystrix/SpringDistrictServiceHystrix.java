@@ -24,7 +24,7 @@ public class SpringDistrictServiceHystrix implements ISpringDistrictService {
 	}
 
 	@Override
-	public ResponseDTO<SpringContactDTO> get(@NotEmpty(message = "id不能为空") Long id) {
+	public ResponseDTO<SpringDistrictDTO> get(@NotEmpty(message = "id不能为空") Long id) {
 		return ResponseDTO.successed(ResultCode.SERCIE_BUSING);
 	}
 

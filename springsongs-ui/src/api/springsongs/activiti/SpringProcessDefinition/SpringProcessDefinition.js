@@ -3,14 +3,14 @@ import qs from 'qs'
 export function search(page, size, category) {
   // var data = qs.stringify(data)
   return request({
-    url: '/SpringProcess/ListByPage?page=' + page + '&size=' + size + '&category=' + category,
+    url: '/ACTIVITI-SERVICE/SpringProcess/ListByPage?page=' + page + '&size=' + size + '&category=' + category,
     method: 'get'
   })
 }
 
 export function listUserTask(data) {
   return request({
-    url: '/SpringActUseTask/listUserTaskByProcDefKey?procDefKey=' + data,
+    url: '/ACTIVITI-API/SpringActUseTask/ListUserTaskByProcDefKey?procDefKey=' + data,
     method: 'get'
   })
 }
@@ -18,7 +18,7 @@ export function listUserTask(data) {
 export function initSingleDefinition(data) {
   data = qs.stringify(data)
   return request({
-    url: '/SpringActUseTask/initSingleDefinition',
+    url: '/ACTIVITI-API/SpringActUseTask/InitSingleDefinition',
     method: 'post',
     data
   })
@@ -27,7 +27,7 @@ export function initSingleDefinition(data) {
 export function initAllDefinition(data) {
   data = qs.stringify(data)
   return request({
-    url: '/SpringActUseTask/initAllDefinition',
+    url: '/ACTIVITI-API/SpringActUseTask/InitAllDefinition',
     method: 'post',
     data
   })
@@ -36,7 +36,7 @@ export function initAllDefinition(data) {
 export function setUserToTask(data, procDefKey) {
   // data = qs.stringify(data)
   return request({
-    url: '/SpringActUseTask/setUserToTask?procDefKey=' + procDefKey,
+    url: '/ACTIVITI-API/SpringActUseTask/SetUserToTask?procDefKey=' + procDefKey,
     method: 'post',
     data
   })
@@ -52,7 +52,7 @@ export function listUserPage(page, size, data) {
 
 export function listRole(page, size, data) {
   return request({
-    url: '/SpringRole/ListByPage?page=' + page + '&size=' + size,
+    url: '/ACTIVITI-API/SpringRole/ListByPage?page=' + page + '&size=' + size,
     method: 'post',
     data
   })

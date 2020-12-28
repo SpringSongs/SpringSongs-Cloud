@@ -32,6 +32,21 @@ var activitiModeler = angular.module('activitiModeler', [
 ]);
 
 var activitiModule = activitiModeler;
+activitiModeler.factory('authInterceptor', function($rootScope,  $cookieStore,$cookies){
+    return {
+        request: function(config){
+            config.headers ={};
+            //console.log($cookies['Admin-Token']);
+            if($cookies['Admin-Token']){
+                config.headers["X-Token"]=$cookies['Admin-Token'];
+            }
+            return config;
+        },
+        responseError: function(response){
+            
+        }
+    };
+});
 
 activitiModeler
   // Initialize routes
@@ -52,13 +67,23 @@ activitiModeler
 
         // remember language
         $translateProvider.useCookieStorage();
+        $httpProvider.interceptors.push('authInterceptor');
+        // $httpProvider.defaults.transformRequest = function (data) {
+        //     //把JSON数据转换成字符串形式
+        //     if (data !== undefined) {
+        //         return $.param(data);
+        //     }
+        //     return data;
+        // };
+
         //$httpProvider.defaults.useXDomain = true;
-        $httpProvider.defaults.withCredentials = true;
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        //$httpProvider.defaults.withCredentials = true;
+        //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        //console.log($cookieStore.get("Admin-Token"));
         //$httpProvider.defaults.headers.common["Accept"] = 'application/json';
         //$httpProvider.defaults.headers.common["Content-Type"] = 'application/json; charset=utf-8';
         //$httpProvider.defaults.headers.common["Access-Control-Request-Headers"] = 'X-Requested-With, content-type, accept, origin, withcredentials';
-        $httpProvider.defaults.headers.common['X-Token'] = "";
+        //$httpProvider.defaults.headers.common['X-Token'] = "";
 
   }])
   .run(['$rootScope', '$timeout', '$modal', '$translate', '$location', '$window', '$http', '$q',

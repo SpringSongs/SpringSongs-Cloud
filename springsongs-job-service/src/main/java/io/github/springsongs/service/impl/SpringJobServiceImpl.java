@@ -26,6 +26,7 @@ import com.github.pagehelper.PageInfo;
 
 import io.github.springsongs.domain.SpringBaseJob;
 import io.github.springsongs.domain.SpringJob;
+import io.github.springsongs.domain.SpringJobGroup;
 import io.github.springsongs.dto.SpringJobDTO;
 import io.github.springsongs.enumeration.ResultCode;
 import io.github.springsongs.enumeration.SchedulerStatus;
@@ -82,7 +83,14 @@ public class SpringJobServiceImpl implements ISpringJobService {
 	@Override
 	public void insert(SpringJobDTO record) {
 		try {
-			springJobMapper.insert(record);
+			record.setId(UUID.randomUUID().toString());
+			record.setCreatedUserId(authenUtil.getUser().getId());
+			record.setCreatedBy(authenUtil.getUser().getUserName());
+			record.setCreatedIp(authenUtil.getUser().getIp());
+			record.setCreatedOn(new Date());
+			SpringJob springJobDO=new SpringJob();
+			BeanUtils.copyProperties(record, springJobDO);
+			springJobMapper.insert(springJobDO);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			throw new SpringSongsException(ResultCode.SYSTEM_ERROR);

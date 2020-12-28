@@ -26,6 +26,6 @@ public abstract class AbstractBaseJob implements SpringBaseJob {
         springJobHistoryService.insert(history);
     }
 
-    public abstract void doExecute(JobExecutionContext context, SpringJobHistory history);
+    public abstract void doExecute(JobExecutionContext context, SpringJobHistoryDTO history);
 
 }

@@ -71,9 +71,9 @@
                     <div class="pagination">
                       <el-pagination
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="total"
-                        :page-size="searchForm.size"
-                        :current-page="searchForm.page"
+                        :total="searchtotal"
+                        :page-size="searchsize"
+                        :current-page="searchage"
                         @current-change="handleCurrentChange"
                         @size-change="sizeChangeHandle"
                       />
@@ -167,11 +167,11 @@
                     <div class="pagination">
                       <el-pagination
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="total"
-                        :page-size="searchForm.size"
-                        :current-page="searchForm.page"
-                        @current-change="handleCurrentChange"
-                        @size-change="sizeChangeHandle"
+                        :total="searchUserTotal"
+                        :page-size="searchUserSize"
+                        :current-page="searchUserPage"
+                        @current-change="handleCurrentChangeUser"
+                        @size-change="sizeChangeHandleUser"
                       />
                     </div>
                   </el-col>
@@ -201,10 +201,11 @@
                     <div class="pagination">
                       <el-pagination
                         layout="prev, pager, next"
-                        :total="totalRoleUser"
-                        :page-size="20"
-                        :current-page="searchUserRoleForm.page"
+                        :total="searchUserRoleCount"
+                        :page-size="searchUserRoleSize"
+                        :current-page="searchUserRolePage"
                         @current-change="handleCurrentChangeRoleUser"
+                         @size-change="sizeChangeHandleRoleUser"
                       />
                     </div>
                   </el-col>

@@ -21,5 +21,5 @@
 var ACTIVITI = ACTIVITI || {};
 
 ACTIVITI.CONFIG = {
-	'contextRoot': 'http://localhost:8091/service',
+	'contextRoot': 'http://localhost:9900/ACTIVITI-SERVICE/service',
 };

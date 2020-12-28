@@ -1101,9 +1101,13 @@ Ajax.Request.prototype = Object.extend(new Ajax.Base(), {
     var headers = {
       'X-Requested-With': 'XMLHttpRequest',
       'X-Prototype-Version': Prototype.Version,
+      'X-Token':'',
       'Accept': 'text/javascript, text/html, application/xml, text/xml, */*'
     };
 
+    if (this.options.token){
+      headers['X-Token']=this.options.token;
+    }
     if (this.method == 'post') {
       headers['Content-type'] = this.options.contentType +
         (this.options.encoding ? '; charset=' + this.options.encoding : '');

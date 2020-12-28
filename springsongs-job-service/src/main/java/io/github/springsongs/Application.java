@@ -1,6 +1,5 @@
 package io.github.springsongs;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -17,7 +16,6 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 @EnableScheduling
 @EnableCircuitBreaker
 @EnableHystrix
-@MapperScan(basePackages = "io.github.springsongs.mapper")
 public class Application {
 
 	public static void main(String[] args) {

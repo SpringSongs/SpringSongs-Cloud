@@ -124,7 +124,7 @@ public class SpringResourceController {
 	}
 
 	@ApiOperation(value = "查询资源树", notes = "查询资源树", response = ResponseDTO.class)
-	@GetMapping(value = "/ListAllToTree")
+	@PostMapping(value = "/ListAllToTree")
 	public ResponseDTO<List<SpringResourceDTO>> ListAllToTree(
 			@RequestParam(value = "systemId", required = true) String systemId) {
 		List<SpringResourceDTO> entitys = springResourceService.ListAllToTree(systemId);

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import io.github.springsongs.dto.ReponseResultPageDTO;
 import io.github.springsongs.dto.ResponseDTO;
-import io.github.springsongs.dto.SpringContactDTO;
 import io.github.springsongs.dto.SpringDistrictDTO;
 import io.github.springsongs.interceptor.SecuringRequestInterceptor;
 import io.github.springsongs.service.hystrix.SpringDistrictServiceHystrix;
@@ -27,7 +26,7 @@ public interface ISpringDistrictService {
 			@RequestParam("page") int page, @RequestParam("size") int size);
 
 	@PostMapping(value = "/SpringDistrict/Detail")
-	public ResponseDTO<SpringContactDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") Long id);
+	public ResponseDTO<SpringDistrictDTO> get(@RequestParam(value = "id", required = true) @NotEmpty(message = "id不能为空") Long id);
 
 	@PostMapping(value = "/SpringDistrict/Create")
 	public ResponseDTO<String> save(@RequestBody @Valid SpringDistrictDTO viewEntity);

@@ -16,3 +16,6 @@ springsongs-bootadmin/chenyongcan.log.2020-12-14.0.gz
 springsongs-bootadmin/chenyongcan.log
 springsongs-bootadmin/chenyongcan.log
 springsongs-zipkin/.factorypath
+.idea/*
+.idea/compiler.xml
+.idea/vcs.xml
