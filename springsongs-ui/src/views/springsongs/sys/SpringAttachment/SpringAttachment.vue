@@ -1,7 +1,26 @@
 <template>
   <div class="app-container">
     <el-row>
-      <el-col :span="24">
+      <el-col :span="5">
+        <el-tabs type="border-card">
+          <el-tab-pane label="文件类型">
+
+            <div class="treesearch">
+              <el-tree
+                ref="menuListTree"
+                :data="menuList"
+                :props="menuListTreeProps"
+                node-key="id"
+                :default-expand-all="true"
+                :highlight-current="true"
+                :expand-on-click-node="false"
+                @current-change="menuListTreeCurrentSearchHandle"
+              />
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+      </el-col>
+      <el-col :span="19">
         <div class="bg-white h-100 mx-1 p-1 shadowed">
           <el-tabs type="border-card">
             <el-tab-pane label="我的文件查询">
@@ -22,6 +41,7 @@
             <el-tab-pane label="我的文件">
               <div class="block">
                 <el-button-group>
+                  <el-button type="primary" icon="el-icon-search" @click="handleRefresh()">刷新</el-button>
                   <el-button type="success" icon="el-icon-search" @click="handleSearch()">查询</el-button>
                   <el-button type="primary" icon="el-icon-circle-plus" @click="handleAdd()">新增</el-button>
                   <el-button type="warning" icon="el-icon-edit" @click="handleEdit()">修改</el-button>
@@ -35,14 +55,14 @@
                   tooltip-effect="dark"
                   highlight-current-row
                   style="width: 100%;"
+                  border
                   @selection-change="handleSelectionChange"
                 >
                   <el-table-column type="selection" width="55" />
                   <el-table-column type="index" width="60" />
-                  <el-table-column prop="folderName" label="文件夹名称" width="180" />
-                  <el-table-column prop="path" label="文件路径" width="180" />
+                  <el-table-column prop="path" label="文件路径" />
                   <el-table-column prop="description" label="说明" width="180" />
-                  <el-table-column fixed="right" label="操作" width="300">
+                  <el-table-column fixed="right" label="操作" width="180">
                     <template slot-scope="scope">
                       <el-button icon="el-icon-edit" type="text" size="small" @click="handleSingleEdit(scope.$index, scope.row)">编辑</el-button>
                       <el-button type="text" icon="el-icon-delete" class="red" @click="handleSingleDelete(scope.$index, scope.row)">删除</el-button>
