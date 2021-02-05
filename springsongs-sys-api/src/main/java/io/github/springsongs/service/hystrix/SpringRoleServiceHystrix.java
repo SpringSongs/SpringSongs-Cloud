@@ -58,7 +58,7 @@ public class SpringRoleServiceHystrix implements ISpringRoleService {
 	}
 
 	@Override
-	public ResponseDTO<String> setAuthority(String roleId, List<String> moduleIds) {
+	public ResponseDTO<String> setAuthority(String roleId, List<String> moduleIds,String systemCode) {
 		return ResponseDTO.successed(ResultCode.SERCIE_BUSING);
 	}
 
