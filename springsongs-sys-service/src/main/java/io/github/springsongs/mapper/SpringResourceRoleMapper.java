@@ -49,6 +49,8 @@ public interface SpringResourceRoleMapper {
     int updateByPrimaryKey(SpringResourceRole record);
 
 	void delete(@Param("roleId")String roleId,@Param("moduleId") String moduleId);
+	
+	void deleteByRoleIdAndSystemCode(@Param("roleId")String roleId,@Param("systemCode")String systemCode);
 
 	void saveAll(List<SpringResourceRole> baseModuleRoleEntityList);
 

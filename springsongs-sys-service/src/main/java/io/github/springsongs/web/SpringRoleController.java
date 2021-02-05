@@ -144,8 +144,9 @@ public class SpringRoleController{
 	@ApiImplicitParams({ @ApiImplicitParam(name = "roleId", dataType = "String"),
 			@ApiImplicitParam(name = "moduleIds", dataType = "List<String>"),
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest") })
-	@PostMapping(value = "/SetAuthority/{roleId}")
+	@PostMapping(value = "/SetAuthority/{roleId}/{systemCode}")
 	public ResponseDTO<String> setAuthority(@PathVariable(value = "roleId", required = true) String roleId,
+			@PathVariable(value = "systemCode", required = true) String systemCode,
 			@RequestParam(value = "moduleIds", required = true) List<String> moduleIds, HttpServletRequest request) {
 		List<SpringResourceRole> baseModuleRoleEntityList = new ArrayList<SpringResourceRole>();
 		for (String str : moduleIds) {
@@ -154,7 +155,7 @@ public class SpringRoleController{
 			entity.setModuleId(str);
 			baseModuleRoleEntityList.add(entity);
 		}
-		springResourceService.saveModuleToRole(baseModuleRoleEntityList, roleId);
+		springResourceService.saveModuleToRole(baseModuleRoleEntityList, roleId,systemCode);
 		return ResponseDTO.successed(null, ResultCode.SAVE_SUCCESSED);
 	}
 

@@ -366,8 +366,8 @@ public class SpringResourceServiceImpl implements ISpringResourceService {
 
 	@Override
 	@Transactional
-	public void saveModuleToRole(List<SpringResourceRole> baseModuleRoleEntityList, String roleId) {
-		springResourceRoleMapper.delete(roleId, roleId);
+	public void saveModuleToRole(List<SpringResourceRole> baseModuleRoleEntityList, String roleId,String systemCode) {
+		springResourceRoleMapper.deleteByRoleIdAndSystemCode(roleId, systemCode);
 		for (SpringResourceRole springResourceRole : baseModuleRoleEntityList) {
 			springResourceRole.setId(UUID.randomUUID().toString());
 			springResourceRoleMapper.insert(springResourceRole);
