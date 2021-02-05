@@ -131,10 +131,11 @@ public class SpringRoleController {
 	@ApiImplicitParams({ @ApiImplicitParam(name = "roleId", dataType = "String"),
 			@ApiImplicitParam(name = "moduleIds", dataType = "List<String>"),
 			@ApiImplicitParam(name = "request", dataType = "HttpServletRequest") })
-	@PostMapping(value = "/SetAuthority/{roleId}")
+	@PostMapping(value = "/SetAuthority/{roleId}/{systemCode}")
 	public ResponseDTO<String> setAuthority(@PathVariable(value = "roleId", required = true) String roleId,
+			@PathVariable(value = "systemCode", required = true) String systemCode,
 			@RequestParam(value = "moduleIds", required = true) List<String> moduleIds, HttpServletRequest request) {
-		ResponseDTO<String> responseDTO = springRoleService.setAuthority(roleId, moduleIds);
+		ResponseDTO<String> responseDTO = springRoleService.setAuthority(roleId, moduleIds,systemCode);
 		return responseDTO;
 	}
 

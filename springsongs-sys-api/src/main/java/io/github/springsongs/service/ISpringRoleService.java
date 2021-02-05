@@ -51,9 +51,9 @@ public interface ISpringRoleService {
 	public ResponseDTO<String> deleteUsers(@PathVariable(value = "roleId", required = true) String roleId,
 			@RequestParam(value = "ids", required = true) List<String> userIds);
 
-	@PostMapping(value = "/SetAuthority/{roleId}")
+	@PostMapping(value = "/SetAuthority/{roleId}/{systemCode}")
 	public ResponseDTO<String> setAuthority(@PathVariable(value = "roleId", required = true) String roleId,
-			@RequestParam(value = "moduleIds", required = true) List<String> moduleIds);
+			@RequestParam(value = "moduleIds", required = true) List<String> moduleIds,@PathVariable(value = "systemCode", required = true) String systemCode);
 
 	@PostMapping(value = "/SetAuthority")
 	public ResponseDTO<String> setAuthorityRoleIdAndModuleId(
